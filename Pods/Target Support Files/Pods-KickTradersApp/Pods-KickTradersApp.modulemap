@@ -1,0 +1,6 @@
+framework module Pods_KickTradersApp {
+  umbrella header "Pods-KickTradersApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
