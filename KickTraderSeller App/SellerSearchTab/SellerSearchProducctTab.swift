@@ -75,7 +75,7 @@ class SellerSearchProducctTab: UIViewController {
 extension SellerSearchProducctTab {
     func getSellerProductList (){
         
-        let sellerRef = getSellerProducts(sellerRef: "gdj6Xt0Ik3XEj")
+        let sellerRef = getSellerProducts(sellerRef: UserDefaults.standard.value(forKey: "DefaultssellerRef") as! String)
         APIManger.shareInstance.callinggetProductAPI(sellerProduct:sellerRef) {(result) in
           
             switch result{

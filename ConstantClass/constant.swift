@@ -125,11 +125,17 @@ let addReview_Url = "\(base_url)/addReview"
 
 
 
+//TODO:- Buyer API's
+//TODO:- Unboxing Video API's
+
+let getUnboxingVideo_Url = "\(base_url)/getUnboxingVideo"
+
 //TODO:- Product Images
 
 let  PRODUCT_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productVideo/"
 let  PRODUCT_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productImages/"
-let PRODUCT_COVER_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productCoverImage/"
+let  PRODUCT_COVER_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productCoverImage/"
 let  PROFILE_IMAGE =  "http://hourlylancer.com/kickTraders/admin/assets/uploads/profile_pic/"
 
 
+let  About_US = "https://kicktraders.com/about-us/"

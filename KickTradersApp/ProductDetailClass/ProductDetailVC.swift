@@ -40,9 +40,6 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
 
    
     var arrComment = [Comments]()
-    
-    
-    
     var arrimgShoe = [Image]()
     var strProductPrice : String?
     var strPlaceABidPrice : String?
@@ -50,10 +47,10 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     
     
     var arrPassSliderImg = [String]()
-    
     var defaultss = UserDefaults.standard
     
    
+    var productVideo: String!
     
     // var arrSellerDetails = [SellerDetail]()
     
@@ -87,6 +84,15 @@ override func viewDidAppear(_ animated: Bool) {
 
 //TODO:- UIButton Action
 extension ProductDetailVC{
+    
+    
+    @IBAction func actionPlayVideo(_ sender: Any) {
+        let productVidVC = self.storyboard?.instantiateViewController(identifier: "ProductVideoVC") as! ProductVideoVC
+        productVidVC.productVideoPass = productVideo
+        
+        self.navigationController?.pushViewController(productVidVC, animated: true)
+        
+    }
     
     @IBAction func actionPlaceBid(_ sender: Any) {
         self.PlaceBidalertWithTF()
@@ -151,6 +157,23 @@ extension ProductDetailVC{
                 
                 //TODO:- Update the Table View
                 self.objTable.reloadData()
+                
+                
+                
+                //TODO:- Get ProductVideo and Pass to ProductVideoVC
+                productVideo = resPonseProduct.productVideo
+                
+                
+                //TODO:- Pass ProductVideo array to ProductVideoVC
+                
+    
+                let productVideoPass = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.unboxingVideos)!
+                if let data = try? PropertyListEncoder().encode(productVideoPass) {
+                    
+                    UserDefaults.standard.set(data, forKey: "DefaultsproductVideoPass")
+                    
+                }
+                
                 
                 
                 

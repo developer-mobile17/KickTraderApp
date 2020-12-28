@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8952FFDEDCFC762F97ECD4B8 /* Pods_KickTradersApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F54403A912C996CF466604D /* Pods_KickTradersApp.framework */; };
+		9E00834E25999C6C00B35C5C /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00834D25999C6C00B35C5C /* AboutUsVC.swift */; };
+		9E0083512599B83400B35C5C /* unboxingVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0083502599B83400B35C5C /* unboxingVideoModel.swift */; };
+		9E0083642599F3B600B35C5C /* ProductVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0083632599F3B600B35C5C /* ProductVideoVC.swift */; };
+		9E00837A259A00EB00B35C5C /* productVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E008379259A00EB00B35C5C /* productVideoCell.swift */; };
 		9E04239E25848CE500FFFD93 /* SellerRemoveColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E04239D25848CE500FFFD93 /* SellerRemoveColorModel.swift */; };
 		9E04DE3825380B9600A988EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E04DE3725380B9600A988EB /* AppDelegate.swift */; };
 		9E04DE3A25380B9600A988EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E04DE3925380B9600A988EB /* SceneDelegate.swift */; };
@@ -141,11 +145,16 @@
 		9EFD36D1253EE64600A50EE3 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD36D0253EE64600A50EE3 /* ProfileVC.swift */; };
 		9EFD36D3253EF03800A50EE3 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD36D2253EF03800A50EE3 /* MoreVC.swift */; };
 		9EFD36D5253EF06200A50EE3 /* MoreVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD36D4253EF06200A50EE3 /* MoreVCCell.swift */; };
+		9EFF0C7D2597452B00184969 /* Reachbility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF0C7C2597452A00184969 /* Reachbility.swift */; };
 		9EFFBB182582139400EF115C /* SellerAddColorProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFFBB172582139400EF115C /* SellerAddColorProductModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F54403A912C996CF466604D /* Pods_KickTradersApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KickTradersApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E00834D25999C6C00B35C5C /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
+		9E0083502599B83400B35C5C /* unboxingVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = unboxingVideoModel.swift; sourceTree = "<group>"; };
+		9E0083632599F3B600B35C5C /* ProductVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVideoVC.swift; sourceTree = "<group>"; };
+		9E008379259A00EB00B35C5C /* productVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productVideoCell.swift; sourceTree = "<group>"; };
 		9E04239D25848CE500FFFD93 /* SellerRemoveColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerRemoveColorModel.swift; sourceTree = "<group>"; };
 		9E04DE3425380B9600A988EB /* KickTradersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KickTradersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E04DE3725380B9600A988EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -280,6 +289,7 @@
 		9EFD36D0253EE64600A50EE3 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		9EFD36D2253EF03800A50EE3 /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		9EFD36D4253EF06200A50EE3 /* MoreVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVCCell.swift; sourceTree = "<group>"; };
+		9EFF0C7C2597452A00184969 /* Reachbility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachbility.swift; sourceTree = "<group>"; };
 		9EFFBB172582139400EF115C /* SellerAddColorProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerAddColorProductModel.swift; sourceTree = "<group>"; };
 		C961381FBBE65266C6B40ABF /* Pods-KickTradersApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickTradersApp.debug.xcconfig"; path = "Target Support Files/Pods-KickTradersApp/Pods-KickTradersApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E8CFFE3578892E87F1348DBC /* Pods-KickTradersApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KickTradersApp.release.xcconfig"; path = "Target Support Files/Pods-KickTradersApp/Pods-KickTradersApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,6 +314,23 @@
 				3F54403A912C996CF466604D /* Pods_KickTradersApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E00834C25999C4C00B35C5C /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				9E00834D25999C6C00B35C5C /* AboutUsVC.swift */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
+		9E0083622599F39600B35C5C /* ProductVideo */ = {
+			isa = PBXGroup;
+			children = (
+				9E0083632599F3B600B35C5C /* ProductVideoVC.swift */,
+				9E008379259A00EB00B35C5C /* productVideoCell.swift */,
+			);
+			path = ProductVideo;
 			sourceTree = "<group>";
 		};
 		9E04DE2B25380B9600A988EB = {
@@ -337,6 +364,7 @@
 				9ED40C2B2546A63000C95770 /* MainTab */,
 				9E86AF47256CBEEF00D65220 /* HomeTab */,
 				9ED40C322546B3EC00C95770 /* ProductDetailClass */,
+				9E0083622599F39600B35C5C /* ProductVideo */,
 				9E86AF49256CBF0A00D65220 /* SearchTab */,
 				9E86AF4B256CBF2400D65220 /* CartTab */,
 				9E86AF4D256CBF3800D65220 /* ChatTab */,
@@ -360,6 +388,7 @@
 			children = (
 				9E4D46BE254C03F70062306C /* PhotoSlider */,
 				9E04DE5025386E9700A988EB /* Extensioninspectable.swift */,
+				9EFF0C7C2597452A00184969 /* Reachbility.swift */,
 				9EC6F9072548354700667CF3 /* HexColor.swift */,
 				9E8A2D9325766C9200F44FAD /* UIAlertController.swift */,
 				9E105CDC255014A900522887 /* TextField.swift */,
@@ -386,6 +415,7 @@
 				9E8254B92578AAF500124E64 /* getFavoriteByBuyerModel.swift */,
 				9EC13621257E11C800E26460 /* addReviewModel.swift */,
 				9EA1666E257F693100DDF973 /* cancelOrderModel.swift */,
+				9E0083502599B83400B35C5C /* unboxingVideoModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -533,6 +563,7 @@
 		9E86AF4E256CBF4D00D65220 /* MoreTab */ = {
 			isa = PBXGroup;
 			children = (
+				9E00834C25999C4C00B35C5C /* AboutUs */,
 				9E86AF5E256CDDF300D65220 /* MoreVC */,
 				9E86AF50256CDCF100D65220 /* ProfileVC */,
 				9E86AF52256CDD0400D65220 /* TransactionVC */,
@@ -950,6 +981,7 @@
 				9E9BE6332574DB4E00651DC9 /* fetchShippingAddressModel.swift in Sources */,
 				9EEA7E75256D1BEB00A7A4A1 /* removeCartItemModel.swift in Sources */,
 				9E105CD7254FF2F700522887 /* SettingVC.swift in Sources */,
+				9E00837A259A00EB00B35C5C /* productVideoCell.swift in Sources */,
 				9E9BE65925751A6400651DC9 /* sellerGetBidsModel.swift in Sources */,
 				9E8254BA2578AAF500124E64 /* getFavoriteByBuyerModel.swift in Sources */,
 				9E6A653C254191E4005A9B25 /* NotificationCell.swift in Sources */,
@@ -969,6 +1001,7 @@
 				9E9DB8DA2566466200AB00BB /* SellerSignUpVerficationVC.swift in Sources */,
 				9E43EFA82564EF9700A92F52 /* SellerAddProduct.swift in Sources */,
 				9E8254BF2578ACDD00124E64 /* FavouriteCell.swift in Sources */,
+				9E00834E25999C6C00B35C5C /* AboutUsVC.swift in Sources */,
 				9E9BD286256795680097C66C /* BuyerSignUpModel.swift in Sources */,
 				9E6A653E25419662005A9B25 /* unBoxingVideoCell.swift in Sources */,
 				9EF30EE225540A3B006537FD /* SellerEarningCell.swift in Sources */,
@@ -996,6 +1029,7 @@
 				9E5293E02591D8DB009ADA25 /* VerifyEnterOtpModel.swift in Sources */,
 				9EFFBB182582139400EF115C /* SellerAddColorProductModel.swift in Sources */,
 				9E9BE62C2574B6B400651DC9 /* AddressListVC.swift in Sources */,
+				9E0083642599F3B600B35C5C /* ProductVideoVC.swift in Sources */,
 				9E9BD28325678B7B0097C66C /* BuyerAPIManger.swift in Sources */,
 				9EA82222253B15D80075564F /* ChatVC.swift in Sources */,
 				9E1EE2CD255D03BA00F15389 /* loginModel.swift in Sources */,
@@ -1008,6 +1042,7 @@
 				9E81725D25527D2E006E8027 /* BindingRequestVC.swift in Sources */,
 				9E8DC8FD25518AD700375A63 /* SellerOrderTab.swift in Sources */,
 				9E967A472551220300804A75 /* SellerMainTab.swift in Sources */,
+				9EFF0C7D2597452B00184969 /* Reachbility.swift in Sources */,
 				9E9DB8D72566438E00AB00BB /* SellerSignUpVerficationModel.swift in Sources */,
 				9EA82224253B17AD0075564F /* ChatVCCell.swift in Sources */,
 				9E105CD9254FF31100522887 /* SettingCell.swift in Sources */,
@@ -1052,6 +1087,7 @@
 				9EB4BD7D253963D9000AB2D8 /* ResetPasswordVC.swift in Sources */,
 				9E8DC25B2570B7C100D0872D /* PlaceABidModel.swift in Sources */,
 				9EE66463255A6AEA007E3F9F /* SellerEarningDetailCell.swift in Sources */,
+				9E0083512599B83400B35C5C /* unboxingVideoModel.swift in Sources */,
 				9E81726125528EB0006E8027 /* BiddingDetailsCell.swift in Sources */,
 				9ED280EC253D67ED00B9CFEF /* introScreen2VC.swift in Sources */,
 				9E6A65362541550C005A9B25 /* GendertableCell.swift in Sources */,

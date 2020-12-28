@@ -50,6 +50,7 @@ struct ProductInfo : Codable {
     let brandName : String?
     let colors : [COlors]?
     let comments : [Comments]?
+    let unboxingVideos : [UnboxingVideos]?
     let sellerDetail : SellerDetail?
 
     enum CodingKeys: String, CodingKey {
@@ -71,6 +72,7 @@ struct ProductInfo : Codable {
         case brandName = "brandName"
         case colors = "colors"
         case comments = "comments"
+        case unboxingVideos = "unboxingVideos"
         case sellerDetail = "sellerDetail"
     }
 
@@ -93,6 +95,7 @@ struct ProductInfo : Codable {
         brandName = try values.decodeIfPresent(String.self, forKey: .brandName)
         colors = try values.decodeIfPresent([COlors].self, forKey: .colors)
         comments = try values.decodeIfPresent([Comments].self, forKey: .comments)
+        unboxingVideos = try values.decodeIfPresent([UnboxingVideos].self, forKey: .unboxingVideos)
         sellerDetail = try values.decodeIfPresent(SellerDetail.self, forKey: .sellerDetail)
     }
 
@@ -319,6 +322,47 @@ struct Comments : Codable {
         full_Name = try values.decodeIfPresent(String.self, forKey: .full_Name)
         profile_Image = try values.decodeIfPresent(String.self, forKey: .profile_Image)
         shop_description = try values.decodeIfPresent(String.self, forKey: .shop_description)
+    }
+
+}
+
+
+struct UnboxingVideos : Codable {
+    let id : String?
+    let unboxingRef : String?
+    let orderRef : String?
+    let videoName : String?
+    let buyerRef : String?
+    let created_at : String?
+  
+    let unboxingVideo : String?
+    let orderNumber : String?
+   
+
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case unboxingRef = "unboxingRef"
+        case orderRef = "orderRef"
+        case videoName = "videoName"
+        case buyerRef = "buyerRef"
+        case created_at = "created_at"
+        case unboxingVideo = "unboxingVideo"
+        case orderNumber = "orderNumber"
+        
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
+        unboxingRef = try values.decodeIfPresent(String.self, forKey: .unboxingRef)
+        orderRef = try values.decodeIfPresent(String.self, forKey: .orderRef)
+        videoName = try values.decodeIfPresent(String.self, forKey: .videoName)
+        buyerRef = try values.decodeIfPresent(String.self, forKey: .buyerRef)
+        created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
+        unboxingVideo = try values.decodeIfPresent(String.self, forKey: .unboxingVideo)
+        orderNumber = try values.decodeIfPresent(String.self, forKey: .orderNumber)
+       
     }
 
 }

@@ -17,11 +17,11 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-         txfEmail.text = "buyer@gmail.com"
-       // txfEmail.text = "iOS@gmail.com"
+        txfEmail.text = "buyer@gmail.com"
+        //txfEmail.text = "iOS@gmail.com"
         txfPassword.text = "1234"
         txfPassword.isSecureTextEntry = false
+        
         
     }
     @IBAction func actionBack(_ sender: Any) {
@@ -53,7 +53,38 @@ extension LoginVC {
     @IBAction func actionLogin(_ sender: Any) {
         
         
+        if InternetConnectionManager.isConnectedToNetwork()
+        {
+            self.LoginAPICalling()
+            
+        }
+        else {
+            ProgressHUD.dismiss()
+            self.showAlert(alertMessage: "Internet connection is not available!")
+            
+        }
         
+        
+    }
+    
+    @IBAction func actionForgotPass(_ sender: Any) {
+        
+        
+        let vwForgot = self.storyboard?.instantiateViewController(identifier: "ForgetPasswordVC") as! ForgetPasswordVC
+        self.navigationController?.pushViewController(vwForgot, animated: true)
+    }
+    
+    @IBAction func actionSignUp(_ sender: Any) {
+        
+        
+        let vwTypeOfAccount = self.storyboard?.instantiateViewController(identifier: "TypeOfAccountVC") as! TypeOfAccountVC
+        self.navigationController?.pushViewController(vwTypeOfAccount, animated: true)
+    }
+}
+
+
+extension LoginVC {
+    func LoginAPICalling(){
         ProgressHUD.show("Loading...", interaction: false)
         
         guard let email = txfEmail.text else {return}
@@ -105,19 +136,6 @@ extension LoginVC {
                 print(err.localizedDescription)
             }
         }
-    }
-    
-    @IBAction func actionForgotPass(_ sender: Any) {
         
-        
-        let vwForgot = self.storyboard?.instantiateViewController(identifier: "ForgetPasswordVC") as! ForgetPasswordVC
-        self.navigationController?.pushViewController(vwForgot, animated: true)
-    }
-    
-    @IBAction func actionSignUp(_ sender: Any) {
-        
-        
-        let vwTypeOfAccount = self.storyboard?.instantiateViewController(identifier: "TypeOfAccountVC") as! TypeOfAccountVC
-        self.navigationController?.pushViewController(vwTypeOfAccount, animated: true)
     }
 }

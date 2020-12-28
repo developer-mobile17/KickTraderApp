@@ -900,5 +900,47 @@ class BuyerAPIManager {
     
     
     
+    //MARK:- Get UnBoxing Video API
+    
+    func callingGetUnboxingVideo(completionHandler : @escaping Handler) {
+        
+        AF.request(getUnboxingVideo_Url,
+                   method: .get,
+                   parameters: nil,
+                   headers:nil ).response
+                   { response in
+            
+                switch response.result{
+                case .success(let data):
+                    do {
+                        
+                        let jsonDecoder = JSONDecoder()
+                        let responseAddProModel = try jsonDecoder.decode(unboxingVideoModel.self, from: data!)
+                        print(responseAddProModel)
+                        
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseAddProModel))
+                            print("Success List of Unboxing Video UI")
+                        }
+                        else{
+                            ProgressHUD.dismiss()
+                            print("There is an issue with Unboxing Video API, Please check!")
+                        }
+                        
+                    } catch  {
+                        ProgressHUD.dismiss()
+                        print(error.localizedDescription)
+                    }
+                    
+                case .failure(let err):
+                    ProgressHUD.dismiss()
+                    print(err.localizedDescription)
+                }
+            
+        }
+    }
+    
+    
+    
     
 }

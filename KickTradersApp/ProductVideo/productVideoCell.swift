@@ -1,23 +1,19 @@
 //
-//  unBoxingVideoCell.swift
+//  productVideoCell.swift
 //  KickTradersApp
 //
-//  Created by anil kumar on 22/10/20.
+//  Created by anil kumar on 28/12/20.
 //  Copyright © 2020 VikasSIngh. All rights reserved.
 //
 
 import UIKit
 
-class unBoxingVideoCell: UITableViewCell {
-    
-    @IBOutlet var imgShoes: UIImageView!
-    @IBOutlet var lblBrandName: UILabel!
-    @IBOutlet var lblShoeName: UILabel!
-    @IBOutlet var lblPrice: UILabel!
-    @IBOutlet var vwStarRating: FloatRatingView!
-    
-    @IBOutlet var btnVideoPlayClicked : UIButton!
+class productVideoCell: UITableViewCell {
 
+    @IBOutlet var imgUnboxingVideo: UIImageView!
+    @IBOutlet var btnPlay: UIButton!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

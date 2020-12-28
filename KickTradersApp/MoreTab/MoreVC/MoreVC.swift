@@ -18,7 +18,7 @@ class MoreVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arrMenus = [MoreOptionData(moreMenu: "Profile"),MoreOptionData(moreMenu: "Transactions"),MoreOptionData(moreMenu: "Favourites"),MoreOptionData(moreMenu: "Track Delivery"),MoreOptionData(moreMenu: "Unboxing Videos"),MoreOptionData(moreMenu: "Settings"),MoreOptionData(moreMenu: "Notifications"),MoreOptionData(moreMenu: "About"),MoreOptionData(moreMenu: "Contact"),]
+        arrMenus = [MoreOptionData(moreMenu: "Profile"),MoreOptionData(moreMenu: "Transactions"),MoreOptionData(moreMenu: "Favourites"),MoreOptionData(moreMenu: "Unboxing Videos"),MoreOptionData(moreMenu: "Settings"),MoreOptionData(moreMenu: "Notifications"),MoreOptionData(moreMenu: "About"),MoreOptionData(moreMenu: "Contact"),]
         
     }
     
@@ -93,6 +93,16 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
             present(vc, animated: true)
         }
         
+        
+        
+        
+        else if (strData ==  "About"){
+            guard let vc = storyboard?.instantiateViewController(identifier: "AboutUsVC") as? AboutUsVC else{
+                
+                return
+            }
+            present(vc, animated: true)
+        }
         
             
             

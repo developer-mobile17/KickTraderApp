@@ -11,17 +11,15 @@ import UIKit
 class CartVC:UIViewController {
     
     @IBOutlet var objtable : UITableView!
-     var arrCartData = [CartItem]()
+    @IBOutlet var imgEmptyCart: UIImageView!
+    var arrCartData = [CartItem]()
      var selecteCartRef : String = ""
      var strBidPrice: String = " "
      var strstatus: String = " "
      var strBtnTitleChecked: String = ""
-    
      var strPlaceABidPrice: String = ""
      var strcartRef: String = ""
-   
-    
-    var defaults = UserDefaults.standard
+     var defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +29,7 @@ class CartVC:UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        self.imgEmptyCart.isHidden = true
         self.callingCartAPI()
     }
     
@@ -53,6 +52,12 @@ extension CartVC {
                 
                 ProgressHUD.dismiss()
                 self.arrCartData = (json as! getCartModelResponse).cartItem!
+                let msg = (json as! getCartModelResponse).msg!
+                if msg == "Cart empty."{
+                    self.imgEmptyCart.isHidden = false
+                }
+                
+               
                 self.objtable.reloadData()
                 
             case.failure(let err):
