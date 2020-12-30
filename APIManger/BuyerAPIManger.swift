@@ -131,13 +131,14 @@ class BuyerAPIManager {
                     case .success(let data):
                         do {
                             
+                            
                             let json = try JSONSerialization.jsonObject(with: data!, options: [])
                             print(json)
                             
                             
                             let jsonDecoder = JSONDecoder()
                             let responseModel = try jsonDecoder.decode(BuyerGetProductDetailsModelResponse.self, from: data!)
-                            // print(responseModel.productInfo?.colors!)
+                            print(responseModel.productInfo?.sellerDetail! as Any)
                             
                             if response.response?.statusCode == 200{
                                 completionHandler(.success(responseModel))

@@ -213,12 +213,15 @@ struct SellerDetail : Codable {
     let close_time : String?
     let shop_description : String?
     let is_Active : String?
-    let device_Token : String?
+    let deviceToken : String?
     let mobileType : String?
     let notification : String?
-    let lognStatus : String?
+    let loginStatus : String?
     let location : String?
     let validation_Code : String?
+    let disputeCount : String?
+    let isSuspend : String?
+    let suspendTill : String?
     let createdDtm : String?
     let avgRating : String?
     let totalReview : Int?
@@ -241,12 +244,15 @@ struct SellerDetail : Codable {
         case close_time = "close_time"
         case shop_description = "shop_description"
         case is_Active = "Is_Active"
-        case device_Token = "Device_Token"
-        case mobileType = "MobileType"
+        case deviceToken = "deviceToken"
+        case mobileType = "mobileType"
         case notification = "notification"
-        case lognStatus = "lognStatus"
+        case loginStatus = "loginStatus"
         case location = "location"
         case validation_Code = "Validation_Code"
+        case disputeCount = "disputeCount"
+        case isSuspend = "isSuspend"
+        case suspendTill = "suspendTill"
         case createdDtm = "createdDtm"
         case avgRating = "avgRating"
         case totalReview = "totalReview"
@@ -270,12 +276,15 @@ struct SellerDetail : Codable {
         close_time = try values.decodeIfPresent(String.self, forKey: .close_time)
         shop_description = try values.decodeIfPresent(String.self, forKey: .shop_description)
         is_Active = try values.decodeIfPresent(String.self, forKey: .is_Active)
-        device_Token = try values.decodeIfPresent(String.self, forKey: .device_Token)
+        deviceToken = try values.decodeIfPresent(String.self, forKey: .deviceToken)
         mobileType = try values.decodeIfPresent(String.self, forKey: .mobileType)
         notification = try values.decodeIfPresent(String.self, forKey: .notification)
-        lognStatus = try values.decodeIfPresent(String.self, forKey: .lognStatus)
+        loginStatus = try values.decodeIfPresent(String.self, forKey: .loginStatus)
         location = try values.decodeIfPresent(String.self, forKey: .location)
         validation_Code = try values.decodeIfPresent(String.self, forKey: .validation_Code)
+        disputeCount = try values.decodeIfPresent(String.self, forKey: .disputeCount)
+        isSuspend = try values.decodeIfPresent(String.self, forKey: .isSuspend)
+        suspendTill = try values.decodeIfPresent(String.self, forKey: .suspendTill)
         createdDtm = try values.decodeIfPresent(String.self, forKey: .createdDtm)
         avgRating = try values.decodeIfPresent(String.self, forKey: .avgRating)
         totalReview = try values.decodeIfPresent(Int.self, forKey: .totalReview)
@@ -334,10 +343,8 @@ struct UnboxingVideos : Codable {
     let videoName : String?
     let buyerRef : String?
     let created_at : String?
-  
     let unboxingVideo : String?
     let orderNumber : String?
-   
 
     enum CodingKeys: String, CodingKey {
 
@@ -349,7 +356,6 @@ struct UnboxingVideos : Codable {
         case created_at = "created_at"
         case unboxingVideo = "unboxingVideo"
         case orderNumber = "orderNumber"
-        
     }
 
     init(from decoder: Decoder) throws {
@@ -362,7 +368,6 @@ struct UnboxingVideos : Codable {
         created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
         unboxingVideo = try values.decodeIfPresent(String.self, forKey: .unboxingVideo)
         orderNumber = try values.decodeIfPresent(String.self, forKey: .orderNumber)
-       
     }
 
 }

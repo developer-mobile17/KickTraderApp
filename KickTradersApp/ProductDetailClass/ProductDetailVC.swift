@@ -89,6 +89,7 @@ extension ProductDetailVC{
     @IBAction func actionPlayVideo(_ sender: Any) {
         let productVidVC = self.storyboard?.instantiateViewController(identifier: "ProductVideoVC") as! ProductVideoVC
         productVidVC.productVideoPass = productVideo
+        productVidVC.productNamePass =  self.productName.text 
         
         self.navigationController?.pushViewController(productVidVC, animated: true)
         

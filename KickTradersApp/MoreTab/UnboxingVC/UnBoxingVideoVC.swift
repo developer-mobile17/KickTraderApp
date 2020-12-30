@@ -8,15 +8,19 @@
 
 import UIKit
 import AVKit
+import AVFoundation
+import Kingfisher
 
 class UnBoxingVideoVC: UIViewController {
     @IBOutlet var objTable: UITableView!
     var arrUnboxingResult = [UnboxingResult]()
     var strBaseUrl : String!
     var videoURL: URL!
+    var imgURL: URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.CallingGetUnboxingVideoAPI()
         
     }
@@ -61,11 +65,40 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "unBoxingVideoCell", for: indexPath) as!unBoxingVideoCell
        
         let unboxingVideoData = self.arrUnboxingResult[indexPath.row]
-        let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(unboxingVideoData.productCoverImage!)")
-        cell.imgShoes?.kf.setImage(with: imgURL)
         
         
         
+        
+      //  imgURL =  URL(string:"\(strBaseUrl!)\(unboxingVideoData.unboxingVideo!)")!
+ 
+     //   print(imgURL!)
+
+
+        
+        DispatchQueue.global().async { [self] in
+           
+        do {
+            self.imgURL =  URL(string:"\(self.strBaseUrl!)\(unboxingVideoData.unboxingVideo!)")!
+            let asset = AVURLAsset(url: self.imgURL!)
+                        let imageGenerator = AVAssetImageGenerator(asset: asset)
+                        imageGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 3, timescale: 1), actualTime: nil)
+                        let thumbnail = UIImage(cgImage: cgImage)
+            DispatchQueue.main.async {
+                cell.imgShoes.image = thumbnail
+            }
+           
+                    }catch{
+                        print("Error is : \(error)")
+                        DispatchQueue.main.async {
+                            cell.imgShoes.image = UIImage(imageLiteralResourceName:"NoImg.png")
+                                    }
+                       
+                    }
+        
+        
+        }
+
         cell.lblBrandName.text = unboxingVideoData.brandName
         cell.lblShoeName.text = unboxingVideoData.productName
         cell.lblPrice.text = unboxingVideoData.productPrice

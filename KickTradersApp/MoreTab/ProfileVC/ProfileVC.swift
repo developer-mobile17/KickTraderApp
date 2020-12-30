@@ -59,6 +59,7 @@ extension ProfileVC {
                 let img = (json as! getUserInfoModelResponse).userInfo?.profile_Image!
                 print(img!)
                 let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(img!)")
+               
                 self.imgProfile.kf.setImage(with:imgProfileURL!)
                 
                 self.txfName.text = (json as! getUserInfoModelResponse).userInfo?.full_Name

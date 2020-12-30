@@ -131,7 +131,7 @@ let addReview_Url = "\(base_url)/addReview"
 let getUnboxingVideo_Url = "\(base_url)/getUnboxingVideo"
 
 //TODO:- Product Images
-
+let  PRODUCT_UNBOXING_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/unboxingVideo/"
 let  PRODUCT_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productVideo/"
 let  PRODUCT_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productImages/"
 let  PRODUCT_COVER_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productCoverImage/"

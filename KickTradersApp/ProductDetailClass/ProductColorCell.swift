@@ -59,9 +59,9 @@ extension ProductColorCell: UICollectionViewDataSource,UICollectionViewDelegate,
           CCell.isSelected = true
         
         CCell.isHighlighted =  true
-        CCell.layer.borderColor = UIColor.red.cgColor
-        CCell.layer.borderWidth = 1
-        
+        CCell.layer.borderColor = UIColor.black.cgColor
+        CCell.layer.borderWidth = 2
+        CCell.layer.cornerRadius = 5
 
         //TODO:- Save Value into UserDefaults
        

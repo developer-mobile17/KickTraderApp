@@ -50,8 +50,9 @@ extension SellerAddColorTableCell: UICollectionViewDataSource,UICollectionViewDe
         defaultsAddColor.setValue(arrAddcolor[indexPath.row].colorRef, forKey: "DefaultsAddColorRef")
         
         CCell.isSelected = true
-        CCell.layer.cornerRadius = CCell.bounds.height/2
-        CCell.layer.backgroundColor = UIColor.black.cgColor
+        CCell.layer.cornerRadius = 5
+        CCell.layer.borderWidth = 2
+        CCell.layer.borderColor = UIColor.black.cgColor
         
     }
     
