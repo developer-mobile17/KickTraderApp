@@ -944,4 +944,45 @@ class BuyerAPIManager {
     
     
     
+    //MARK:- getNotification API
+    
+    func callingGetNotificationAPI(getNotificationParam:getNotificationRequestModel ,completionHandler : @escaping Handler) {
+        
+    AF.request(getNotification_Url,
+               method: .post,
+               parameters: getNotificationParam,
+               encoder: URLEncodedFormParameterEncoder.default,
+               headers: nil).response {
+               response in
+            
+                switch response.result{
+                case .success(let data):
+                    do {
+                        
+                        
+                        let jsonDecoder = JSONDecoder()
+                        let responseModel = try jsonDecoder.decode(getNotificationResponse.self, from: data!)
+                        print(responseModel)
+                        
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseModel))
+                            print("Successfully Fetch User Notification")
+                        }
+                        else{
+                            print("There is an issue with Get Notification, Please check!")
+                        }
+                        
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+                    
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+            
+        }
+    }
+    
+    
+    
 }

@@ -9,7 +9,13 @@
 import UIKit
 
 class NotificationCell: UITableViewCell {
+    
 
+    @IBOutlet var imgShoes: UIImageView!
+    @IBOutlet var lblShoeBrand: UILabel!
+    @IBOutlet var lblShoeName: UILabel!
+    @IBOutlet var lblNotification_text: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

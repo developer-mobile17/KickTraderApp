@@ -3899,6 +3899,9 @@
         <designable name="Izn-uK-mPx">
             <size key="intrinsicContentSize" width="49" height="39"/>
         </designable>
+        <designable name="KJF-m0-Ijs">
+            <size key="intrinsicContentSize" width="30" height="34"/>
+        </designable>
         <designable name="Lal-uM-Ccc">
             <size key="intrinsicContentSize" width="1240" height="221"/>
         </designable>
@@ -3932,6 +3935,9 @@
         </designable>
         <designable name="aDF-fI-FqS">
             <size key="intrinsicContentSize" width="57" height="30"/>
+        </designable>
+        <designable name="ckT-Op-LRI">
+            <size key="intrinsicContentSize" width="30" height="34"/>
         </designable>
         <designable name="dRS-qy-YuP"/>
         <designable name="dRh-Iz-BFl">

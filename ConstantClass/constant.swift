@@ -130,6 +130,16 @@ let addReview_Url = "\(base_url)/addReview"
 
 let getUnboxingVideo_Url = "\(base_url)/getUnboxingVideo"
 
+
+
+
+
+//TODO:- Buyer API's
+//TODO:- Notification API's
+
+let getNotification_Url = "\(base_url)/getNotification"
+
+
 //TODO:- Product Images
 let  PRODUCT_UNBOXING_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/unboxingVideo/"
 let  PRODUCT_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productVideo/"

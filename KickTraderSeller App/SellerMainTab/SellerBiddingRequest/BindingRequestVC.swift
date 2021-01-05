@@ -40,7 +40,7 @@ extension BindingRequestVC {
       //  guard let sellerRef =  defaultGetBids.value(forKey: "DefaultssellerRef") as! String) else {return}
         
        // let sellerBiddingReqParam = sellerGetBidsModel(sellerRef: defaultGetBids.value(forKey: "DefaultssellerRef") as! String)
-        let sellerBiddingReqParam = sellerGetBidsModel(sellerRef:"gdj6Xt0Ik3XEj")
+        let sellerBiddingReqParam = sellerGetBidsModel(sellerRef: defaultGetBids.value(forKey: "DefaultssellerRef") as! String)
          
         
         APIManger.shareInstance.callingSellergetBidsAPI(sellerGetBidsParam: sellerBiddingReqParam) {(result) in

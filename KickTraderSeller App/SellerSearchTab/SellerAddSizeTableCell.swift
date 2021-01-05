@@ -78,7 +78,10 @@ extension SellerAddSizeTableCell: UICollectionViewDataSource,UICollectionViewDel
         
         let getSize = arrAddsize[indexPath.row].sizeRef
 
-        selectedSize.append(getSize!)
+      
+       // selectedSize.updateValue(getSize!, forKey: "sizeRef")
+       selectedSize.append(getSize!)
+       
         print(selectedSize)
 
         let defaults = UserDefaults.standard

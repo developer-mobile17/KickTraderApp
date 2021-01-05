@@ -66,14 +66,8 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
        
         let unboxingVideoData = self.arrUnboxingResult[indexPath.row]
         
-        
-        
-        
-      //  imgURL =  URL(string:"\(strBaseUrl!)\(unboxingVideoData.unboxingVideo!)")!
- 
-     //   print(imgURL!)
-
-
+        cell.btnVideoPlayClicked.isHidden = true
+        cell.imgShoes.showLoading(color: .systemRed)
         
         DispatchQueue.global().async { [self] in
            
@@ -85,13 +79,17 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
             let cgImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 3, timescale: 1), actualTime: nil)
                         let thumbnail = UIImage(cgImage: cgImage)
             DispatchQueue.main.async {
+                cell.imgShoes.stopLoading()
                 cell.imgShoes.image = thumbnail
+                cell.btnVideoPlayClicked.isHidden = false
             }
            
                     }catch{
                         print("Error is : \(error)")
                         DispatchQueue.main.async {
-                            cell.imgShoes.image = UIImage(imageLiteralResourceName:"NoImg.png")
+                            cell.imgShoes.stopLoading()
+                           // cell.imgShoes.image = UIImage(imageLiteralResourceName:"NoImg.png")
+                            
                                     }
                        
                     }

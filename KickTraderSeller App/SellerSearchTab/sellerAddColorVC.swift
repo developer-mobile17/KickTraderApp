@@ -60,8 +60,7 @@ extension sellerAddColorVC {
                 
             ProgressHUD.dismiss()
                 arrCategories = ((json as! Welcome).array?.categories!)!
-             //   print("Categories are: ",self.arrCategories)
-                
+            
                 
             arrbrands = ((json as! Welcome).array?.brands!)!
                // print("Brands are: ",arrbrands)
@@ -297,6 +296,7 @@ extension sellerAddColorVC{
         let parameterDict = NSMutableDictionary()
         parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsproductRef") as! String, forKey: "productRef")
         parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsAddColorRef") as! String, forKey: "colorRef")
+            
         parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsSelectedSize") as! [String], forKey: "sizeList")
 
 
@@ -306,9 +306,6 @@ extension sellerAddColorVC{
         print(parameterDict)
         //Set Image Data
 
-       // let imgData = imgProductCover.image!.jpegData(compressionQuality: 0.75)
-
-//        for i in (0..<images.count)
         
         let imgData = images[0].jpegData(compressionQuality: 0.75)
 
