@@ -31,6 +31,7 @@
 		9E0A56B5254D6B6E00BFF96B /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A56B4254D6B6E00BFF96B /* OrderVC.swift */; };
 		9E0A56B7254D763400BFF96B /* RateSellerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A56B6254D763400BFF96B /* RateSellerVC.swift */; };
 		9E0CF33C25625B2B003E6FCC /* ForgetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0CF33B25625B2B003E6FCC /* ForgetPasswordModel.swift */; };
+		9E0FA3CF25A6DC65005929A0 /* ChatModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */; };
 		9E105CD7254FF2F700522887 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CD6254FF2F700522887 /* SettingVC.swift */; };
 		9E105CD9254FF31100522887 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CD8254FF31100522887 /* SettingCell.swift */; };
 		9E105CDB255008BA00522887 /* AddCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CDA255008BA00522887 /* AddCardVC.swift */; };
@@ -178,6 +179,7 @@
 		9E0A56B4254D6B6E00BFF96B /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
 		9E0A56B6254D763400BFF96B /* RateSellerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSellerVC.swift; sourceTree = "<group>"; };
 		9E0CF33B25625B2B003E6FCC /* ForgetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordModel.swift; sourceTree = "<group>"; };
+		9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModelClass.swift; sourceTree = "<group>"; };
 		9E105CD6254FF2F700522887 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		9E105CD8254FF31100522887 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		9E105CDA255008BA00522887 /* AddCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardVC.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		9E04DE2B25380B9600A988EB = {
 			isa = PBXGroup;
 			children = (
+				9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */,
 				9E1EE2D0255D044700F15389 /* ConstantClass */,
 				9E7219F5257F3B4B002145DD /* APIManger */,
 				9E410BEE2563CE7800FEC9BC /* SellerModelClass */,
@@ -1060,6 +1063,7 @@
 				9E0A56B3254D6B5400BFF96B /* orderCell.swift in Sources */,
 				9E81725F25527D47006E8027 /* BindingRequestCell.swift in Sources */,
 				9E0968B7254000C500C0C959 /* TransactionCell.swift in Sources */,
+				9E0FA3CF25A6DC65005929A0 /* ChatModelClass.swift in Sources */,
 				9EB4BD812539640E000AB2D8 /* EnterOTPVC.swift in Sources */,
 				9E0968BB2540110F00C0C959 /* SearchTopBrandCell.swift in Sources */,
 				9E70D2972580AFBA00FFCE9A /* SearchEditVC.swift in Sources */,

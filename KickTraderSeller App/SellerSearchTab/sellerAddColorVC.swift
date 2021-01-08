@@ -297,15 +297,19 @@ extension sellerAddColorVC{
         parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsproductRef") as! String, forKey: "productRef")
         parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsAddColorRef") as! String, forKey: "colorRef")
             
-        parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsSelectedSize") as! [String], forKey: "sizeList")
+        
+        
+        print("Check",(defaultsColorAddProduct.value(forKey: "DefaultsSelectedSize") as! String, forKey: "sizeList"))
+        
+        
+        parameterDict.setValue(defaultsColorAddProduct.value(forKey: "DefaultsSelectedSize") as! String, forKey: "sizeList")
+        parameterDict.setValue("1", forKey: "imageCount")
 
 
-
-        //   parameterDict.setValue(selectedImage!, forKey: "image")
+      //parameterDict.setValue(selectedImage!, forKey: "image")
 
         print(parameterDict)
         //Set Image Data
-
         
         let imgData = images[0].jpegData(compressionQuality: 0.75)
 
@@ -332,8 +336,9 @@ extension sellerAddColorVC{
                 }
             }
             
-            multiPart.append(imgData!, withName: "imageList", fileName: "file2.png", mimeType: "image/png")
+            multiPart.append(imgData!, withName: "imageList1", fileName: "image1.png", mimeType: "image/png")
         }, with: urlRequest)
+        
         .uploadProgress(queue: .main, closure: { progress in
             //Current upload progress of file
             print("Upload Progress: \(progress.fractionCompleted)")

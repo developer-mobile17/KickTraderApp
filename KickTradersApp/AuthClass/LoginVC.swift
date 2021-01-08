@@ -17,8 +17,8 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        txfEmail.text = "buyer@gmail.com"
-        //txfEmail.text = "iOS@gmail.com"
+      //  txfEmail.text = "buyer@gmail.com"
+        txfEmail.text = "iOS@gmail.com"
         txfPassword.text = "1234"
         txfPassword.isSecureTextEntry = false
         

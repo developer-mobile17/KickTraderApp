@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+extension String {
+    mutating func addString(str: String) {
+        self = self + str
+    }
+}
 class SellerAddSizeTableCell: UITableViewCell {
     
     @IBOutlet var objCollectionSize: UICollectionView!
@@ -16,6 +22,9 @@ class SellerAddSizeTableCell: UITableViewCell {
     
     var selectedSize = [String]()
     var selectedSizePass = [String]()
+    
+    var strSizeC:String! = "E"
+    var sizeList:String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -76,19 +85,35 @@ extension SellerAddSizeTableCell: UICollectionViewDataSource,UICollectionViewDel
         
         cell.AddSizetoggleSelected()
         
-        let getSize = arrAddsize[indexPath.row].sizeRef
-
-      
-       // selectedSize.updateValue(getSize!, forKey: "sizeRef")
-       selectedSize.append(getSize!)
+        var getSize = arrAddsize[indexPath.row].sizeRef
+        getSize = "\(String(describing: getSize!))"
+   //     selectedSize.append(getSize!)
+//        print(selectedSize)
+        
        
-        print(selectedSize)
+        
+        
+        if strSizeC.count == 0 ||  strSizeC == "E"
+        {
+            strSizeC = "\(String(describing: getSize!))"
+        }
+        else
+        {
+            let TempSizeC = strSizeC!
+            
+            strSizeC = "\(String(describing: "\(TempSizeC),\(getSize!)"))"
+            
+        }
+        
+        getSize = "\(strSizeC!)"
+       
+        print(getSize!)
 
         let defaults = UserDefaults.standard
-        defaults.setValue(selectedSize, forKey: "DefaultsSelectedSize")
+        defaults.setValue(getSize, forKey: "DefaultsSelectedSize")
         
-        arrAddSizeSelected.append(indexPath.row)
-        print(arrAddSizeSelected)
+     //   arrAddSizeSelected.append(indexPath.row)
+      //  print(arrAddSizeSelected)
         
         
         

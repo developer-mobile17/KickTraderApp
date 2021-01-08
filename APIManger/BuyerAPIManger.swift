@@ -985,4 +985,52 @@ class BuyerAPIManager {
     
     
     
+    
+    
+    
+    //MARK:- Chat API Implementatin
+    
+
+    
+    func CallingGetChatListAPI(getChatListParam:getChatListRequest ,completionHandler : @escaping Handler) {
+        
+    AF.request(getChatList_Url,
+               method: .post,
+               parameters: getChatListParam,
+               encoder: URLEncodedFormParameterEncoder.default,
+               headers: nil).response {
+               response in
+            
+                switch response.result{
+                case .success(let data):
+                    do {
+                        
+                        
+                        let jsonDecoder = JSONDecoder()
+                        let responseModel = try jsonDecoder.decode(getChatListResponse.self, from: data!)
+                        print(responseModel)
+                        
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseModel))
+                            print("Successfully Fetch User Chat List")
+                        }
+                        else{
+                            print("There is an issue with Get get Chat List API, Please check!")
+                        }
+                        
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+                    
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+            
+        }
+    }
+    
+    
+    
+    
+    
 }

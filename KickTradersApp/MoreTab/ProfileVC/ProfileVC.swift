@@ -56,11 +56,19 @@ extension ProfileVC {
                 
                 
                 //TODO:- Update the UI with User Info...
-                let img = (json as! getUserInfoModelResponse).userInfo?.profile_Image!
-                print(img!)
-                let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(img!)")
-               
-                self.imgProfile.kf.setImage(with:imgProfileURL!)
+                
+                self.imgProfile.showLoading(color: .systemRed)
+                DispatchQueue.main.async {
+                    let img = (json as! getUserInfoModelResponse).userInfo?.profile_Image!
+                    print(img!)
+                    let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(img!)")
+                   
+                    self.imgProfile.kf.setImage(with:imgProfileURL!)
+                    
+                    self.imgProfile.stopLoading()
+                }
+                
+                
                 
                 self.txfName.text = (json as! getUserInfoModelResponse).userInfo?.full_Name
                 self.txfEmail.text = (json as! getUserInfoModelResponse).userInfo?.email

@@ -50,6 +50,7 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         checkCategory = "1"
         DispatchQueue.main.async {
             self.getBuyerProductList()
+            self.objTable.reloadData()
         }
        
     }
@@ -347,11 +348,7 @@ extension HomeVC {
                 ProgressHUD.dismiss()
                 print(json!)
                
-                
-                
-                
-                
-                
+            
               //  self.objTable.reloadData()
                 
             case.failure(let err):

@@ -9,8 +9,8 @@
 import UIKit
 
 class ChatVCCell: UITableViewCell {
-    
-    @IBOutlet var lblName: UILabel!
+    @IBOutlet var imgUser: UIImageView!
+    @IBOutlet var lblUserName: UILabel!
     @IBOutlet var lblMessage: UILabel!
     @IBOutlet var lblDate: UILabel!
 

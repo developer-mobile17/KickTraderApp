@@ -303,13 +303,15 @@ extension ProductDetailVC {
         print(buyerRef)
         guard let productRef = defaultss.string(forKey: "DefaultsproductRef") else {return}
         print(productRef)
-        guard let coloToProductRef = defaultss.string(forKey: "DefaultscoloToProductRef") else {return}
+        guard let coloToProductRef = defaultss.string(forKey: "DefaultscoloToProductRef") else {
+           return showAlert(alertMessage: "Please select shoe color")
+        }
         print(coloToProductRef)
-        guard let sizeToColorRef = defaultss.string(forKey: "DefaultssizeToColorRef") else {return}
+        guard let sizeToColorRef = defaultss.string(forKey: "DefaultssizeToColorRef") else {return showAlert(alertMessage: "Please select shoe size")}
         print(sizeToColorRef)
         
         
-        
+        ProgressHUD.show("Adding to cart...", interaction: false)
         
         let addToCartParma = addToCartModel(buyerRef: buyerRef, productRef: productRef, coloToProductRef: coloToProductRef, sizeToColorRef: sizeToColorRef)
         
@@ -319,10 +321,13 @@ extension ProductDetailVC {
             switch result {
             case.success(let json):
                 print(json!)
+                ProgressHUD.dismiss()
                 let msg = (json as! addToCartModelResponse).msg
-                print(msg)
+                self.showAlert(alertMessage:msg)
+               
                 
             case.failure(let err):
+                ProgressHUD.dismiss()
                 print(err.localizedDescription)
             }
             
@@ -340,16 +345,17 @@ extension ProductDetailVC {
 extension ProductDetailVC {
     func callingPlaceABidAPI() {
         
-        ProgressHUD.show("Please wait.",  interaction: false)
+       
         
         guard let buyerRef = defaultss.string(forKey: "DefaultsbuyerRef") else {return}
         guard let productRef = defaultss.string(forKey: "DefaultsproductRef") else {return}
-        guard let coloToProductRef = defaultss.string(forKey: "DefaultscoloToProductRef") else {return}
-        guard let sizeToColorRef = defaultss.string(forKey: "DefaultssizeToColorRef") else {return}
-        guard let bidPrice = self.bidPriceTextField?.text else {return}
+        guard let coloToProductRef = defaultss.string(forKey: "DefaultscoloToProductRef") else {return showAlert(alertMessage: "Please select shoe color") }
+        guard let sizeToColorRef = defaultss.string(forKey: "DefaultssizeToColorRef") else {return showAlert(alertMessage: "Please select shoe size")}
+        guard let bidPrice = self.bidPriceTextField?.text else {return showAlert(alertMessage: "Please enter bid price") }
         
         let placeABidParma = PlaceABidModel(productRef: productRef, coloToProductRef: coloToProductRef, sizeToColorRef: sizeToColorRef, buyerRef: buyerRef, bidPrice: bidPrice)
         
+        ProgressHUD.show("Please wait.",  interaction: false)
         BuyerAPIManager.shareInstance.callingPlaceABidAPI(PlaceABidParam: placeABidParma) {(result) in
             
             
@@ -358,7 +364,8 @@ extension ProductDetailVC {
                 print(json!)
                 ProgressHUD.dismiss()
                 let msg = (json as! PlaceABidModelResponse).msg
-                print(msg)
+                self.showAlert(alertMessage:msg)
+                //print(msg)
                 
             case.failure(let err):
                 ProgressHUD.dismiss()
@@ -386,14 +393,17 @@ extension ProductDetailVC {
             title: "Submit", style: .default) {
             (action) -> Void in
             
-            if let bidPrice = self.bidPriceTextField?.text {
-                print(" Bid Price = \(bidPrice)")
-            } else {
+            let bidPrice = self.bidPriceTextField?.text
+            if  bidPrice == "" {
                 print("No Bid Price entered")
+                
+            } else {
+                print(" Bid Price = \(String(describing: bidPrice!))")
+                self.callingPlaceABidAPI()
             }
             
             
-            self.callingPlaceABidAPI()
+            
         }
         
         // 4.

@@ -140,6 +140,23 @@ let getUnboxingVideo_Url = "\(base_url)/getUnboxingVideo"
 let getNotification_Url = "\(base_url)/getNotification"
 
 
+
+
+//MARK:- CHAT API Implemented Here.
+let getChatList_Url = "\(base_url)/getChatList"
+
+
+
+
+
+
+
+
+
+
+
+
+
 //TODO:- Product Images
 let  PRODUCT_UNBOXING_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/unboxingVideo/"
 let  PRODUCT_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productVideo/"
