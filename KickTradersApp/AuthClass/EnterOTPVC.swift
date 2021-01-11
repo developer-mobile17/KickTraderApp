@@ -27,7 +27,16 @@ class EnterOTPVC: UIViewController {
     
     @IBAction func actionContinue(_ sender: Any) {
         
-        self.CallingEnterOtpAPI()
+        if txfOtp.text == "" {
+            showAlert(alertMessage: "Enter Otp")
+        }
+        else {
+            
+            DispatchQueue.main.async {
+                self.CallingEnterOtpAPI()
+            }
+        }
+       
     }
 }
 

@@ -87,10 +87,7 @@ extension SellerAddSizeTableCell: UICollectionViewDataSource,UICollectionViewDel
         
         var getSize = arrAddsize[indexPath.row].sizeRef
         getSize = "\(String(describing: getSize!))"
-   //     selectedSize.append(getSize!)
-//        print(selectedSize)
         
-       
         
         
         if strSizeC.count == 0 ||  strSizeC == "E"

@@ -31,13 +31,19 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet var sellerName: UILabel!
     @IBOutlet var sellerPostingDate: UILabel!
+    @IBOutlet var imgSellerProfile:UIImageView!
     //@IBOutlet var productPrice: UILabel!
     
     
     @IBOutlet var productStatus: UILabel!
     @IBOutlet var sellerProductDescription: UILabel!
-    
 
+
+
+//TODO:- Seller Total Rating & Review Count
+    @IBOutlet var sellerTotalAvgRating: UILabel!
+    @IBOutlet var sellerTotalReviewCount: UILabel!
+    @IBOutlet var objSellerRating: FloatRatingView!
    
     var arrComment = [Comments]()
     var arrimgShoe = [Image]()
@@ -64,7 +70,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishDownloading), name: Notification.Name(rawValue: "check"), object: nil)
         
-        objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 1600))
+        objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 1700))
         self.productDetailAPI()
         
         
@@ -129,11 +135,11 @@ extension ProductDetailVC{
             
             switch result {
             case.success(let json):
-                print(json!)
+             //   print(json!)
                 
                 
                 let resPonseProduct = (json as! BuyerGetProductDetailsModelResponse).productInfo!
-                print(resPonseProduct)
+              //  print(resPonseProduct)
                 
                 arrProductColor = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.colors)!
                 arrSize = arrProductColor[0].size!
@@ -176,26 +182,30 @@ extension ProductDetailVC{
                 }
                 
                 
-                
-                
                 //TODO:- Update the Product Info
                 self.productName.text = resPonseProduct.productName
                 self.productDescription.text = resPonseProduct.productDescription
-                strProductPrice = (resPonseProduct.productPrice)
-                
-                self.productPrice.text! = (resPonseProduct.productPrice)!
+                self.productPrice.text! =   "\("$")\(resPonseProduct.productPrice!)"
                 self.defaultss.setValue(resPonseProduct.productRef, forKey:"DefaultsproductRef")
                 
                 
-                
+               
                 
                 
                 //TODO:- Update the Seller Description Info
+
+                objSellerRating.rating = Double(Float((resPonseProduct.sellerDetail?.avgRating!)!)!)
+
+//                let imgSellerProfileURL = URL(string:"\(PROFILE_IMAGE)\( resPonseProduct.sellerDetail?.profile_Image)"
+//
+//                imgSellerProfile.kf.setImage(with: imgSellerProfileURL)
+                   
                 self.sellerName.text = resPonseProduct.sellerDetail?.full_Name
-                self.sellerPostingDate.text = resPonseProduct.sellerDetail?.createdDtm
+                self.sellerPostingDate.text = resPonseProduct.sellerDetail?.shop_description
                 self.sellerProductDescription.text = resPonseProduct.sellerDetail?.shop_description
-                
-                
+                self.sellerTotalAvgRating.text = resPonseProduct.sellerDetail?.avgRating
+                self.sellerTotalReviewCount.text = "( \(String((resPonseProduct.sellerDetail?.totalReview)!)) \( "Review") )"
+
             case.failure(let err):
                 print(err.localizedDescription)
             }
@@ -209,11 +219,25 @@ extension ProductDetailVC{
 extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+       // return 2
+
+        if tableView == tblUserReview {
+            return 1
+        }
+        else {
+            return 2
+        }
+
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == tblUserReview {
+            return arrComment.count
+        }
+        else {
+            return 1
+        }
         
-        return 1// return arrComment.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -227,10 +251,14 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
                 print("NO Data")
             }
             else {
-                
+
+                let imgURL = URL(string:"\(PROFILE_IMAGE)\(arrComment[indexPath.row].profile_Image!)")
+                userReview_cell.imgCommentUser.kf.setImage(with: imgURL)
+
                 userReview_cell.lblUsername.text = arrComment[indexPath.row].full_Name
                 userReview_cell.lblReviewDate.text = arrComment[indexPath.row].create_at
-                userReview_cell.lblReviewDesc.text = arrComment[indexPath.row].shop_description
+                userReview_cell.lblReviewDesc.text = arrComment[indexPath.row].comment
+                userReview_cell.lblReviewRating.text = arrComment[indexPath.row].rating
                 
                 return userReview_cell
             }
@@ -258,6 +286,7 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
         }
         
         return UITableViewCell()
+        
     }
     
     

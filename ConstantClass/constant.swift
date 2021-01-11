@@ -28,8 +28,6 @@ let SellerOrderProduct_url = "\(base_url)/getOrderList"
 let SellerAddProduect_url = "\(base_url)/addProduct"
 let SellerAddProduectColor_url = "\(base_url)/addColorProduct"
 
-
-
 let SellerRemoveColor_url = "\(base_url)/removeColor"
 
 
@@ -47,7 +45,11 @@ let getCencelOrdersBySeller_url = "\(base_url)/getCencelOrdersBySeller"
 
 
 
+//TODO:- Seller API's
+//TOOD:- Seller Earning API
 
+
+let getEarningsOfSeller_url = "\(base_url)/getEarnings"
 
 
 

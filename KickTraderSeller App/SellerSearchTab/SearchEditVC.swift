@@ -110,26 +110,37 @@ extension SearchEditVC{
                 let resPonseProduct = (json as! BuyerGetProductDetailsModelResponse).productInfo!
                 print(resPonseProduct)
                 
-                arrProductColor = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.colors)!
-                arrSize = arrProductColor[0].size!
-                let arr0 = arrProductColor[0].size
-                print(arr0!)
-                self.arrimgShoe = arrProductColor[0].image!
+                 arrProductColor = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.colors)!
                 
                 
+                if arrProductColor.count == 0 {
+                    
+                    showAlert(alertMessage: "Add Color & Size")
+                }
                 
-                productCoverImage = resPonseProduct.productCoverImage
-                productName =  resPonseProduct.productName
-                productSubCategory =  resPonseProduct.productSubCategory
-                productPrice =  resPonseProduct.productPrice
-                brandName =  resPonseProduct.brandName
-                productDescription =  resPonseProduct.productDescription
-                lblHeaderProductName.text = resPonseProduct.productName?.capitalized
-                
-                
+                else {
+                    arrSize = arrProductColor[0].size!
+                    let arr0 = arrProductColor[0].size
+                    print(arr0!)
+                    self.arrimgShoe = arrProductColor[0].image!
+                    
+                    
+                    
+                    productCoverImage = resPonseProduct.productCoverImage
+                    productName =  resPonseProduct.productName
+                    productSubCategory =  resPonseProduct.productSubCategory
+                    productPrice =  resPonseProduct.productPrice
+                    brandName =  resPonseProduct.brandName
+                    productDescription =  resPonseProduct.productDescription
+                    lblHeaderProductName.text = resPonseProduct.productName?.capitalized
+                    
+                    
 
-                //TODO:- Update the Table View
-                self.objTable.reloadData()
+                    //TODO:- Update the Table View
+                    self.objTable.reloadData()
+                }
+                
+              
                
             case.failure(let err):
                 print(err.localizedDescription)
@@ -252,9 +263,9 @@ extension SearchEditVC{
                 print(json!)
                 let resPonseProduct = (json as! SellerRemoveColorModelResponse).msg
                 print(resPonseProduct)
-                
-               
+
                 //TODO:- Update the Table View
+                self.objTable.reloadData()
                 self.productDetailAPI()
                
             case.failure(let err):

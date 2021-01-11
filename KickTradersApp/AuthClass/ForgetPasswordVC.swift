@@ -29,10 +29,17 @@ class ForgetPasswordVC: UIViewController {
     
     @IBAction func actionForgetPasswordClicked(_ sender: Any) {
         
+        if txfEmail.text == "" {
+            showAlert(alertMessage: "Please enter your valid email id")
+        }
+        
+        else {
+        
         ProgressHUD.show("Fetching Email.", interaction: true)
         DispatchQueue.main.async {
             self.CallingForgetPasswordAPI()
         }
+    }
     }
     
 }
@@ -61,11 +68,13 @@ extension ForgetPasswordVC {
                 }
                 else{
                     print("Error")
+                    showAlert(alertMessage:(json as! sellerGetOtpResponse).msg!)
                 }
                 
                 
             case.failure(let err):
                 print(err.localizedDescription)
+                showAlert(alertMessage:err.localizedDescription)
             }
             
         }

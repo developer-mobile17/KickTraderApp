@@ -18,7 +18,7 @@ class SellerAddColorTableCell: UITableViewCell {
     }
     
     func reloadSellerAddColor() -> Void {
-      //  objCollectionColor.layer.cornerRadius = 10
+        objCollectionColor.layer.cornerRadius = 10
         self.objCollectionColor.reloadData()
         
     }

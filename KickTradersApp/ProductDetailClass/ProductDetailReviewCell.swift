@@ -9,10 +9,11 @@
 import UIKit
 
 class ProductDetailReviewCell: UITableViewCell {
-    
+    @IBOutlet var imgCommentUser: UIImageView!
     @IBOutlet var lblUsername : UILabel!
     @IBOutlet var lblReviewDate : UILabel!
     @IBOutlet var lblReviewDesc : UILabel!
+    @IBOutlet var lblReviewRating : UILabel!
     
 
     override func awakeFromNib() {

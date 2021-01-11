@@ -16,8 +16,7 @@ class HomeVC: UIViewController, UISearchBarDelegate {
    @IBOutlet weak var searchBar: UISearchBar!
    @IBOutlet weak var sgTextOnlyBar: WMSegment!
    @IBOutlet var objTable: UITableView!
-    
-    @IBOutlet var imgProfile: UIImageView!
+   @IBOutlet var imgProfile: UIImageView!
     
     var arrShoesBuyerProduct = [Shoes]()
     var arrSneakersBuyerProduct = [Sneakers]()
@@ -25,7 +24,7 @@ class HomeVC: UIViewController, UISearchBarDelegate {
     
     
     var filteredRecipes = [Shoes]()
-    
+    var strImgURL:String!
     var checkCategory: String?
     var productRef: String?
     var favID: String?
@@ -57,11 +56,20 @@ class HomeVC: UIViewController, UISearchBarDelegate {
     //TODO:-  Get the User Profile
     func getProfileImg (){
        
-        let img = defaultsHome.value(forKey: "Defaultsprofile_Image") as! String
-        print(img)
-        let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(img)")
-        self.imgProfile.kf.setImage(with:imgProfileURL!)
+//        strImgURL = defaultsHome.value(forKey: "Defaultsprofile_Image")! as? String
+//        print(strImgURL!)
+//        if strImgURL == nil {
+//            print("No Profile Img")
+//        }
+//        else {
+//            let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(String(describing: strImgURL))")
+//            print(imgProfileURL!)
+//            self.imgProfile.kf.setImage(with:imgProfileURL)
+//        }
+        
+       
     }
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredRecipes.removeAll()

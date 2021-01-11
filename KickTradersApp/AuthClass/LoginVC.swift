@@ -17,8 +17,8 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      //  txfEmail.text = "buyer@gmail.com"
-        txfEmail.text = "iOS@gmail.com"
+        txfEmail.text = "buyer@gmail.com"
+       // txfEmail.text = "iOS@gmail.com"
         txfPassword.text = "1234"
         txfPassword.isSecureTextEntry = false
         
@@ -85,12 +85,14 @@ extension LoginVC {
 
 extension LoginVC {
     func LoginAPICalling(){
-        ProgressHUD.show("Loading...", interaction: false)
+      
         
         guard let email = txfEmail.text else {return}
-        guard let password =  txfPassword.text else {return}
+        guard let password =  txfPassword.text else {return showAlert(alertMessage: "Please Enter Password")}
         
         let loginn = loginModel(Password: password, Role: "", FieldType: "Email", Email: email, deviceToken: "jfalsjdflksjd4124IOS", mobileType: "iOS")
+        
+        ProgressHUD.show("Loading...", interaction: false)
         
         APIManger.shareInstance.callingLoginAPI(loginCheck: loginn) { [self](result) in
             
@@ -102,7 +104,8 @@ extension LoginVC {
                 
                 statusResponse = (json as! loginModelResponse).status
                 if statusResponse == "error" {
-                    print("Status Response:",(json as! loginModelResponse).msg!)
+                  //  print("Status Response:",(json as! loginModelResponse).msg!)
+                    showAlert(alertMessage:(json as! loginModelResponse).msg!)
                 }
                 else {
                     

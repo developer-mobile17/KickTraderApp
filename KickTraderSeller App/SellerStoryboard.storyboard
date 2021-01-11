@@ -961,6 +961,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="wcv-OW-E99"/>
                     <connections>
+                        <outlet property="imgSellerShoe" destination="s5t-aL-iJ0" id="Ifc-DQ-TA3"/>
+                        <outlet property="lblEarnToday" destination="itZ-OK-cWN" id="5JY-OT-cL9"/>
+                        <outlet property="lblInProgress" destination="Xab-fV-KgP" id="9tt-QC-Mbf"/>
+                        <outlet property="lblOrderQueue" destination="erT-cm-Z7n" id="ugj-kJ-lZg"/>
+                        <outlet property="lblShopDesc" destination="m89-xK-N5B" id="cuW-7S-x4Q"/>
+                        <outlet property="lblShopName" destination="CHT-xQ-SC9" id="kir-ve-fCZ"/>
+                        <outlet property="lblTotolOrder" destination="gLC-mV-kiI" id="8Ah-YJ-W70"/>
                         <outlet property="objScroll" destination="sqp-uW-HuA" id="2Qz-fm-o1D"/>
                         <outlet property="objTbl" destination="NOu-lU-N6z" id="0eL-bF-U0U"/>
                     </connections>
@@ -1667,7 +1674,7 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kOw-eG-6b9">
                                                     <rect key="frame" x="16" y="5" width="366" height="152"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.94509803920000002" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6NM-ZK-9Ro">
                                                         <size key="itemSize" width="43" height="42"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1804,7 +1811,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iF0-wo-66i">
                                 <rect key="frame" x="16" y="597" width="374" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.94509803920000002" green="0.95686274510000002" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5bP-u7-UUy">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>

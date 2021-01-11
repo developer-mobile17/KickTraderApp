@@ -9,18 +9,31 @@
 import UIKit
 
 
-struct EarningData {
-    let titleEarning: String!
-    let priceEarning: String!
-}
 class SellerHomeVC: UIViewController {
     @IBOutlet var objScroll : UIScrollView!
     @IBOutlet var objTbl : UITableView!
-    var arrEarnings = [EarningData]()
+    
+    
+    //TODO:- Seller Order Details
+    
+    
+    @IBOutlet var imgSellerShoe: UIImageView!
+    @IBOutlet var lblShopName: UILabel!
+    @IBOutlet var lblShopDesc: UILabel!
+    
+    
+    
+    @IBOutlet var lblTotolOrder: UILabel!
+    @IBOutlet var lblEarnToday: UILabel!
+    @IBOutlet var lblOrderQueue: UILabel!
+    @IBOutlet var lblInProgress: UILabel!
+    
+    
+    var arrEarnings = [EarningDetails]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        EarningDataLoad()
+        self.callingGetSellerEarningAPI()
         self.objTbl.tableFooterView = UIView()
         objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height:1200))
         
@@ -28,12 +41,6 @@ class SellerHomeVC: UIViewController {
     
     // Load Earning  Temp Data
     func EarningDataLoad(){
-        arrEarnings = [EarningData(titleEarning: "Personal balance", priceEarning: "$50"), EarningData(titleEarning: "Avg. Selling Price", priceEarning: "$18"),EarningData(titleEarning: "Pending Clearance", priceEarning:"$18"),
-                       EarningData(titleEarning: "Earning in September", priceEarning: "$150"),
-                       EarningData(titleEarning: "Active Orders", priceEarning: "2 ($180)"),
-                       EarningData(titleEarning: "Cancelled Orders", priceEarning: "2 ($180)")
-            
-        ]
         
     }
     
@@ -45,6 +52,55 @@ class SellerHomeVC: UIViewController {
 }
 
 
+
+//MARK:- Get Seller Bid Request API
+extension SellerHomeVC {
+    func callingGetSellerEarningAPI(){
+        
+        ProgressHUD.show("Loading...", interaction: false)
+        
+
+        
+      //  let getSellerEarningParam = SellerGetEarningRequest(sellerRef: "gdj6Xt0Ik3XEj")
+        
+       let getSellerEarningParam = SellerGetEarningRequest(sellerRef: UserDefaults.standard.value(forKey: "DefaultssellerRef") as! String)
+//
+//
+        APIManger.shareInstance.callingGetEarningsAPI(SellerGetEarningParam: getSellerEarningParam) {(result) in
+            
+            switch result{
+            case.success(let json):
+              //  print(json!)
+                
+                ProgressHUD.dismiss()
+                let getSellerEarning = (json as! SellerGetEarningResponse).earningDetails
+                
+                
+                
+                self.arrEarnings.append(getSellerEarning!)
+                print(self.arrEarnings)
+                
+                self.lblShopName.text = getSellerEarning?.sellerDetail?.full_Name
+                self.lblShopDesc.text = getSellerEarning?.sellerDetail?.shop_description
+                
+                self.lblTotolOrder.text = getSellerEarning?.totalOrders
+                self.lblEarnToday.text =  "\("$")\(String(getSellerEarning?.earnedToday ?? 00))"
+                self.lblOrderQueue.text =  String(getSellerEarning?.orderQueue ?? 00)
+                self.lblInProgress.text = getSellerEarning?.inProgress
+                self.objTbl.reloadData()
+                
+            case.failure(let err):
+                print(err.localizedDescription)
+            }
+    
+        }
+  
+    }
+}
+
+
+
+
 extension SellerHomeVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         arrEarnings.count
@@ -54,8 +110,9 @@ extension SellerHomeVC: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "SellerHomeCell", for: indexPath) as! SellerHomeCell
         
         let EarningDataModel = arrEarnings[indexPath.row]
-        cell.lblTitle?.text = EarningDataModel.titleEarning
-        cell.lblPrice?.text = EarningDataModel.priceEarning
+    
+        cell.lblTitle?.text =  "\("Personal Balance            ")\(String(EarningDataModel.personalBalance!))"
+      //  cell.lblPrice?.text = EarningDataModel.priceEarning
         
         return cell
     }

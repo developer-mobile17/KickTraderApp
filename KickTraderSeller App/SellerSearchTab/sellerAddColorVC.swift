@@ -31,6 +31,7 @@ class sellerAddColorVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.CallingGetAllDropDownBuyerAPI()
+        objImgCollection.layer.cornerRadius = 10
     }
     
     @IBAction func actionBack(_ sender: Any) {
@@ -315,6 +316,9 @@ extension sellerAddColorVC{
 
         // Now Execute
         AF.upload(multipartFormData: { multiPart in
+            
+            
+        
             for (key, value) in parameterDict {
                 if let temp = value as? String {
                     multiPart.append(temp.data(using: .utf8)!, withName: key as! String)
@@ -355,6 +359,8 @@ extension sellerAddColorVC{
                     print("Success!")
                     print(dictionary)
                     ProgressHUD.dismiss()
+                    
+                    self.showAlert(alertMessage: dictionary.object(forKey: "msg") as! String)
                 }
                 catch {
                     // catch error.

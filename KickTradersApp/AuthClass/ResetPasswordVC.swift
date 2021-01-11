@@ -29,7 +29,23 @@ class ResetPasswordVC: UIViewController {
     }
     
     @IBAction func actionContinue(_ sender: Any) {
-        self.CallingResetPasswordAPI()
+        
+        if txfPasword.text == "" {
+            showAlert(alertMessage: "Enter new password")
+        }
+        else if txfConfirmPass.text == "" {
+            showAlert(alertMessage: "Enter confirm password")
+        }
+        else if txfPasword.text != txfConfirmPass.text {
+            showAlert(alertMessage: "Password and confirm password doesn't match.")
+        }
+        
+        else {
+            DispatchQueue.main.async {
+                self.CallingResetPasswordAPI()
+            }
+        }
+        
     }
     
 }
@@ -58,11 +74,13 @@ extension ResetPasswordVC {
                 }
                 else{
                     print("Error")
+                    self.showAlert(alertMessage:(json as! resetPasswordModelResponse).msg!)
                 }
                 
                 
             case.failure(let err):
                 print(err.localizedDescription)
+                self.showAlert(alertMessage:err.localizedDescription)
             }
             
         }
