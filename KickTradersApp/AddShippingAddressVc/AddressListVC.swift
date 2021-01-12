@@ -48,7 +48,12 @@ class AddressListVC: UIViewController {
     
     
     @IBAction func actionOrderPlace(_ sender: Any) {
-        self.callingBuyOrderAPI()
+
+        let finalCheckOut = self.storyboard?.instantiateViewController(identifier: "ProductCheckoutVC") as! ProductCheckoutVC
+        self.navigationController?.pushViewController(finalCheckOut, animated: true)
+
+        
+        //self.callingBuyOrderAPI()
     }
     
     
@@ -137,13 +142,7 @@ extension AddressListVC: UITableViewDataSource,UITableViewDelegate {
         cell.btnSelect .addTarget(self, action: #selector(selectAddressFromList), for:.touchUpInside)
         
         
-        
-        //TODO:- UIButton Action Buy Now Or Place Bid
-        
-        //cell.btnEdit.tag = indexPath.row
-        //  cell.btnBuyOrPlaceBid.addTarget(self, action: #selector(btnBuyNowOrPlaceBid), for: .touchUpInside)
-        
-        
+
         
         
         return cell
@@ -152,6 +151,21 @@ extension AddressListVC: UITableViewDataSource,UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+
+//
+//        let cell_Address : UITableViewCell = tableView.cellForRow(at: indexPath) as! AddressListCell
+//
+//        cell_Address.isHighlighted =  true
+//        cell_Address.layer.borderColor = UIColor.red.cgColor
+//        cell_Address.layer.borderWidth = 2
+//        cell_Address.layer.cornerRadius = 5
+
+
+
+        let selectedAddressIs = arrShippingAddress[indexPath.row]
+        print("Selected Address is : ",selectedAddressIs)
+
         
     }
     

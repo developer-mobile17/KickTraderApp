@@ -8,7 +8,9 @@
 
 import UIKit
 
-class CartVC:UIViewController {
+
+class CartVC:UIViewController{
+
     
     @IBOutlet var objtable : UITableView!
     @IBOutlet var imgEmptyCart: UIImageView!
@@ -21,9 +23,11 @@ class CartVC:UIViewController {
      var strcartRef: String = ""
      var defaults = UserDefaults.standard
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,10 +169,24 @@ extension CartVC{
             strcartRef = self.arrCartData[sender.tag].cartRef!
             self.PlaceBidalAlertOfCart()
         }
-        
+
+
+        //TODO:- Buy Now Product
         if strBtnTitleChecked == "accepted" {
             print("Buy Now Did Tap!")
-            strcartRef = self.arrCartData[sender.tag].cartRef!
+
+            
+            defaults.setValue(self.arrCartData[sender.tag].productCoverImage!, forKey: "CheckoutProductImg")
+            defaults.setValue(self.arrCartData[sender.tag].brandName!, forKey: "CheckoutBrandName")
+            defaults.setValue(self.arrCartData[sender.tag].productName!, forKey: "CheckoutProductName")
+            defaults.setValue(self.arrCartData[sender.tag].sizeName!, forKey: "CheckoutSizeName")
+            defaults.setValue(self.arrCartData[sender.tag].colorRef!, forKey: "CheckoutColorRef")
+            defaults.setValue(self.arrCartData[sender.tag].productPrice!, forKey: "CheckoutProductPrice")
+            defaults.setValue(self.arrCartData[sender.tag].bidPrice!, forKey: "CheckoutBidPrice")
+            defaults.setValue(self.arrCartData[sender.tag].cartRef!, forKey: "CheckoutCartRef")
+
+
+
             self.GoToChooseAddress()
         }
         
@@ -187,7 +205,6 @@ extension CartVC {
     func GoToChooseAddress(){
         
         let vcAddressSelect = self.storyboard?.instantiateViewController(identifier: "AddressListVC") as! AddressListVC
-        
         vcAddressSelect.strPassSelectedCartRef = strcartRef
         self.navigationController?.pushViewController(vcAddressSelect, animated: true)
         

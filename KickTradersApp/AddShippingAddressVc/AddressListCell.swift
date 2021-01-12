@@ -10,7 +10,7 @@ import UIKit
 
 class AddressListCell: UITableViewCell {
     
-    
+    @IBOutlet var vwBGCell:UIView!
     @IBOutlet var lblfullName: UILabel!
     @IBOutlet var lblmobile: UILabel!
     @IBOutlet var lbladdress: UILabel!

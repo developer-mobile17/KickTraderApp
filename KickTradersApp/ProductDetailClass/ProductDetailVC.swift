@@ -202,9 +202,27 @@ extension ProductDetailVC{
                    
                 self.sellerName.text = resPonseProduct.sellerDetail?.full_Name
                 self.sellerPostingDate.text = resPonseProduct.sellerDetail?.shop_description
-                self.sellerProductDescription.text = resPonseProduct.sellerDetail?.shop_description
-                self.sellerTotalAvgRating.text = resPonseProduct.sellerDetail?.avgRating
-                self.sellerTotalReviewCount.text = "( \(String((resPonseProduct.sellerDetail?.totalReview)!)) \( "Review") )"
+                self.sellerProductDescription.text = resPonseProduct.productDescription
+            //    self.sellerTotalAvgRating.text = resPonseProduct.sellerDetail?.avgRating
+                self.sellerTotalReviewCount.text =
+                    "( \(String(arrComment.count)) \( "Review") )"
+
+
+
+                if arrComment.count == 0 {
+                    self.sellerTotalAvgRating.text = "0"
+                }
+                else {
+
+
+                let floatCommentCOunt = Float(arrComment.count)
+                let ratingMap = arrComment.map({$0.rating})
+                let ratingConvertToINT = ratingMap.map {Float($0!)!}
+                let addtionIS = ratingConvertToINT.reduce(0,+)
+                let finalRating = addtionIS / floatCommentCOunt
+                self.sellerTotalAvgRating.text = String(finalRating)
+
+                }
 
             case.failure(let err):
                 print(err.localizedDescription)
