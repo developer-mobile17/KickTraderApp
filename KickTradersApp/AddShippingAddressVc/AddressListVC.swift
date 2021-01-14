@@ -11,22 +11,22 @@ class AddressListVC: UIViewController {
     
     
     @IBOutlet var objTbl: UITableView!
-    var selectedRows:[IndexPath] = []
-    
+
     var straddressRef : String = ""
     var strBuyRef: String = ""
     var strPassSelectedCartRef: String = ""
+
+    //TODO:- This address ref is passing to Next VC for API Call
+    var selectedAddressRef:String = ""
     
     var arrShippingAddress = [Address]()
     var defulatsAddressList = UserDefaults.standard
-    
-    var arrSelectedIndex = [Int]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("selected Cart Ref is :",strPassSelectedCartRef)
+
         self.callingFetchingShippingAddressAPI()
         
     }
@@ -49,16 +49,21 @@ class AddressListVC: UIViewController {
     
     @IBAction func actionOrderPlace(_ sender: Any) {
 
-        let finalCheckOut = self.storyboard?.instantiateViewController(identifier: "ProductCheckoutVC") as! ProductCheckoutVC
-        self.navigationController?.pushViewController(finalCheckOut, animated: true)
 
-        
-        //self.callingBuyOrderAPI()
+
+        if selectedAddressRef == "" {
+            showAlert(alertMessage: "Please Select Address.")
+        }
+        else {
+            let finalCheckOut = self.storyboard?.instantiateViewController(withIdentifier: "ProductCheckoutVC")as! ProductCheckoutVC
+            finalCheckOut.strAddressCartRef = selectedAddressRef
+            self.navigationController?.pushViewController(finalCheckOut, animated: true)
+        }
+
     }
-    
-    
-    
-}
+
+
+    }
 
 
 
@@ -138,8 +143,8 @@ extension AddressListVC: UITableViewDataSource,UITableViewDelegate {
         
         
         //TODO:- UIButton Action Select
-        cell.btnSelect.tag = indexPath.row
-        cell.btnSelect .addTarget(self, action: #selector(selectAddressFromList), for:.touchUpInside)
+//        cell.btnSelect.tag = indexPath.row
+//        cell.btnSelect .addTarget(self, action: #selector(selectAddressFromList), for:.touchUpInside)
         
         
 
@@ -152,25 +157,22 @@ extension AddressListVC: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-
-//
-//        let cell_Address : UITableViewCell = tableView.cellForRow(at: indexPath) as! AddressListCell
-//
-//        cell_Address.isHighlighted =  true
-//        cell_Address.layer.borderColor = UIColor.red.cgColor
-//        cell_Address.layer.borderWidth = 2
-//        cell_Address.layer.cornerRadius = 5
+        selectedAddressRef = arrShippingAddress[indexPath.row].addressRef!
+        print("Selected AddressRef is : ",selectedAddressRef)
 
 
+        let cell = tableView.cellForRow(at: indexPath) as! AddressListCell
 
-        let selectedAddressIs = arrShippingAddress[indexPath.row]
-        print("Selected Address is : ",selectedAddressIs)
+        cell.toggleAddressSelected()
 
         
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print("fasdfasdfs")
+        let cell = tableView.cellForRow(at: indexPath) as! AddressListCell
+
+        cell.toggleAddressSelected()
     }
     
     
@@ -191,46 +193,46 @@ extension AddressListVC {
 
 
 
-extension AddressListVC {
-    @objc func selectAddressFromList(sender:UIButton)
-    {
-      //  sender.isSelected.toggle()
-        
-        
-        arrSelectedIndex.append(sender.tag)
-        
-        print(arrSelectedIndex)
-        
-
-        if  arrSelectedIndex.contains(sender.tag) {
-
-            let indexSelected = arrSelectedIndex.firstIndex(of: sender.tag)!
-            arrSelectedIndex.remove(at: indexSelected)
-            print("Remove old one")
-
-        }
-        else
-        {
-            print("Add New one")
-
-        }
-        
-        
-        
+//extension AddressListVC {
+//    @objc func selectAddressFromList(sender:UIButton)
+//    {
+//      //  sender.isSelected.toggle()
 //
-//        if sender.isSelected {
-//            print("selected")
-//            straddressRef = arrShippingAddress[sender.tag].addressRef!
+//
+//        arrSelectedIndex.append(sender.tag)
+//
+//        print(arrSelectedIndex)
+//
+//
+//        if  arrSelectedIndex.contains(sender.tag) {
+//
+//            let indexSelected = arrSelectedIndex.firstIndex(of: sender.tag)!
+//            arrSelectedIndex.remove(at: indexSelected)
+//            print("Remove old one")
 //
 //        }
-//        else {
-//            print("Not selected")
+//        else
+//        {
+//            print("Add New one")
 //
 //        }
-        
-        
-    }
-}
+//
+//
+//
+////
+////        if sender.isSelected {
+////            print("selected")
+////            straddressRef = arrShippingAddress[sender.tag].addressRef!
+////
+////        }
+////        else {
+////            print("Not selected")
+////
+////        }
+//
+//
+//    }
+//}
 
 
 //TODO:- Remove  Shipping Address API
@@ -259,37 +261,5 @@ extension AddressListVC {
   
 }
 
-
-
-//TODO:- Order Place / Buy  API
-extension AddressListVC {
-    func callingBuyOrderAPI() {
-        
-        ProgressHUD.show("Please wait.",  interaction: false)
-        
-        let buyProductParam = buyProductModel(cartRef: strPassSelectedCartRef, buyerRef: strBuyRef, addressRef: straddressRef)
-        print("Buy Product Param: ",buyProductParam)
-        
-        BuyerAPIManager.shareInstance.callingBuyProductAPI(buyProductPara: buyProductParam) { (result) in
-            
-            
-            switch result {
-            case.success(let json):
-                print(json!)
-                ProgressHUD.dismiss()
-                 let msg = (json as! buyProductModelResponse).msg
-                print(msg)
-                //self.callingFetchingShippingAddressAPI()
-    
-            case.failure(let err):
-                ProgressHUD.dismiss()
-                print(err.localizedDescription)
-            }
-            
-        }
-        
-    }
-  
-}
 
 

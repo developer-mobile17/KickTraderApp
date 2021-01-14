@@ -22,7 +22,25 @@ class AddressListCell: UITableViewCell {
     @IBOutlet var btnSelect: UIButton!
     @IBOutlet var btnDelete: UIButton!
     
-    
+
+
+    func toggleAddressSelected ()
+           {
+            if (isSelected){
+
+                self.vwBGCell.layer.cornerRadius = 12
+                self.vwBGCell.borderWidth = 2
+                self.vwBGCell.borderColor = UIColor.systemGreen
+               // backgroundColor = .red
+               }else {
+
+                self.vwBGCell.layer.cornerRadius = 0
+                self.vwBGCell.borderWidth = 0
+                self.vwBGCell.borderColor = UIColor.clear
+
+               }
+           }
+
     
 
     override func awakeFromNib() {

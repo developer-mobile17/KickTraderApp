@@ -40,11 +40,11 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
 
 
 
-//TODO:- Seller Total Rating & Review Count
+    //TODO:- Seller Total Rating & Review Count
     @IBOutlet var sellerTotalAvgRating: UILabel!
     @IBOutlet var sellerTotalReviewCount: UILabel!
     @IBOutlet var objSellerRating: FloatRatingView!
-   
+
     var arrComment = [Comments]()
     var arrimgShoe = [Image]()
     var strProductPrice : String?
@@ -55,7 +55,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     var arrPassSliderImg = [String]()
     var defaultss = UserDefaults.standard
     
-   
+
     var productVideo: String!
     
     // var arrSellerDetails = [SellerDetail]()
@@ -74,14 +74,14 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
         self.productDetailAPI()
         
         
-       
+
         
         
     }
- 
-override func viewDidAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
+
     }
 }
 
@@ -116,9 +116,9 @@ extension ProductDetailVC{
     }
     
     @objc func didFinishDownloading()
-        {
+    {
         productImgSlider.configure(with: UserDefaults.standard.value(forKey: "imgPass") as! [Any])
-      
+
     }
 }
 
@@ -135,18 +135,9 @@ extension ProductDetailVC{
             
             switch result {
             case.success(let json):
-             //   print(json!)
-                
-                
                 let resPonseProduct = (json as! BuyerGetProductDetailsModelResponse).productInfo!
-              //  print(resPonseProduct)
-                
                 arrProductColor = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.colors)!
                 arrSize = arrProductColor[0].size!
-                //  let arr0 = arrProductColor[0].size
-                //  print(arr0!)
-                
-                
                 arrComment = resPonseProduct.comments!
                 self.tblUserReview.reloadData()
                 
@@ -155,8 +146,6 @@ extension ProductDetailVC{
                 
                 self.arrimgShoe = arrProductColor[0].image!
                 shoeImgs =  self.arrimgShoe.map({$0.imageName!})
-                // print(shoeImgs)
-                
                 productImgSlider.configure(with: shoeImgs)
                 
                 
@@ -172,8 +161,6 @@ extension ProductDetailVC{
                 
                 
                 //TODO:- Pass ProductVideo array to ProductVideoVC
-                
-    
                 let productVideoPass = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.unboxingVideos)!
                 if let data = try? PropertyListEncoder().encode(productVideoPass) {
                     
@@ -187,23 +174,21 @@ extension ProductDetailVC{
                 self.productDescription.text = resPonseProduct.productDescription
                 self.productPrice.text! =   "\("$")\(resPonseProduct.productPrice!)"
                 self.defaultss.setValue(resPonseProduct.productRef, forKey:"DefaultsproductRef")
-                
-                
-               
-                
-                
+
                 //TODO:- Update the Seller Description Info
 
-                objSellerRating.rating = Double(Float((resPonseProduct.sellerDetail?.avgRating!)!)!)
+                let img = (json as! BuyerGetProductDetailsModelResponse).productInfo?.sellerDetail?.profile_Image!
+                print(img!)
+                let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(img!)")
 
-//                let imgSellerProfileURL = URL(string:"\(PROFILE_IMAGE)\( resPonseProduct.sellerDetail?.profile_Image)"
-//
-//                imgSellerProfile.kf.setImage(with: imgSellerProfileURL)
-                   
+                self.imgSellerProfile.kf.setImage(with:imgProfileURL!)
+
+                objSellerRating.rating = Double(Float((resPonseProduct.sellerDetail?.avgRating!)!)!)
+                print(resPonseProduct.sellerDetail?.profile_Image as Any)
+
                 self.sellerName.text = resPonseProduct.sellerDetail?.full_Name
                 self.sellerPostingDate.text = resPonseProduct.sellerDetail?.shop_description
                 self.sellerProductDescription.text = resPonseProduct.productDescription
-            //    self.sellerTotalAvgRating.text = resPonseProduct.sellerDetail?.avgRating
                 self.sellerTotalReviewCount.text =
                     "( \(String(arrComment.count)) \( "Review") )"
 
@@ -215,14 +200,17 @@ extension ProductDetailVC{
                 else {
 
 
-                let floatCommentCOunt = Float(arrComment.count)
-                let ratingMap = arrComment.map({$0.rating})
-                let ratingConvertToINT = ratingMap.map {Float($0!)!}
-                let addtionIS = ratingConvertToINT.reduce(0,+)
-                let finalRating = addtionIS / floatCommentCOunt
-                self.sellerTotalAvgRating.text = String(finalRating)
+                    let floatCommentCOunt = Float(arrComment.count)
+                    let ratingMap = arrComment.map({$0.rating})
+                    let ratingConvertToINT = ratingMap.map {Float($0!)!}
+                    let addtionIS = ratingConvertToINT.reduce(0,+)
+                    let finalRating = addtionIS / floatCommentCOunt
+                    self.sellerTotalAvgRating.text = String(finalRating)
 
                 }
+
+
+
 
             case.failure(let err):
                 print(err.localizedDescription)
@@ -237,7 +225,7 @@ extension ProductDetailVC{
 extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-       // return 2
+        // return 2
 
         if tableView == tblUserReview {
             return 1
@@ -343,15 +331,13 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
 //TODO:- Add to Cart API
 extension ProductDetailVC {
     func callingAddToCartAPI() {
-        
-        
-        
+
         guard let buyerRef = defaultss.string(forKey: "DefaultsbuyerRef") else {return}
         print(buyerRef)
         guard let productRef = defaultss.string(forKey: "DefaultsproductRef") else {return}
         print(productRef)
         guard let coloToProductRef = defaultss.string(forKey: "DefaultscoloToProductRef") else {
-           return showAlert(alertMessage: "Please select shoe color")
+            return showAlert(alertMessage: "Please select shoe color")
         }
         print(coloToProductRef)
         guard let sizeToColorRef = defaultss.string(forKey: "DefaultssizeToColorRef") else {return showAlert(alertMessage: "Please select shoe size")}
@@ -371,7 +357,7 @@ extension ProductDetailVC {
                 ProgressHUD.dismiss()
                 let msg = (json as! addToCartModelResponse).msg
                 self.showAlert(alertMessage:msg)
-               
+
                 
             case.failure(let err):
                 ProgressHUD.dismiss()
@@ -392,7 +378,7 @@ extension ProductDetailVC {
 extension ProductDetailVC {
     func callingPlaceABidAPI() {
         
-       
+
         
         guard let buyerRef = defaultss.string(forKey: "DefaultsbuyerRef") else {return}
         guard let productRef = defaultss.string(forKey: "DefaultsproductRef") else {return}
@@ -412,8 +398,8 @@ extension ProductDetailVC {
                 ProgressHUD.dismiss()
                 let msg = (json as! PlaceABidModelResponse).msg
                 self.showAlert(alertMessage:msg)
-                //print(msg)
-                
+            //print(msg)
+
             case.failure(let err):
                 ProgressHUD.dismiss()
                 print(err.localizedDescription)

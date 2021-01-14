@@ -66,6 +66,7 @@
 		9E70D2972580AFBA00FFCE9A /* SearchEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D2962580AFBA00FFCE9A /* SearchEditVC.swift */; };
 		9E70D29D2580EBA600FFCE9A /* sellerEditProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D29C2580EBA600FFCE9A /* sellerEditProduct.swift */; };
 		9E70D2A02580EBEB00FFCE9A /* sellerAddColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D29F2580EBEB00FFCE9A /* sellerAddColorVC.swift */; };
+		9E71C5EF25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */; };
 		9E7219F8257F3DEB002145DD /* TransctionOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */; };
 		9E72F302255BB61F00EE78D0 /* SellerProductColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72F301255BB61F00EE78D0 /* SellerProductColorVC.swift */; };
 		9E81725A25526FF6006E8027 /* SellerOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725925526FF6006E8027 /* SellerOrderCell.swift */; };
@@ -215,6 +216,7 @@
 		9E70D2962580AFBA00FFCE9A /* SearchEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEditVC.swift; sourceTree = "<group>"; };
 		9E70D29C2580EBA600FFCE9A /* sellerEditProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sellerEditProduct.swift; sourceTree = "<group>"; };
 		9E70D29F2580EBEB00FFCE9A /* sellerAddColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sellerAddColorVC.swift; sourceTree = "<group>"; };
+		9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacedSuccessfullyVC.swift; sourceTree = "<group>"; };
 		9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionOrderDetailsVC.swift; sourceTree = "<group>"; };
 		9E72F301255BB61F00EE78D0 /* SellerProductColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProductColorVC.swift; sourceTree = "<group>"; };
 		9E81725925526FF6006E8027 /* SellerOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerOrderCell.swift; sourceTree = "<group>"; };
@@ -380,14 +382,11 @@
 				9E86AF4B256CBF2400D65220 /* CartTab */,
 				9E86AF4D256CBF3800D65220 /* ChatTab */,
 				9E86AF4E256CBF4D00D65220 /* MoreTab */,
-				9E86AF5B256CDD6200D65220 /* SettingVC */,
 				9E86AF5A256CDD4F00D65220 /* RateSellerVC */,
 				9E86AF5D256CDDBE00D65220 /* AddCardVC */,
 				9E8254BC2578ACB800124E64 /* AddShippingAddressVc */,
-				9E5CA97D25ADA6EF00B5FCFB /* ProductCheckoutVC.swift */,
+				9E71C5F125AEC39700FFD88F /* ProductCheckOutVC */,
 				9E04DE4525380B9D00A988EB /* Info.plist */,
-				9E8254BE2578ACDD00124E64 /* FavouriteCell.swift */,
-				9E8254C12578ACFC00124E64 /* FavouriteProductVc.swift */,
 				9E04DE3D25380B9600A988EB /* Main.storyboard */,
 				9E04DE4025380B9D00A988EB /* Assets.xcassets */,
 				9E04DE4225380B9D00A988EB /* LaunchScreen.storyboard */,
@@ -495,6 +494,24 @@
 			path = SellerAddProduct;
 			sourceTree = "<group>";
 		};
+		9E71C5F125AEC39700FFD88F /* ProductCheckOutVC */ = {
+			isa = PBXGroup;
+			children = (
+				9E5CA97D25ADA6EF00B5FCFB /* ProductCheckoutVC.swift */,
+				9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */,
+			);
+			path = ProductCheckOutVC;
+			sourceTree = "<group>";
+		};
+		9E71C5F225AEC3B100FFD88F /* FavouritesVC */ = {
+			isa = PBXGroup;
+			children = (
+				9E8254BE2578ACDD00124E64 /* FavouriteCell.swift */,
+				9E8254C12578ACFC00124E64 /* FavouriteProductVc.swift */,
+			);
+			path = FavouritesVC;
+			sourceTree = "<group>";
+		};
 		9E7219F5257F3B4B002145DD /* APIManger */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +595,8 @@
 		9E86AF4E256CBF4D00D65220 /* MoreTab */ = {
 			isa = PBXGroup;
 			children = (
+				9E86AF5B256CDD6200D65220 /* SettingVC */,
+				9E71C5F225AEC3B100FFD88F /* FavouritesVC */,
 				9E00834C25999C4C00B35C5C /* AboutUs */,
 				9E86AF5E256CDDF300D65220 /* MoreVC */,
 				9E86AF50256CDCF100D65220 /* ProfileVC */,
@@ -1031,6 +1050,7 @@
 				9EFD36CF253EC5E200A50EE3 /* cartCell.swift in Sources */,
 				9E8A2D9425766C9200F44FAD /* UIAlertController.swift in Sources */,
 				9ED280E8253D65F200B9CFEF /* GetStartedVCViewController.swift in Sources */,
+				9E71C5EF25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift in Sources */,
 				9E410BF02563CEA300FEC9BC /* SearchGetProductModel.swift in Sources */,
 				9E37017E255AA0B200EEA40B /* SellerProductEditVC.swift in Sources */,
 				9E0A56B7254D763400BFF96B /* RateSellerVC.swift in Sources */,

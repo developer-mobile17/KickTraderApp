@@ -10,27 +10,24 @@ import UIKit
 
 class TransactionVC: UIViewController {
 
-     @IBOutlet var objTbl:UITableView?
+    @IBOutlet var objTbl:UITableView?
+    @IBOutlet var btnBack:UIButton!
     
-      var arrTransctionData = [BuyerOrders]()
-    
-      var arrPasstransForRating = [NSArray]()
-    
-      var defaultTrans = UserDefaults.standard
+    var arrTransctionData = [BuyerOrders]()
+    var arrPasstransForRating = [NSArray]()
+    var defaultTrans = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.callinggetBuyerOrdersAPI()
     }
     
     @IBAction func actionBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-         
-      }
+
+    }
 }
-
-
-
 
 
 //TODO:- get Buyer Orders  API
@@ -55,8 +52,8 @@ extension TransactionVC {
                 let msg = (json as! getBuyerOrdersResponse).msg!
                 print(msg)
                 
-                //self.callingFetchingShippingAddressAPI()
-    
+            //self.callingFetchingShippingAddressAPI()
+
             case.failure(let err):
                 ProgressHUD.dismiss()
                 print(err.localizedDescription)
@@ -65,7 +62,7 @@ extension TransactionVC {
         }
         
     }
-  
+
 }
 
 
@@ -89,11 +86,8 @@ extension TransactionVC : UITableViewDataSource,UITableViewDelegate {
         
         cell.lblPrice.text = MyTransctionData.bidPrice
         cell.lblDate.text = MyTransctionData.orderedDate
-        
-        
-        
-        
-    
+
+
         //TODO:- UIButton Action Add Rating
         
         cell.btnAddRating.tag = indexPath.row
@@ -105,11 +99,11 @@ extension TransactionVC : UITableViewDataSource,UITableViewDelegate {
         
         cell.lblStatus.text = orderStatus
         if orderStatus == "pending"{
-          
+
             cell.lblStatus.textColor = UIColor.systemYellow
         }
         else if orderStatus == "cancelled" {
-         
+
             cell.lblStatus.textColor = UIColor.systemRed
         }
         
@@ -168,12 +162,9 @@ extension TransactionVC{
         vcOrderDetails.strSize = productSize
         vcOrderDetails.strOrderStatus = orderStatus
         vcOrderDetails.strOrderNumber = orderNumber
-//
-//
-//
-        
-        
-    
+        //
+        //
+
         
         //TODO:- Seller Info
         
@@ -189,8 +180,6 @@ extension TransactionVC{
         defaultTrans.setValue(selectedSellershop_description, forKey:"DefaultsSellershop_description")
         
 
-        
-        
         self.navigationController?.pushViewController(vcOrderDetails, animated: true)
         
 

@@ -13,10 +13,10 @@ import Kingfisher
 
 class HomeVC: UIViewController, UISearchBarDelegate {
     
-   @IBOutlet weak var searchBar: UISearchBar!
-   @IBOutlet weak var sgTextOnlyBar: WMSegment!
-   @IBOutlet var objTable: UITableView!
-   @IBOutlet var imgProfile: UIImageView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var sgTextOnlyBar: WMSegment!
+    @IBOutlet var objTable: UITableView!
+    @IBOutlet var imgProfile: UIImageView!
     
     var arrShoesBuyerProduct = [Shoes]()
     var arrSneakersBuyerProduct = [Sneakers]()
@@ -51,47 +51,44 @@ class HomeVC: UIViewController, UISearchBarDelegate {
             self.getBuyerProductList()
             self.objTable.reloadData()
         }
-       
+
     }
     //TODO:-  Get the User Profile
     func getProfileImg (){
-       
-//        strImgURL = defaultsHome.value(forKey: "Defaultsprofile_Image")! as? String
-//        print(strImgURL!)
-//        if strImgURL == nil {
-//            print("No Profile Img")
-//        }
-//        else {
-//            let imgProfileURL =  URL(string:"\(PROFILE_IMAGE)\(String(describing: strImgURL))")
-//            print(imgProfileURL!)
-//            self.imgProfile.kf.setImage(with:imgProfileURL)
-//        }
+
+        strImgURL = defaultsHome.value(forKey: "Defaultsprofile_Image")! as? String
+        if strImgURL == nil {
+            print("No Profile Img")
+        }
+        else {
+            let imgProfileURL =  URL(string: "\(PROFILE_IMAGE)\(strImgURL!)")
+            self.imgProfile.kf.setImage(with:imgProfileURL)
+        }
         
-       
+
     }
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredRecipes.removeAll()
-           if let searchText = searchBar.text, !searchText.isEmpty {
-               self.filteredRecipes = self.arrShoesBuyerProduct.filter { recipe in
+        if let searchText = searchBar.text, !searchText.isEmpty {
+            self.filteredRecipes = self.arrShoesBuyerProduct.filter { recipe in
                 guard recipe.brandName != nil else { return false }
                 return ((recipe.brandName!).lowercased().contains(searchText.lowercased()))
-               }
-           } else {
-               self.filteredRecipes = self.arrShoesBuyerProduct
-              searchBar.resignFirstResponder()
-           }
+            }
+        } else {
+            self.filteredRecipes = self.arrShoesBuyerProduct
+            searchBar.resignFirstResponder()
+        }
 
-           objTable.reloadData();
-          // objTable.reloadInputViews();
-          // searchBar.resignFirstResponder()
+        objTable.reloadData();
+
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         searchBar.resignFirstResponder()
     }
-   
+
     
     func searchBarCancelButtonClicked(_searchBar: UISearchBar){
         searchBar.resignFirstResponder()
@@ -114,27 +111,27 @@ extension HomeVC {
         
         //Using callbacks
         sgTextOnlyBar.onValueChanged = { [self] index in
-                   print("I have selected index \(index) from WMSegment!")
-                
-                if index == 0 {
-                    
-                    checkCategory = "1"
-                    self.objTable.reloadData()
-                    
-                }
-                if index == 1 {
-                    checkCategory = "2"
-                    self.objTable.reloadData()
-                    
-                }
-                if index == 2 {
-                    checkCategory = "3"
-                    self.objTable.reloadData()
-                    
-                }
-                
-                
-               }
+            print("I have selected index \(index) from WMSegment!")
+
+            if index == 0 {
+
+                checkCategory = "1"
+                self.objTable.reloadData()
+
+            }
+            if index == 1 {
+                checkCategory = "2"
+                self.objTable.reloadData()
+
+            }
+            if index == 2 {
+                checkCategory = "3"
+                self.objTable.reloadData()
+
+            }
+
+
+        }
     }
 }
 
@@ -187,7 +184,7 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
         else {
             return arrBootBuyerProduct.count
         }
-     
+
     }
     
     
@@ -224,7 +221,7 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
             cell.vwStarRating.rating = Double(Float(SellerProductModel.AverageRating!)!)
             
             
-        
+
             //return cell
         }
         
@@ -237,12 +234,12 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
             
             // print("here is the URL of IMG:",imgURL!)
             cell.imgShoes?.kf.setImage(with: imgURL)
-                    
+
             
             cell.lblShoeName.text = SellerSneakerModel.brandName
             cell.lblPrice.text =  "\("$")\(SellerSneakerModel.productPrice!)"
             cell.vwStarRating.rating = Double(Float(SellerSneakerModel.AverageRating!)!)
-        
+
             //return cell
         }
         
@@ -256,10 +253,10 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
             cell.vwStarRating.rating = Double(Float(SellerBootProductModel.AverageRating!)!)
             
 
-          //  return cell
+            //  return cell
             
         }
-       
+
         //TODO: btn Favourite Action
         
         cell.btnFavourite.tag = indexPath.row
@@ -297,11 +294,11 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
 extension HomeVC{
     @objc func btnFavouriteItemClicked(sender: UIButton){
         
-//        selecteCartRef = self.arrCartData[sender.tag].cartRef!
-//        print(selecteCartRef)
-//        self.callingRemoveCartAPI()
+        //        selecteCartRef = self.arrCartData[sender.tag].cartRef!
+        //        print(selecteCartRef)
+        //        self.callingRemoveCartAPI()
         
-      
+
         if checkCategory == "1" {
             productRef = arrShoesBuyerProduct[sender.tag].productRef
         }
@@ -322,7 +319,7 @@ extension HomeVC{
             strActionFav = "1"
             self.addProductToFavourite()
             
-          //  straddressRef = arrShippingAddress[sender.tag].addressRef!
+            //  straddressRef = arrShippingAddress[sender.tag].addressRef!
             
         }
         else {
@@ -331,10 +328,7 @@ extension HomeVC{
             self.addProductToFavourite()
             
         }
-        
-        
-        
-        
+
     }
 }
 
@@ -344,9 +338,7 @@ extension HomeVC {
     func addProductToFavourite(){
         
         ProgressHUD.show("Product Loading...", interaction: false)
-        
-        
-        
+
         let addFavouriteParma = addFavoriteModel(buyerRef:defaultsHome.value(forKey: "DefaultsbuyerRef") as! String , productRef: productRef! ,action:strActionFav!)
         print(addFavouriteParma)
         BuyerAPIManager.shareInstance.addFavoriteAPI(addFavoriteParam: addFavouriteParma) {(result) in
@@ -355,10 +347,10 @@ extension HomeVC {
             case.success(let json):
                 ProgressHUD.dismiss()
                 print(json!)
-               
-            
-              //  self.objTable.reloadData()
-                
+
+
+            //  self.objTable.reloadData()
+
             case.failure(let err):
                 print(err.localizedDescription)
             }
