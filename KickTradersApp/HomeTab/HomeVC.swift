@@ -58,7 +58,7 @@ class HomeVC: UIViewController, UISearchBarDelegate {
 
         strImgURL = defaultsHome.value(forKey: "Defaultsprofile_Image")! as? String
         if strImgURL == nil {
-            print("No Profile Img")
+           // print("No Profile Img")
         }
         else {
             let imgProfileURL =  URL(string: "\(PROFILE_IMAGE)\(strImgURL!)")
@@ -111,7 +111,7 @@ extension HomeVC {
         
         //Using callbacks
         sgTextOnlyBar.onValueChanged = { [self] index in
-            print("I have selected index \(index) from WMSegment!")
+           // print("I have selected index \(index) from WMSegment!")
 
             if index == 0 {
 
@@ -149,7 +149,7 @@ extension HomeVC {
             
             switch result{
             case.success(let json):
-                print(json!)
+              //  print(json!)
                 
                 ProgressHUD.dismiss()
                 self.arrSneakersBuyerProduct = (json as! ResponsegetSellerProducts).sneakers!
@@ -195,11 +195,12 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
         
         
         if checkCategory == "1" {
+
+
+            //MARK:- SHOE Category Logic Here
             
             let SellerProductModel =  self.filteredRecipes[indexPath.row]
-            
 
-            
             //TODO:- Set Defualt Img To Product Cover Image
             let imgProductCover = SellerProductModel.productCoverImage
             if imgProductCover == "" {
@@ -212,48 +213,73 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
                 cell.imgShoes?.kf.setImage(with: imgURL)
                 
             }
-            
+
+
             // TODO:- Check Favourite ID of Product
-            
+
+            if let checkFavID = SellerProductModel.favoriteId {
+               print(checkFavID)
+                cell.btnFavourite.isSelected = true
+
+            }
+             else
+            {
+                cell.btnFavourite.isSelected = false
+            }
+
             //TODO:- Assign Value to Cell Label
             cell.lblShoeName.text = SellerProductModel.brandName
             cell.lblPrice.text = "\("$")\(SellerProductModel.productPrice!)"
             cell.vwStarRating.rating = Double(Float(SellerProductModel.AverageRating!)!)
             
-            
 
-            //return cell
         }
-        
+
+
+        //MARK:- SNEAKER Categoty Logic Here
+
         if checkCategory == "2" {
             
             let SellerSneakerModel = arrSneakersBuyerProduct[indexPath.row]
-            
-            
             let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(arrSneakersBuyerProduct[indexPath.row].productCoverImage!)")
-            
-            // print("here is the URL of IMG:",imgURL!)
             cell.imgShoes?.kf.setImage(with: imgURL)
 
-            
+            print("Fav ID of SneakerShoe.",SellerSneakerModel.favoriteId!)
+            if let checkFavID = SellerSneakerModel.favoriteId {
+               print(checkFavID)
+                cell.btnFavourite.isSelected = true
+
+            }
+            else
+           {
+               cell.btnFavourite.isSelected = false
+           }
+
             cell.lblShoeName.text = SellerSneakerModel.brandName
             cell.lblPrice.text =  "\("$")\(SellerSneakerModel.productPrice!)"
             cell.vwStarRating.rating = Double(Float(SellerSneakerModel.AverageRating!)!)
 
-            //return cell
         }
-        
+
+
+
+        //MARK:- BOOT SHOE Logic Here.
+
         else if checkCategory == "3" {
             let SellerBootProductModel = arrBootBuyerProduct[indexPath.row]
             
             let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(arrBootBuyerProduct[indexPath.row].productCoverImage!)")
             cell.imgShoes?.kf.setImage(with: imgURL)
+
+            if let checkFavID = SellerBootProductModel.favoriteId {
+               print(checkFavID)
+                cell.btnFavourite.isSelected = true
+
+            }
             cell.lblShoeName.text = SellerBootProductModel.brandName
             cell.lblPrice.text = "\("$")\(SellerBootProductModel.productPrice!)"
             cell.vwStarRating.rating = Double(Float(SellerBootProductModel.AverageRating!)!)
-            
 
-            //  return cell
             
         }
 
@@ -293,11 +319,8 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
 //MARK:- Button remove Cart Item Clicked
 extension HomeVC{
     @objc func btnFavouriteItemClicked(sender: UIButton){
-        
-        //        selecteCartRef = self.arrCartData[sender.tag].cartRef!
-        //        print(selecteCartRef)
-        //        self.callingRemoveCartAPI()
-        
+
+
 
         if checkCategory == "1" {
             productRef = arrShoesBuyerProduct[sender.tag].productRef
@@ -308,9 +331,7 @@ extension HomeVC{
         if checkCategory == "3" {
             productRef = arrBootBuyerProduct[sender.tag].productRef
         }
-        
-        
-        
+
         sender.isSelected.toggle()
         
         if sender.isSelected {
@@ -318,9 +339,6 @@ extension HomeVC{
             
             strActionFav = "1"
             self.addProductToFavourite()
-            
-            //  straddressRef = arrShippingAddress[sender.tag].addressRef!
-            
         }
         else {
             print("Not selected")
@@ -332,25 +350,19 @@ extension HomeVC{
     }
 }
 
-
-
 extension HomeVC {
     func addProductToFavourite(){
         
-        ProgressHUD.show("Product Loading...", interaction: false)
-
+        ProgressHUD.show(interaction: false)
         let addFavouriteParma = addFavoriteModel(buyerRef:defaultsHome.value(forKey: "DefaultsbuyerRef") as! String , productRef: productRef! ,action:strActionFav!)
-        print(addFavouriteParma)
+       // print(addFavouriteParma)
         BuyerAPIManager.shareInstance.addFavoriteAPI(addFavoriteParam: addFavouriteParma) {(result) in
             
             switch result{
             case.success(let json):
                 ProgressHUD.dismiss()
-                print(json!)
-
-
-            //  self.objTable.reloadData()
-
+                print((json as! addFavoriteModelResponse).msg)
+                self.getBuyerProductList()
             case.failure(let err):
                 print(err.localizedDescription)
             }

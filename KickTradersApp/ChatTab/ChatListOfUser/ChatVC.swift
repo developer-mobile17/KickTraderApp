@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ChatVC: UIViewController {
+class ChatVC: UIViewController{
     @IBOutlet var objTbl : UITableView!
     var arrGetChatList = [ChatDataList]()
     
@@ -53,7 +53,7 @@ extension ChatVC {
     
 }
 
-extension ChatVC : UITableViewDataSource{
+extension ChatVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrGetChatList.count
     }
@@ -79,6 +79,15 @@ extension ChatVC : UITableViewDataSource{
         return cell
         
     }
-    
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chatDetails =  self.storyboard?.instantiateViewController(identifier: "ChatDetailVC") as! ChatDetailVC
+
+
+        self.navigationController?.pushViewController(chatDetails, animated: true)
+    }
+            
+
     
 }

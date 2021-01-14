@@ -98,7 +98,7 @@ extension LoginVC {
             
             switch result{
             case.success(let json):
-                print(json!)
+               // print(json!)
                 
                 ProgressHUD.dismiss()
                 
@@ -111,7 +111,7 @@ extension LoginVC {
                     
                     
                     let role = (json as! loginModelResponse).userInfo?.role
-                    print(role!)
+                  //  print(role!)
                     let baseURL = (json as! loginModelResponse).base_url
                     let buyerRef = (json as! loginModelResponse).userInfo?.userRef
                     let userImg = (json as! loginModelResponse).userInfo?.profile_Image

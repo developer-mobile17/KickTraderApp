@@ -146,11 +146,7 @@ let getNotification_Url = "\(base_url)/getNotification"
 
 //MARK:- CHAT API Implemented Here.
 let getChatList_Url = "\(base_url)/getChatList"
-
-
-
-
-
+let getChatHistory_Url = "\(base_url)/chatHistory"
 
 
 
