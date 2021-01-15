@@ -1080,6 +1080,54 @@ class BuyerAPIManager {
 
 
 
+
+
+    //MARK:- Chat API Implementatin
+
+
+
+    func CallingSendMessage_API(sendMessageParam:ChatSendMessageRequest ,completionHandler : @escaping Handler) {
+
+    AF.request(chatSendMessage_Url,
+               method: .post,
+               parameters: sendMessageParam,
+               encoder: URLEncodedFormParameterEncoder.default,
+               headers: nil).response {
+               response in
+
+                switch response.result{
+                case .success(let data):
+                    do {
+
+
+                        let jsonDecoder = JSONDecoder()
+                        let responseModel = try jsonDecoder.decode(ChatSendMessageResponse.self, from: data!)
+                        print(responseModel)
+
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseModel))
+                            print("Successfully Send Message")
+                        }
+                        else{
+                            print("There is an issue with get (http://hourlylancer.com/kickTraders/api/v1/sendMessage) API, Please check!")
+                        }
+
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+
+        }
+    }
+
+
+
+
+
+
     
     
 }

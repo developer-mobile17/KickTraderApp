@@ -84,6 +84,12 @@ extension ChatVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatDetails =  self.storyboard?.instantiateViewController(identifier: "ChatDetailVC") as! ChatDetailVC
 
+        chatDetails.chatRefPass = arrGetChatList[indexPath.row].chatRef
+        chatDetails.receiverRefPass = arrGetChatList[indexPath.row].receiverRef
+        chatDetails.orderNoPass = arrGetChatList[indexPath.row].orderNumber
+        chatDetails.receiverName = arrGetChatList[indexPath.row].full_Name
+        chatDetails.receiverPhoto = arrGetChatList[indexPath.row].profile_Image
+
 
         self.navigationController?.pushViewController(chatDetails, animated: true)
     }

@@ -244,7 +244,7 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
             let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(arrSneakersBuyerProduct[indexPath.row].productCoverImage!)")
             cell.imgShoes?.kf.setImage(with: imgURL)
 
-            print("Fav ID of SneakerShoe.",SellerSneakerModel.favoriteId!)
+            print("Fav ID of SneakerShoe.",SellerSneakerModel.favoriteId as Any)
             if let checkFavID = SellerSneakerModel.favoriteId {
                print(checkFavID)
                 cell.btnFavourite.isSelected = true
