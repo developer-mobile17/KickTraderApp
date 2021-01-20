@@ -12,6 +12,8 @@ class ProductSizeCell: UITableViewCell {
     
     @IBOutlet var ShowProductSizeCollection: UICollectionView!
     var arrPassSize = [arrSize]
+    var strSelectedSizeCheck: String!
+    var indexCheck: NSInteger!
     
     
     override func awakeFromNib() {
@@ -31,17 +33,12 @@ class ProductSizeCell: UITableViewCell {
     
     
     @objc func DidColorTapForSize()
-        {
-        
+    {
         let defaults = UserDefaults.standard
-              if let data = defaults.data(forKey: "SavedItemArray") {
-                arrSize = try! PropertyListDecoder().decode([SIze].self, from: data)
-                
-              }
-        
-        
-       // arrSize = UserDefaults.standard.value(forKey: "sizePass") as! [SIze]
-        
+        if let data = defaults.data(forKey: "SavedItemArray") {
+            arrSize = try! PropertyListDecoder().decode([SIze].self, from: data)
+
+        }
         self.ShowProductSizeCollection.reloadData()
     }
     
@@ -56,37 +53,48 @@ extension ProductSizeCell: UICollectionViewDataSource,UICollectionViewDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let SizeCollection =  collectionView.dequeueReusableCell(withReuseIdentifier: "ProductSizeCollectionCell", for: indexPath) as! ProductSizeCollectionCell
-        
-        
+
+
         let sizeDataModel = arrSize[indexPath.row]
         SizeCollection.lblSize.text = sizeDataModel.sizeName!
+
+        if strSelectedSizeCheck ==  sizeDataModel.sizeName!
+        {
+            indexCheck = indexPath.row
+            SizeCollection.lblSize.layer.cornerRadius = SizeCollection.lblSize.bounds.height/2
+            SizeCollection.lblSize.layer.backgroundColor = UIColor.black.cgColor
+        }
+        else{
+            SizeCollection.lblSize.cornerRadius = 0
+            SizeCollection.lblSize.layer.backgroundColor = UIColor.clear.cgColor
+        }
         
         return SizeCollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let CCell : UICollectionViewCell = collectionView.cellForItem(at: indexPath) as!ProductSizeCollectionCell
-        
+
+
+        let cell = collectionView.cellForItem(at: indexPath) as! ProductSizeCollectionCell
+        cell.isSelected = true
+        strSelectedSizeCheck = ""
+        cell.toggleSizeSelected()
+
         let defaults = UserDefaults.standard
         defaults.setValue(arrSize[indexPath.row].sizeToColorRef, forKey: "DefaultssizeToColorRef")
-        
-        CCell.isSelected = true
-        CCell.layer.cornerRadius = CCell.bounds.height/2
-        CCell.layer.backgroundColor = UIColor.black.cgColor
+
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        let CCell : UICollectionViewCell = collectionView.cellForItem(at: indexPath) as!ProductSizeCollectionCell
-        CCell.layer.backgroundColor = UIColor.clear.cgColor
-        
+        let cell = collectionView.cellForItem(at: indexPath) as! ProductSizeCollectionCell
+        cell.isSelected = false
+        cell.toggleSizeSelected()
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-              return CGSize(width: 42 , height: 42)
+              return CGSize(width: 32 , height: 32)
           }
           
           func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

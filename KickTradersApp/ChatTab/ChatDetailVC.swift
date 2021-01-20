@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MessageKit
 import Kingfisher
 
 
@@ -32,11 +31,13 @@ class ChatDetailVC:UIViewController,UITextViewDelegate{
 
         lblHeaderTitle.text = receiverName
 
-        let strURL = "\(PROFILE_IMAGE)\(String(describing: receiverPhoto))"
-      //  self.imgReceiver.kf.setImage(with:strURL)
+        let strURL = "\(PROFILE_IMAGE)\(String(describing: receiverPhoto!))"
 
         if let receiverImgURL = URL(string: strURL) {
         print(receiverImgURL)
+
+        self.imgReceiver.kf.setImage(with:receiverImgURL)
+
         }
 
 
@@ -52,10 +53,22 @@ class ChatDetailVC:UIViewController,UITextViewDelegate{
 
         objTxvSendMessage.delegate = self
         objTxvSendMessage.text = "Write your message here..."
-        self.callingGetChatHistoryAPI()
+
 
 
     }
+
+
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.callingGetChatHistoryAPI()
+    }
+
+
+
     @IBAction func actionBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -80,7 +93,7 @@ extension ChatDetailVC {
 
             switch result {
             case.success(let json):
-                print(json!)
+              //  print(json!)
                 ProgressHUD.dismiss()
 
                 self.arrChatHistory = (json as! ChatHistoryModelResponse).chatHistory!
@@ -92,11 +105,6 @@ extension ChatDetailVC {
                         self.objChatTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
                     }
 
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    let indexPath = NSIndexPath(forRow: commentArray.count-1, inSection: 0)
-//                  tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
-//
-//                })
 
 
 
@@ -123,13 +131,36 @@ extension ChatDetailVC : UITableViewDataSource,UITableViewDelegate{
         let ChatHistoryModel = arrChatHistory[indexPath.row]
 
 
-         cell_Sender.setData(arrChatHistory[indexPath.row])
+      //   cell_Sender.setData(arrChatHistory[indexPath.row])
       //  SenderChatCell.setData(arrChatHistory[indexPath.row])
+
+
+
+
+        //TODO:-String to Date Convert
+        let dateString =  ChatHistoryModel.created_at!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let s = dateFormatter.date(from: dateString)
+
+
+        //TODO:- CONVERT FROM NSDate to String
+
+        let date2Formatter = DateFormatter()
+        date2Formatter.dateFormat = "MMM d, h:mm a"
+        let date2String = date2Formatter.string(from:s! as Date)
+        print(date2String)
+        //cell.lblDate.text = date2String
+
+
+
+
 
         let userType = ChatHistoryModel.userType
         if userType == "Buyer" {
             cell_Sender.lblSenderTextMessage.text = ChatHistoryModel.message!
-            cell_Sender.lblSenderDate.text = ChatHistoryModel.created_at!
+            cell_Sender.lblSenderDate.text = date2String
+
 
 
           return cell_Sender
@@ -138,7 +169,13 @@ extension ChatDetailVC : UITableViewDataSource,UITableViewDelegate{
         else {
             print(ChatHistoryModel.message!)
             cell_Receiver.lblReceiverTextMessage.text = ChatHistoryModel.message!
-            cell_Receiver.lblReceiverDate.text = ChatHistoryModel.created_at!
+            cell_Receiver.lblReceiverDate.text = date2String
+
+            let imgURL = URL(string:"\(chatImgBase_Url)\(ChatHistoryModel.chatImage!)")
+            cell_Receiver.imgReceiverChat.kf.setImage(with: imgURL)
+
+
+
             return cell_Receiver
         }
 
@@ -155,8 +192,8 @@ extension ChatDetailVC {
     func callingSendMessageAPI() {
 
         let senderRef = UserDefaults.standard.value(forKey: "DefaultsbuyerRef") as! String
-        let sendChatMessageParam = ChatSendMessageRequest(senderRef: senderRef, receiverRef: receiverRefPass, messageText: objTxvSendMessage.text, chatImage: "", chatRef: chatRefPass, orderNumber:orderNoPass)
-        print(sendChatMessageParam)
+        let sendChatMessageParam = ChatSendMessageRequest(senderRef: senderRef, receiverRef: receiverRefPass, messageText: objTxvSendMessage.text, chatImage: "", chatRef: chatRefPass, orderNumber:orderNoPass, senderRole:"Buyer")
+      //  print(sendChatMessageParam)
 
             //ChatHistoryModelRequest(chatRef: "l0aaq2I214N62", userRef: "cJte0ux3iNeLq")
         ProgressHUD.show(interaction: false)
@@ -166,7 +203,7 @@ extension ChatDetailVC {
 
             switch result {
             case.success(let json):
-                print(json!)
+                //(json!)
                 ProgressHUD.dismiss()
 
                 let msg = (json as! ChatSendMessageResponse).msg
@@ -207,3 +244,5 @@ extension ChatDetailVC  {
         objTxvSendMessage.resignFirstResponder()
     }
 }
+
+

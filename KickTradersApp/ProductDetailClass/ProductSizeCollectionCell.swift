@@ -11,6 +11,22 @@ import UIKit
 class ProductSizeCollectionCell: UICollectionViewCell {
     
     @IBOutlet var lblSize: UILabel!
+
+    func toggleSizeSelected() {
+
+        if (isSelected) {
+
+            lblSize.layer.cornerRadius = lblSize.bounds.height/2
+            lblSize.layer.backgroundColor = UIColor.black.cgColor
+            
+        }
+
+        else {
+            lblSize.cornerRadius = 0
+            lblSize.layer.backgroundColor = UIColor.clear.cgColor
+        }
+
+    }
     
     
 }

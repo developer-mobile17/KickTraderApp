@@ -1082,7 +1082,7 @@ class BuyerAPIManager {
 
 
 
-    //MARK:- Chat API Implementatin
+    //MARK:- Chat  Send Message  API Implementatin
 
 
 
@@ -1124,6 +1124,53 @@ class BuyerAPIManager {
     }
 
 
+
+
+
+
+
+
+
+    //MARK:- Chat  Send Message  API Implementatin
+
+
+
+    func CallingGetShippingStatus_API(getShippingStatusParam:getShippingStatusRequest ,completionHandler : @escaping Handler) {
+
+    AF.request(getShippingStatus_Url,
+               method: .post,
+               parameters: getShippingStatusParam,
+               encoder: URLEncodedFormParameterEncoder.default,
+               headers: nil).response {
+               response in
+
+                switch response.result{
+                case .success(let data):
+                    do {
+
+
+                        let jsonDecoder = JSONDecoder()
+                        let responseModel = try jsonDecoder.decode(getShippingStatusResponse.self, from: data!)
+                        print(responseModel)
+
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseModel))
+                            print("Successfully fetch getShippingStatusRequest")
+                        }
+                        else{
+                            print("There is an issue with get getShippingStatusRequest API, Please check!")
+                        }
+
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+
+        }
+    }
 
 
 

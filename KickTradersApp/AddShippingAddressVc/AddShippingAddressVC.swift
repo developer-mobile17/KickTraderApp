@@ -20,6 +20,7 @@ class AddShippingAddressVC: UIViewController {
     
     
     var defaultsAddress = UserDefaults.standard
+    var arrAddressPass = [Address]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,23 @@
 
 import UIKit
 
-class ProductCheckoutVC: UIViewController {
+class ProductCheckoutVC: UIViewController, PayPalPaymentDelegate {
+
+    //MARK:- PayPal Setup
+
+
+    var environment:String = PayPalEnvironmentSandbox {
+    willSet(newEnvironment) {
+    if (newEnvironment != environment) {
+    PayPalMobile.preconnect(withEnvironment: newEnvironment)
+                }
+            }
+        }
+
+    var payPalConfig = PayPalConfiguration()
+
+//**************************************************************//
+
 
     @IBOutlet var imgShoe: UIImageView!
     @IBOutlet var lblShoeBrand: UILabel!
@@ -29,6 +45,8 @@ class ProductCheckoutVC: UIViewController {
     var strAddressCartRef : String = ""
     var strBuyRef: String = ""
     var strCartRef: String = ""
+    var PayPalSuccessID:String!
+    var bidPriceToNumeric: Int!
 
 
     override func viewDidLoad() {
@@ -38,9 +56,20 @@ class ProductCheckoutVC: UIViewController {
         lblShoeBGColor.clipsToBounds = true
         lblShoeBGColor.layer.borderWidth = 1
 
+
+        //TODO:- Paypal configure here..
+        payPalConfig.payPalShippingAddressOption = .both
+
         self.getProductDetail()
 
     }
+
+   //TODO:- paypal preconnect setup here
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            PayPalMobile.preconnect(withEnvironment: environment)
+        }
+
 
 
     @IBAction func actionBack(_ sender: Any) {
@@ -48,9 +77,23 @@ class ProductCheckoutVC: UIViewController {
     }
     @IBAction func actionProceedToPayment(_ sender: Any) {
 
-        //TODO:- Go to success Screen
-        let orderPlaced = self.storyboard?.instantiateViewController(identifier: "OrderPlacedSuccessfullyVC") as! OrderPlacedSuccessfullyVC
-        self.navigationController?.pushViewController(orderPlaced, animated: true)
+
+        let totalAmount = totalChargesGenric(bidPrice: bidPriceToNumeric!, shippingCharges: 7)
+        let TotalAmtDecimal =  NSDecimalNumber(value: totalAmount)
+
+        //TODO:- paypal payment gateway calling here on button click
+        let payment = PayPalPayment(amount: TotalAmtDecimal, currencyCode: "USD", shortDescription: (DefaultsCheckOut.value(forKey: "CheckoutProductName") as! String), intent: .sale)
+
+
+        if (payment.processable) {
+            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
+            present(paymentViewController!, animated: true, completion: nil)
+        }
+        else {
+
+            print("Payment not processalbe: \(payment)")
+        }
+
 
        // self.callingBuyOrderAPI()
     }
@@ -69,7 +112,7 @@ class ProductCheckoutVC: UIViewController {
         lblBidPrice.text = "\("$") \((DefaultsCheckOut.value(forKey: "CheckoutBidPrice") as! String))"
         lblShippingCharges.text = "\("$") \(7)"
 
-        let bidPriceToNumeric = Int(DefaultsCheckOut.value(forKey: "CheckoutBidPrice") as! String)
+        bidPriceToNumeric = Int(DefaultsCheckOut.value(forKey: "CheckoutBidPrice") as! String)
         let TotalCharges = totalChargesGenric(bidPrice: bidPriceToNumeric!, shippingCharges: 7)
 
         lblTotalCharges.text = "\("$") \(String(TotalCharges))"
@@ -85,13 +128,12 @@ func totalChargesGenric<T:Numeric>(bidPrice:T, shippingCharges:T) -> T {
     return bidPrice + shippingCharges
 }
 
-
-
 //TODO:- Order Place / Buy  API
 extension ProductCheckoutVC {
     func callingBuyOrderAPI() {
 
         ProgressHUD.show("Please wait.",  interaction: false)
+        print("PayPal Success ID",PayPalSuccessID!)
 
         // CheckoutCartRef
 
@@ -99,7 +141,7 @@ extension ProductCheckoutVC {
         strBuyRef = DefaultsCheckOut.value(forKey:"DefaultsbuyerRef") as! String
        // strAddressCartRef = DefaultsCheckOut.value(forKey:"DefaultsbuyerRef") as! String
 
-        let buyProductParam = buyProductModel(cartRef: strCartRef, buyerRef: strBuyRef, addressRef: strAddressCartRef)
+        let buyProductParam = buyProductModel(cartRef: strCartRef, buyerRef: strBuyRef, addressRef: strAddressCartRef,payId: PayPalSuccessID)
         print("Buy Product Param: ",buyProductParam)
 
         BuyerAPIManager.shareInstance.callingBuyProductAPI(buyProductPara: buyProductParam) { (result) in
@@ -123,6 +165,34 @@ extension ProductCheckoutVC {
 
         }
 
+    }
+
+}
+
+//MARK:- PayPal Payment Gateway integration.
+extension ProductCheckoutVC {
+    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
+        print("PayPal Payment Cancelled")
+        paymentViewController.dismiss(animated: true, completion: nil)
+    }
+
+    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
+        print("PayPal Payment Success !")
+        paymentViewController.dismiss(animated: true, completion: { [self] () -> Void in
+            // send completed confirmaion to your server
+            print("Here is your proof of payment:\n\n\(completedPayment.confirmation)\n\nSend this to your server for confirmation and fulfillment.")
+
+
+            let paymentResultDic = completedPayment.confirmation as NSDictionary
+
+
+            let dicResponse: AnyObject? = paymentResultDic.object(forKey: "response") as AnyObject
+            self.PayPalSuccessID = dicResponse?.object(forKey: "id") as? String
+            print(self.PayPalSuccessID!)
+            //TODO:- Sending Paypal id to server for reference
+            self.callingBuyOrderAPI()
+
+            })
     }
 
 }

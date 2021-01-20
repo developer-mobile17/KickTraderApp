@@ -119,37 +119,18 @@ extension AddressListVC: UITableViewDataSource,UITableViewDelegate {
         cell.lblstate.text = shippingAddressData.state
         cell.lblZipCode.text = shippingAddressData.pin
         
-        
-        
-        
-        
-        
-        //        if arrSelectedIndex.contains(indexPath.row) {
-        //            cell.btnSelect .backgroundColor = UIColor.green
-        //            //cell.cellCheckMarkImage.isHidden = false
-        //        }
-        //        else{
-        //
-        //            cell.btnSelect .backgroundColor = UIColor.black
-        //            //cell.backgroundColor = UIColor.clear
-        //            //cell.cellCheckMarkImage.isHidden = true
-        //        }
-        //
-        
-        
+
         //TODO:- UIButton Action Delete
         cell.btnDelete.tag = indexPath.row
         cell.btnDelete .addTarget(self, action: #selector(removeAddressFromList), for:.touchUpInside)
         
         
-        //TODO:- UIButton Action Select
-//        cell.btnSelect.tag = indexPath.row
-//        cell.btnSelect .addTarget(self, action: #selector(selectAddressFromList), for:.touchUpInside)
+        //TODO:- UIButton Action Edit Address
+        cell.btnEdit.tag = indexPath.row
+        cell.btnEdit .addTarget(self, action: #selector(efitAddressFromList), for:.touchUpInside)
         
         
 
-        
-        
         return cell
     }
     
@@ -187,52 +168,26 @@ extension AddressListVC {
         self.callingRemoveShippingAddressAPI()
         
     }
+
+
+    @objc func efitAddressFromList(sender:UIButton){
+
+
+      //  let addressEdit = arrShippingAddress[sender.tag]
+        let vcAddressEdit = self.storyboard?.instantiateViewController(identifier: "AddShippingAddressVC") as! AddShippingAddressVC
+
+
+
+      
+       // vcAddressEdit.arrAddressPass = arrShippingAddress[sender.tag].address
+
+        self.navigationController?.pushViewController(vcAddressEdit, animated: true)
+
+    }
+
+
+
 }
-
-
-
-
-
-//extension AddressListVC {
-//    @objc func selectAddressFromList(sender:UIButton)
-//    {
-//      //  sender.isSelected.toggle()
-//
-//
-//        arrSelectedIndex.append(sender.tag)
-//
-//        print(arrSelectedIndex)
-//
-//
-//        if  arrSelectedIndex.contains(sender.tag) {
-//
-//            let indexSelected = arrSelectedIndex.firstIndex(of: sender.tag)!
-//            arrSelectedIndex.remove(at: indexSelected)
-//            print("Remove old one")
-//
-//        }
-//        else
-//        {
-//            print("Add New one")
-//
-//        }
-//
-//
-//
-////
-////        if sender.isSelected {
-////            print("selected")
-////            straddressRef = arrShippingAddress[sender.tag].addressRef!
-////
-////        }
-////        else {
-////            print("Not selected")
-////
-////        }
-//
-//
-//    }
-//}
 
 
 //TODO:- Remove  Shipping Address API

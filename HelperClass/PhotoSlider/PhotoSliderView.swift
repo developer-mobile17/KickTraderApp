@@ -26,7 +26,7 @@ class PhotoSliderView: UIView {
                                                       height: scrollViewHeight))
             
             
-           
+         
             
             let sliderImgUrl = URL(string:"\(PRODUCT_IMAGE)\(image)")
             print(sliderImgUrl!)

@@ -49,7 +49,6 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         checkCategory = "1"
         DispatchQueue.main.async {
             self.getBuyerProductList()
-            self.objTable.reloadData()
         }
 
     }

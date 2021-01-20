@@ -3,14 +3,10 @@ target 'KickTradersApp' do
   use_frameworks!
 	pod 'IntroScreen'
 	pod 'CircleBar'
-	pod "CreditCardForm"
-	pod "Stripe"
 	pod 'WMSegmentControl'
-	pod 'IGColorPicker'
 	pod 'Kingfisher', '~> 5.0'
 	pod 'ImageSlideshow', '~> 1.9.0'
 	pod 'GooglePlaces'
-	pod 'MessageKit'
-	pod 'InputBarAccessoryView'
+		pod 'PayPal-iOS-SDK'
   
 end

@@ -11,6 +11,15 @@ import UIKit
 class ProductColorCollectionCell: UICollectionViewCell {
  
      @IBOutlet var lblColor: UILabel!
+    func toggleColorSelection() {
+        if (isSelected) {
+
+        }
+
+        else {
+            
+        }
+    }
     
     
 }

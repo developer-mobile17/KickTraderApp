@@ -103,14 +103,7 @@ extension colorTableCell: UICollectionViewDataSource, UICollectionViewDelegate,U
         }
     }
     
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//
-//
-//    }
-    
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:48, height: 48)

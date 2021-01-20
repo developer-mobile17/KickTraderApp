@@ -144,12 +144,19 @@ let getNotification_Url = "\(base_url)/getNotification"
 
 
 
+//TODO:- Buyer API's
+//TODO:- getShippingStatus API
+
+let getShippingStatus_Url = "\(base_url)/getShippingStatus"
+
+
+
 //MARK:- CHAT API Implemented Here.
 let getChatList_Url = "\(base_url)/getChatList"
 let getChatHistory_Url = "\(base_url)/chatHistory"
 let chatSendMessage_Url = "\(base_url)/sendMessage"
 
-
+let chatImgBase_Url = "http://hourlylancer.com/kickTraders/admin/assets/uploads/chatImage/"
 
 
 

@@ -34,7 +34,6 @@
 		9E0FA3CF25A6DC65005929A0 /* ChatModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */; };
 		9E105CD7254FF2F700522887 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CD6254FF2F700522887 /* SettingVC.swift */; };
 		9E105CD9254FF31100522887 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CD8254FF31100522887 /* SettingCell.swift */; };
-		9E105CDB255008BA00522887 /* AddCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CDA255008BA00522887 /* AddCardVC.swift */; };
 		9E105CDD255014A900522887 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CDC255014A900522887 /* TextField.swift */; };
 		9E1EE2C6255CF6F500F15389 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1EE2C5255CF6F500F15389 /* ProgressHUD.swift */; };
 		9E1EE2CD255D03BA00F15389 /* loginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1EE2CC255D03BA00F15389 /* loginModel.swift */; };
@@ -47,6 +46,9 @@
 		9E38810125B15FDB00A527A0 /* ReceiverChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3880FF25B15FDB00A527A0 /* ReceiverChatCell.swift */; };
 		9E38810225B15FDB00A527A0 /* ReceiverChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E38810025B15FDB00A527A0 /* ReceiverChatCell.xib */; };
 		9E38810525B19C4B00A527A0 /* ChatSendMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38810425B19C4B00A527A0 /* ChatSendMessageModel.swift */; };
+		9E3AED5D25B6E2280015F7D0 /* TrackOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AED5C25B6E2280015F7D0 /* TrackOrderCell.swift */; };
+		9E3AED6025B6E23F0015F7D0 /* TrackOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AED5F25B6E23F0015F7D0 /* TrackOrderVC.swift */; };
+		9E3AED6525B6F6250015F7D0 /* getShippingStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AED6425B6F6250015F7D0 /* getShippingStatusModel.swift */; };
 		9E410BF02563CEA300FEC9BC /* SearchGetProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E410BEF2563CEA300FEC9BC /* SearchGetProductModel.swift */; };
 		9E410BF32563E44900FEC9BC /* SellerOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E410BF22563E44900FEC9BC /* SellerOrderModel.swift */; };
 		9E411148256E21E600F47329 /* getUserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E411147256E21E600F47329 /* getUserInfoModel.swift */; };
@@ -76,7 +78,6 @@
 		9E70D2A02580EBEB00FFCE9A /* sellerAddColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D29F2580EBEB00FFCE9A /* sellerAddColorVC.swift */; };
 		9E71C5EF25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */; };
 		9E7219F8257F3DEB002145DD /* TransctionOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */; };
-		9E72F302255BB61F00EE78D0 /* SellerProductColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72F301255BB61F00EE78D0 /* SellerProductColorVC.swift */; };
 		9E81725A25526FF6006E8027 /* SellerOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725925526FF6006E8027 /* SellerOrderCell.swift */; };
 		9E81725D25527D2E006E8027 /* BindingRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725C25527D2E006E8027 /* BindingRequestVC.swift */; };
 		9E81725F25527D47006E8027 /* BindingRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725E25527D47006E8027 /* BindingRequestCell.swift */; };
@@ -193,8 +194,8 @@
 		9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModelClass.swift; sourceTree = "<group>"; };
 		9E105CD6254FF2F700522887 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		9E105CD8254FF31100522887 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
-		9E105CDA255008BA00522887 /* AddCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardVC.swift; sourceTree = "<group>"; };
 		9E105CDC255014A900522887 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		9E1CB16C25B8358C00988BFB /* KickTraderApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KickTraderApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		9E1EE2C5255CF6F500F15389 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		9E1EE2CC255D03BA00F15389 /* loginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginModel.swift; sourceTree = "<group>"; };
 		9E1EE2D1255D048100F15389 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
@@ -205,6 +206,9 @@
 		9E3880FF25B15FDB00A527A0 /* ReceiverChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverChatCell.swift; sourceTree = "<group>"; };
 		9E38810025B15FDB00A527A0 /* ReceiverChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiverChatCell.xib; sourceTree = "<group>"; };
 		9E38810425B19C4B00A527A0 /* ChatSendMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSendMessageModel.swift; sourceTree = "<group>"; };
+		9E3AED5C25B6E2280015F7D0 /* TrackOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderCell.swift; sourceTree = "<group>"; };
+		9E3AED5F25B6E23F0015F7D0 /* TrackOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderVC.swift; sourceTree = "<group>"; };
+		9E3AED6425B6F6250015F7D0 /* getShippingStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getShippingStatusModel.swift; sourceTree = "<group>"; };
 		9E410BEF2563CEA300FEC9BC /* SearchGetProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGetProductModel.swift; sourceTree = "<group>"; };
 		9E410BF22563E44900FEC9BC /* SellerOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerOrderModel.swift; sourceTree = "<group>"; };
 		9E411147256E21E600F47329 /* getUserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getUserInfoModel.swift; sourceTree = "<group>"; };
@@ -234,7 +238,6 @@
 		9E70D29F2580EBEB00FFCE9A /* sellerAddColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sellerAddColorVC.swift; sourceTree = "<group>"; };
 		9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacedSuccessfullyVC.swift; sourceTree = "<group>"; };
 		9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionOrderDetailsVC.swift; sourceTree = "<group>"; };
-		9E72F301255BB61F00EE78D0 /* SellerProductColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProductColorVC.swift; sourceTree = "<group>"; };
 		9E81725925526FF6006E8027 /* SellerOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerOrderCell.swift; sourceTree = "<group>"; };
 		9E81725C25527D2E006E8027 /* BindingRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequestVC.swift; sourceTree = "<group>"; };
 		9E81725E25527D47006E8027 /* BindingRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequestCell.swift; sourceTree = "<group>"; };
@@ -364,6 +367,7 @@
 		9E04DE2B25380B9600A988EB = {
 			isa = PBXGroup;
 			children = (
+				9E1CB16C25B8358C00988BFB /* KickTraderApp-Bridging-Header.h */,
 				9E52572425B1C29D004BA333 /* chatBubble.swift */,
 				9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */,
 				9E6BF45225B0500F00AB4769 /* ChatHistoryModel.swift */,
@@ -448,6 +452,7 @@
 				9EA1666E257F693100DDF973 /* cancelOrderModel.swift */,
 				9E0083502599B83400B35C5C /* unboxingVideoModel.swift */,
 				9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */,
+				9E3AED6425B6F6250015F7D0 /* getShippingStatusModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -466,6 +471,25 @@
 				9E37017D255AA0B200EEA40B /* SellerProductEditVC.swift */,
 			);
 			path = SellerProductEdit;
+			sourceTree = "<group>";
+		};
+		9E3AED5A25B6E12E0015F7D0 /* TrackOrderVC */ = {
+			isa = PBXGroup;
+			children = (
+				9E3AED5F25B6E23F0015F7D0 /* TrackOrderVC.swift */,
+				9E3AED5C25B6E2280015F7D0 /* TrackOrderCell.swift */,
+			);
+			path = TrackOrderVC;
+			sourceTree = "<group>";
+		};
+		9E3AED5B25B6E1490015F7D0 /* TransctionListVC */ = {
+			isa = PBXGroup;
+			children = (
+				9E0968B4254000B100C0C959 /* TransactionVC.swift */,
+				9E0968B6254000C500C0C959 /* TransactionCell.swift */,
+				9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */,
+			);
+			path = TransctionListVC;
 			sourceTree = "<group>";
 		};
 		9E410BEE2563CE7800FEC9BC /* SellerModelClass */ = {
@@ -508,7 +532,6 @@
 			isa = PBXGroup;
 			children = (
 				9E610B45255BA6380020DEAA /* SellerAddProductVC.swift */,
-				9E72F301255BB61F00EE78D0 /* SellerProductColorVC.swift */,
 			);
 			path = SellerAddProduct;
 			sourceTree = "<group>";
@@ -651,9 +674,8 @@
 		9E86AF52256CDD0400D65220 /* TransactionVC */ = {
 			isa = PBXGroup;
 			children = (
-				9E0968B4254000B100C0C959 /* TransactionVC.swift */,
-				9E0968B6254000C500C0C959 /* TransactionCell.swift */,
-				9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */,
+				9E3AED5B25B6E1490015F7D0 /* TransctionListVC */,
+				9E3AED5A25B6E12E0015F7D0 /* TrackOrderVC */,
 			);
 			path = TransactionVC;
 			sourceTree = "<group>";
@@ -705,7 +727,6 @@
 		9E86AF5D256CDDBE00D65220 /* AddCardVC */ = {
 			isa = PBXGroup;
 			children = (
-				9E105CDA255008BA00522887 /* AddCardVC.swift */,
 			);
 			path = AddCardVC;
 			sourceTree = "<group>";
@@ -1070,6 +1091,7 @@
 				9E43EFA82564EF9700A92F52 /* SellerAddProduct.swift in Sources */,
 				9E8254BF2578ACDD00124E64 /* FavouriteCell.swift in Sources */,
 				9E00834E25999C6C00B35C5C /* AboutUsVC.swift in Sources */,
+				9E3AED5D25B6E2280015F7D0 /* TrackOrderCell.swift in Sources */,
 				9E9BD286256795680097C66C /* BuyerSignUpModel.swift in Sources */,
 				9E6A653E25419662005A9B25 /* unBoxingVideoCell.swift in Sources */,
 				9EF30EE225540A3B006537FD /* SellerEarningCell.swift in Sources */,
@@ -1136,7 +1158,6 @@
 				9E70D2972580AFBA00FFCE9A /* SearchEditVC.swift in Sources */,
 				9EE42A8E257910B700D53E02 /* FloatRatingView.swift in Sources */,
 				9E65CC7E25A44E50008EBBA9 /* getNotificationModel.swift in Sources */,
-				9E72F302255BB61F00EE78D0 /* SellerProductColorVC.swift in Sources */,
 				9E69C4CF2566967900ECC1F9 /* sellerGetOtpModel.swift in Sources */,
 				9E86AF62256CEA0F00D65220 /* getCartItemModel.swift in Sources */,
 				9E9BE62F2574B77900651DC9 /* AddressListCell.swift in Sources */,
@@ -1151,9 +1172,9 @@
 				9E4D46C2254C040A0062306C /* PhotoSliderView.swift in Sources */,
 				9EC7A2F12590B5C600D49091 /* resetPasswordModel.swift in Sources */,
 				9E81726325528EC5006E8027 /* BiddingReqDetailsVC.swift in Sources */,
+				9E3AED6025B6E23F0015F7D0 /* TrackOrderVC.swift in Sources */,
 				9EA1666F257F693100DDF973 /* cancelOrderModel.swift in Sources */,
 				9E0CF33C25625B2B003E6FCC /* ForgetPasswordModel.swift in Sources */,
-				9E105CDB255008BA00522887 /* AddCardVC.swift in Sources */,
 				9ED28119253DB66A00B9CFEF /* HomeCell.swift in Sources */,
 				9E7219F8257F3DEB002145DD /* TransctionOrderDetailsVC.swift in Sources */,
 				9EB3B0492581DF470097A0C8 /* SellerAddSizeTableCell.swift in Sources */,
@@ -1176,6 +1197,7 @@
 				9E0968BD2540144900C0C959 /* BrandCollectionCell.swift in Sources */,
 				9E1EE2D2255D048100F15389 /* constant.swift in Sources */,
 				9EFD36D5253EF06200A50EE3 /* MoreVCCell.swift in Sources */,
+				9E3AED6525B6F6250015F7D0 /* getShippingStatusModel.swift in Sources */,
 				9E41114B256E2F9300F47329 /* updateUserInfoModel.swift in Sources */,
 				9E9BE6532574FD4E00651DC9 /* addShippingAddressModel.swift in Sources */,
 				9E9BE65625750F2800651DC9 /* removeAddressModel.swift in Sources */,
@@ -1270,6 +1292,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTraderApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1323,6 +1346,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTraderApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1334,6 +1358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H79WZ4VR49;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1342,6 +1367,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.KickTradersApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTraderApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1353,6 +1379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H79WZ4VR49;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1361,6 +1388,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.KickTradersApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTraderApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

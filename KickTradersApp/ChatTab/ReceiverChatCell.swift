@@ -10,6 +10,7 @@ import UIKit
 
 class ReceiverChatCell: UITableViewCell {
     @IBOutlet var lblReceiverTextMessage: UILabel!
+    @IBOutlet var imgReceiverChat: UIImageView!
     
     @IBOutlet var lblReceiverDate: UILabel!
     override func awakeFromNib() {

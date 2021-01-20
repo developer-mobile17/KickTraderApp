@@ -56,28 +56,12 @@ extension ProductColorCell: UICollectionViewDataSource,UICollectionViewDelegate,
         
         
         let CCell : UICollectionViewCell = collectionView.cellForItem(at: indexPath) as!ProductColorCollectionCell
-          CCell.isSelected = true
-        
-        CCell.isHighlighted =  true
+
+        CCell.isSelected = true
         CCell.layer.borderColor = UIColor.black.cgColor
         CCell.layer.borderWidth = 2
         CCell.layer.cornerRadius = 5
 
-        //TODO:- Save Value into UserDefaults
-       
-   //     print("Here is the Sizes of Product is: ",selectedColorSize)
-     //   selectedColorProductImg = arrProductColor[indexPath.row].image!
-   //   print("Here is the image of Product is: ",selectedColorSize)
-        
-        
-        
-        //TODO:- Logic to change Size using Color select.
-//        let arrSelecetSize = arrProductColor[indexPath.row].size!
-//        let arrSizeNameOfColor = arrSelecetSize.map({$0.sizeName})
-////        let defaultsSliderSize = UserDefaults.standard
-//        defaultsSliderSize.setValue(arrSizeNameOfColor, forKey: "sizePass")
-//
-        
         let arrSelecetSize = arrProductColor[indexPath.row].size!
         if let data = try? PropertyListEncoder().encode(arrSelecetSize) {
             
@@ -87,22 +71,20 @@ extension ProductColorCell: UICollectionViewDataSource,UICollectionViewDelegate,
         
 
         NotificationCenter.default.post(name: Notification.Name(rawValue: "checkSize"), object: self)
-        
-        
-    
+
         //TODO:- Logic to change image using Color select.
         let arrChooseColor = arrProductColor[indexPath.row].image!
         let slideIMGpass = arrChooseColor.map({$0.imageName!})
         print(slideIMGpass)
-        
+
+
         let defaultsSlider = UserDefaults.standard
         defaultsSlider.setValue(slideIMGpass, forKey: "imgPass")
-        
+
         NotificationCenter.default.post(name: Notification.Name(rawValue: "check"), object: self)
         
 
-        
-        
+
         //TODO:- Pass ColorRef to Another ViewController
         print("COlorProductRef:",arrProductColor[indexPath.row].coloToProductRef!)
         let defaults = UserDefaults.standard

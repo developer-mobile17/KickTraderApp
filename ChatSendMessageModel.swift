@@ -14,6 +14,7 @@ struct ChatSendMessageRequest:Encodable {
     let chatImage:String
     let chatRef:String
     let orderNumber:String
+    let senderRole:String
 }
 
 

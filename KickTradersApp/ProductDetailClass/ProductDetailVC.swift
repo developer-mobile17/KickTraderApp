@@ -67,8 +67,11 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     //TODO:- ViewDid Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+    
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishDownloading), name: Notification.Name(rawValue: "check"), object: nil)
+
+
         
         objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 1700))
         self.productDetailAPI()
@@ -81,6 +84,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
 
     }
 }
@@ -117,6 +121,8 @@ extension ProductDetailVC{
     
     @objc func didFinishDownloading()
     {
+
+
         productImgSlider.configure(with: UserDefaults.standard.value(forKey: "imgPass") as! [Any])
 
     }

@@ -12,6 +12,7 @@ struct buyProductModel: Encodable {
     let cartRef: String
     let buyerRef: String
     let addressRef: String
+    let payId:String
     
 }
 

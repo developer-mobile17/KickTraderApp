@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       
-        
+        //TODO:- Set Paypal credential
+        PayPalMobile.initializeWithClientIds(forEnvironments: [PayPalEnvironmentSandbox:"AS86-0SRgY00ibp3Sm8hWzF3b-gfdd0FvM7-sRJ5dGGS65GaRB3gVDPxP2P1lfDTPPxzswZlveBKhWaO"])
       
         
         //RunLoop.current.run(until: Date(timeIntervalSinceNow: 5.0))

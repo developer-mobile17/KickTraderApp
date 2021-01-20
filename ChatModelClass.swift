@@ -43,7 +43,7 @@ struct ChatDataList : Codable {
     let chatRef : String?
     let orderNumber : String?
     let userRef : String?
-    let receiverRef : String?
+    let sellerRef : String?
     let lastMessage : String?
     let seenId : String?
     let isSeen : String?
@@ -59,7 +59,7 @@ struct ChatDataList : Codable {
         case chatRef = "chatRef"
         case orderNumber = "orderNumber"
         case userRef = "userRef"
-        case receiverRef = "receiverRef"
+        case sellerRef = "sellerRef"
         case lastMessage = "lastMessage"
         case seenId = "seenId"
         case isSeen = "isSeen"
@@ -76,7 +76,7 @@ struct ChatDataList : Codable {
         chatRef = try values.decodeIfPresent(String.self, forKey: .chatRef)
         orderNumber = try values.decodeIfPresent(String.self, forKey: .orderNumber)
         userRef = try values.decodeIfPresent(String.self, forKey: .userRef)
-        receiverRef = try values.decodeIfPresent(String.self, forKey: .receiverRef)
+        sellerRef = try values.decodeIfPresent(String.self, forKey: .sellerRef)
         lastMessage = try values.decodeIfPresent(String.self, forKey: .lastMessage)
         seenId = try values.decodeIfPresent(String.self, forKey: .seenId)
         isSeen = try values.decodeIfPresent(String.self, forKey: .isSeen)

@@ -10,8 +10,10 @@ import UIKit
 
 
 class ChatVC: UIViewController{
-    @IBOutlet var objTbl : UITableView!
-    var arrGetChatList = [ChatDataList]()
+     @IBOutlet var objTbl : UITableView!
+     var arrGetChatList = [ChatDataList]()
+     var getDate:Date!
+     var getProfileImgOfChatUser: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +21,16 @@ class ChatVC: UIViewController{
         self.callingGetChatListAPI()
         
     }
-    
+
 }
 
 
 //TODO:- get Buyer Orders  API
 extension ChatVC {
     func callingGetChatListAPI() {
-        
-        let getChatListParam = getChatListRequest(userRef: "cJte0ux3iNeLq", userType: "Buyer")
+
+        let userRefPass = UserDefaults.standard.value(forKey: "DefaultsbuyerRef") as! String
+        let getChatListParam = getChatListRequest(userRef:userRefPass, userType: "Buyer")
         ProgressHUD.show(interaction: false)
         
         BuyerAPIManager.shareInstance.CallingGetChatListAPI(getChatListParam: getChatListParam) { (result) in
@@ -64,15 +67,36 @@ extension ChatVC : UITableViewDataSource,UITableViewDelegate{
         let ChatListModel = arrGetChatList[indexPath.row]
         
         cell.imgUser.showLoading(color: .systemRed)
-        
+        let getDateFromAPI = ChatListModel.create_at!
+        print("Get date string from API",getDateFromAPI)
+
+
+        //TODO:-String to Date Convert
+        let dateString =  ChatListModel.create_at!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let s = dateFormatter.date(from: dateString)
+
+
+        //TODO:- CONVERT FROM NSDate to String
+
+        let date2Formatter = DateFormatter()
+        date2Formatter.dateFormat = "MMM d, h:mm a"
+        let date2String = date2Formatter.string(from:s! as Date)
+        print(date2String)
+        cell.lblDate.text = date2String
+
+
+
         DispatchQueue.main.async {
             
-            let imgURL = URL(string:"\(PROFILE_IMAGE)\(ChatListModel.profile_Image!)")
-            cell.imgUser.kf.setImage(with: imgURL)
+            self.getProfileImgOfChatUser = URL(string:"\(PROFILE_IMAGE)\(ChatListModel.profile_Image!)")
+            cell.imgUser.kf.setImage(with: self.getProfileImgOfChatUser)
             cell.imgUser.stopLoading()
             cell.lblUserName.text = ChatListModel.full_Name
             cell.lblMessage.text = ChatListModel.lastMessage
-            cell.lblDate.text = ChatListModel.create_at
+         //   cell.lblDate.text = ChatListModel.create_at
+          //
             
         }
         
@@ -84,8 +108,10 @@ extension ChatVC : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatDetails =  self.storyboard?.instantiateViewController(identifier: "ChatDetailVC") as! ChatDetailVC
 
+
+       // print(arrGetChatList[indexPath.row].sellerRef)
         chatDetails.chatRefPass = arrGetChatList[indexPath.row].chatRef
-        chatDetails.receiverRefPass = arrGetChatList[indexPath.row].receiverRef
+        chatDetails.receiverRefPass = arrGetChatList[indexPath.row].sellerRef
         chatDetails.orderNoPass = arrGetChatList[indexPath.row].orderNumber
         chatDetails.receiverName = arrGetChatList[indexPath.row].full_Name
         chatDetails.receiverPhoto = arrGetChatList[indexPath.row].profile_Image
@@ -94,6 +120,5 @@ extension ChatVC : UITableViewDataSource,UITableViewDelegate{
         self.navigationController?.pushViewController(chatDetails, animated: true)
     }
             
-
     
 }

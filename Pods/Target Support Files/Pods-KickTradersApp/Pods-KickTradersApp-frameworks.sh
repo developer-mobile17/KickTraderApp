@@ -176,28 +176,16 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CircleBar/CircleBar.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CreditCardForm/CreditCardForm.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/IGColorPicker/IGColorPicker.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IntroScreen/IntroScreen.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WMSegmentControl/WMSegmentControl.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/CircleBar/CircleBar.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CreditCardForm/CreditCardForm.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/IGColorPicker/IGColorPicker.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IntroScreen/IntroScreen.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/WMSegmentControl/WMSegmentControl.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
