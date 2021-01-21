@@ -155,6 +155,8 @@
 		9EF30EE225540A3B006537FD /* SellerEarningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF30EE125540A3B006537FD /* SellerEarningCell.swift */; };
 		9EF4B9BC259AEF850009E780 /* ThumbnailGenrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF4B9BB259AEF850009E780 /* ThumbnailGenrator.swift */; };
 		9EF50B692584CA4400CFD270 /* sellerAddImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF50B682584CA4400CFD270 /* sellerAddImageCollection.swift */; };
+		9EF513FC25B96E4D00BEF943 /* DisputeViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF513FB25B96E4D00BEF943 /* DisputeViewVC.swift */; };
+		9EF5140025B98E1700BEF943 /* addDisputeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF513FF25B98E1700BEF943 /* addDisputeModel.swift */; };
 		9EFD36CD253EC5C100A50EE3 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD36CC253EC5C100A50EE3 /* CartVC.swift */; };
 		9EFD36CF253EC5E200A50EE3 /* cartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD36CE253EC5E200A50EE3 /* cartCell.swift */; };
 		9EFD36D1253EE64600A50EE3 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD36D0253EE64600A50EE3 /* ProfileVC.swift */; };
@@ -315,6 +317,8 @@
 		9EF30EE125540A3B006537FD /* SellerEarningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerEarningCell.swift; sourceTree = "<group>"; };
 		9EF4B9BB259AEF850009E780 /* ThumbnailGenrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailGenrator.swift; sourceTree = "<group>"; };
 		9EF50B682584CA4400CFD270 /* sellerAddImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sellerAddImageCollection.swift; sourceTree = "<group>"; };
+		9EF513FB25B96E4D00BEF943 /* DisputeViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisputeViewVC.swift; sourceTree = "<group>"; };
+		9EF513FF25B98E1700BEF943 /* addDisputeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDisputeModel.swift; sourceTree = "<group>"; };
 		9EFD36CC253EC5C100A50EE3 /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		9EFD36CE253EC5E200A50EE3 /* cartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartCell.swift; sourceTree = "<group>"; };
 		9EFD36D0253EE64600A50EE3 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -453,6 +457,7 @@
 				9E0083502599B83400B35C5C /* unboxingVideoModel.swift */,
 				9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */,
 				9E3AED6425B6F6250015F7D0 /* getShippingStatusModel.swift */,
+				9EF513FF25B98E1700BEF943 /* addDisputeModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 		9E86AF52256CDD0400D65220 /* TransactionVC */ = {
 			isa = PBXGroup;
 			children = (
+				9EF513FA25B96E2F00BEF943 /* DisputeView */,
 				9E3AED5B25B6E1490015F7D0 /* TransctionListVC */,
 				9E3AED5A25B6E12E0015F7D0 /* TrackOrderVC */,
 			);
@@ -912,6 +918,14 @@
 			path = SellerEarnings;
 			sourceTree = "<group>";
 		};
+		9EF513FA25B96E2F00BEF943 /* DisputeView */ = {
+			isa = PBXGroup;
+			children = (
+				9EF513FB25B96E4D00BEF943 /* DisputeViewVC.swift */,
+			);
+			path = DisputeView;
+			sourceTree = "<group>";
+		};
 		DFF2EEED21F351710D588C63 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1137,6 +1151,7 @@
 				9E5CA97E25ADA6EF00B5FCFB /* ProductCheckoutVC.swift in Sources */,
 				9EFD36D3253EF03800A50EE3 /* MoreVC.swift in Sources */,
 				9E70D2942580AFA200FFCE9A /* SearchEditCell.swift in Sources */,
+				9EF5140025B98E1700BEF943 /* addDisputeModel.swift in Sources */,
 				9E81725D25527D2E006E8027 /* BindingRequestVC.swift in Sources */,
 				9E8DC8FD25518AD700375A63 /* SellerOrderTab.swift in Sources */,
 				9E967A472551220300804A75 /* SellerMainTab.swift in Sources */,
@@ -1179,6 +1194,7 @@
 				9E7219F8257F3DEB002145DD /* TransctionOrderDetailsVC.swift in Sources */,
 				9EB3B0492581DF470097A0C8 /* SellerAddSizeTableCell.swift in Sources */,
 				9EFD36CD253EC5C100A50EE3 /* CartVC.swift in Sources */,
+				9EF513FC25B96E4D00BEF943 /* DisputeViewVC.swift in Sources */,
 				9EB3B0432581DF010097A0C8 /* SellerAddSizeCollectionCell.swift in Sources */,
 				9E8DC8F32551635100375A63 /* SellerHomeVC.swift in Sources */,
 				9E70D2A02580EBEB00FFCE9A /* sellerAddColorVC.swift in Sources */,

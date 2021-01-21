@@ -92,10 +92,9 @@ class ProductCheckoutVC: UIViewController, PayPalPaymentDelegate {
         else {
 
             print("Payment not processalbe: \(payment)")
+            showAlert(alertMessage:"Payment not processalbe")
         }
 
-
-       // self.callingBuyOrderAPI()
     }
     
     func getProductDetail() {

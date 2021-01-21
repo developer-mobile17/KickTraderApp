@@ -27,6 +27,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet var productName: UILabel!
     @IBOutlet var productDescription: UILabel!
     @IBOutlet var productPrice: UILabel!
+    @IBOutlet var btnPlayVideo: UIButton!
     
     
     @IBOutlet var sellerName: UILabel!
@@ -37,7 +38,8 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet var productStatus: UILabel!
     @IBOutlet var sellerProductDescription: UILabel!
-
+    @IBOutlet var lblNoReviewsYet: UILabel!
+    
 
 
     //TODO:- Seller Total Rating & Review Count
@@ -68,11 +70,9 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    
+
+        lblNoReviewsYet.text = "There are no reviews yet.\n Only logged in customers who have purchased this product may leave a review."
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishDownloading), name: Notification.Name(rawValue: "check"), object: nil)
-
-
-        
         objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 1700))
         self.productDetailAPI()
         
@@ -97,6 +97,7 @@ extension ProductDetailVC{
     
     
     @IBAction func actionPlayVideo(_ sender: Any) {
+
         let productVidVC = self.storyboard?.instantiateViewController(identifier: "ProductVideoVC") as! ProductVideoVC
         productVidVC.productVideoPass = productVideo
         productVidVC.productNamePass =  self.productName.text 
@@ -164,10 +165,18 @@ extension ProductDetailVC{
                 
                 //TODO:- Get ProductVideo and Pass to ProductVideoVC
                 productVideo = resPonseProduct.productVideo
-                
+
                 
                 //TODO:- Pass ProductVideo array to ProductVideoVC
                 let productVideoPass = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.unboxingVideos)!
+
+                if productVideo .isEmpty && productVideoPass.count == 0 {
+                    btnPlayVideo.isHidden = true
+                }
+
+
+
+
                 if let data = try? PropertyListEncoder().encode(productVideoPass) {
                     
                     UserDefaults.standard.set(data, forKey: "DefaultsproductVideoPass")
@@ -202,10 +211,11 @@ extension ProductDetailVC{
 
                 if arrComment.count == 0 {
                     self.sellerTotalAvgRating.text = "0"
+                    lblNoReviewsYet.isHidden = false
                 }
                 else {
 
-
+                    lblNoReviewsYet.isHidden = true
                     let floatCommentCOunt = Float(arrComment.count)
                     let ratingMap = arrComment.map({$0.rating})
                     let ratingConvertToINT = ratingMap.map {Float($0!)!}
@@ -261,6 +271,7 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
             
             if arrComment.count == 0 {
                 print("NO Data")
+
             }
             else {
 

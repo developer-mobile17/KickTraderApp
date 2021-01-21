@@ -1131,7 +1131,7 @@ class BuyerAPIManager {
 
 
 
-    //MARK:- Chat  Send Message  API Implementatin
+    //MARK:- Get Shipping Status  API Implementatin
 
 
 
@@ -1173,6 +1173,49 @@ class BuyerAPIManager {
     }
 
 
+
+
+
+    //MARK:- Add Dispute  API Implementatin
+
+
+
+    func callingAddDispute_API(addDisputeParam:addDisputeRequest ,completionHandler : @escaping Handler) {
+
+    AF.request(addDispute_Url,
+               method: .post,
+               parameters: addDisputeParam,
+               encoder: URLEncodedFormParameterEncoder.default,
+               headers: nil).response {
+               response in
+
+                switch response.result{
+                case .success(let data):
+                    do {
+
+
+                        let jsonDecoder = JSONDecoder()
+                        let responseModel = try jsonDecoder.decode(addDisputeResponse.self, from: data!)
+                        print(responseModel)
+
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseModel))
+                            print("Successfully sent Dispute")
+                        }
+                        else{
+                            print("There is an issue with get add dispute API, Please check!")
+                        }
+
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+
+        }
+    }
 
 
     

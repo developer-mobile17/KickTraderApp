@@ -151,6 +151,15 @@ let getShippingStatus_Url = "\(base_url)/getShippingStatus"
 
 
 
+
+//TODO:- Buyer API's
+//TODO:- Add Dispute API
+
+let addDispute_Url = "\(base_url)/addDispute"
+
+
+
+
 //MARK:- CHAT API Implemented Here.
 let getChatList_Url = "\(base_url)/getChatList"
 let getChatHistory_Url = "\(base_url)/chatHistory"

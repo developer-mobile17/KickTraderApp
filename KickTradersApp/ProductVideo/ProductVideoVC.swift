@@ -16,6 +16,9 @@ class ProductVideoVC: UIViewController {
     @IBOutlet var objSegment: UISegmentedControl!
     @IBOutlet var objTable: UITableView!
     @IBOutlet var lblHeader: UILabel!
+    @IBOutlet var lblNoVideo: UILabel!
+
+
     var videoURL : URL!
     var imgURL: URL!
     var arrUnboxingVideo = [UnboxingVideos]()
@@ -26,16 +29,17 @@ class ProductVideoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        lblNoVideo.text = "There are no Unboxing video's yet."
+        lblNoVideo.isHidden = true
         
         let defaults = UserDefaults.standard
         if let data = defaults.data(forKey: "DefaultsproductVideoPass") {
             arrUnboxingVideo = try! PropertyListDecoder().decode([UnboxingVideos].self, from: data)
-            print("Product Video are:- ",arrUnboxingVideo)
+            print(" Unboxing Product Video are:- ",arrUnboxingVideo)
             
         }
-        
-        
+
         guard let ProductVideoURL = URL(string:"\(productVideoPass!)")  else {
             return
         }
@@ -44,10 +48,15 @@ class ProductVideoVC: UIViewController {
         
         arrProductVideo.append(videoURL)
         print(arrProductVideo)
-        
-        // self.PlayProductVideo()
-        
-        
+
+        if arrProductVideo.count == 0 {
+            print("No Product Video")
+        }
+
+        if arrUnboxingVideo.count == 0 {
+            print("No Unboxing Video")
+        }
+
         checkVideoType = "ProductVideo"
         
     }
@@ -87,12 +96,28 @@ extension ProductVideoVC {
     @IBAction func actionSegementClicked(_ sender: Any) {
         if objSegment.selectedSegmentIndex == 0 {
             checkVideoType = "ProductVideo"
+            if arrProductVideo.count == 0 {
+                print("No product Video's")
+                lblNoVideo.isHidden = false
+
+            }
+            else {
+            lblNoVideo.isHidden = true
             self.objTable.reloadData()
-           
+            }
         }
         else {
             checkVideoType = "UnboxingVideo"
-            self.objTable.reloadData()
+            if arrUnboxingVideo.count == 0 {
+                print("No Unboxing Video's")
+                lblNoVideo.isHidden = false
+
+            }
+            else {
+                lblNoVideo.isHidden = true
+                self.objTable.reloadData()
+            }
+
         }
     }
     
@@ -106,10 +131,10 @@ extension ProductVideoVC: UITableViewDelegate,UITableViewDataSource{
         if checkVideoType == "ProductVideo" {
             return arrProductVideo.count
         }
-        else if checkVideoType == "UnboxingVideo" {
+        else {
             return arrUnboxingVideo.count
         }
-        return arrUnboxingVideo.count
+       // return arrUnboxingVideo.count
         
     }
     
@@ -123,9 +148,11 @@ extension ProductVideoVC: UITableViewDelegate,UITableViewDataSource{
         cell.btnPlay.isHidden = true
         
         if checkVideoType == "ProductVideo" {
+
         if arrProductVideo.count == 0 {
             print("No Product Video Found")
         }
+            
         }
         
         if checkVideoType == "ProductVideo" {
@@ -134,7 +161,7 @@ extension ProductVideoVC: UITableViewDelegate,UITableViewDataSource{
             DispatchQueue.global().async { [self] in
                 
                 do {
-                    self.imgURL =  URL(string:"\(PRODUCT_UNBOXING_VIDEO)\(arrProductVideo[indexPath.row])")!
+                    self.imgURL =  URL(string:"\(PRODUCT_VIDEO)\(arrProductVideo[indexPath.row])")!
                     let asset = AVURLAsset(url: self.imgURL!)
                     let imageGenerator = AVAssetImageGenerator(asset: asset)
                     imageGenerator.appliesPreferredTrackTransform = true
@@ -163,7 +190,13 @@ extension ProductVideoVC: UITableViewDelegate,UITableViewDataSource{
         
         
         else {
-            
+
+
+            if arrUnboxingVideo.count == 0 {
+                print("NO DATA")
+
+            }
+
             let UnboxingVideoData = arrUnboxingVideo[indexPath.row]
             
             cell.imgUnboxingVideo.showLoading(color: .systemRed)
@@ -188,6 +221,7 @@ extension ProductVideoVC: UITableViewDelegate,UITableViewDataSource{
                 }catch{
                     print("Error is : \(error)")
                     DispatchQueue.main.async {
+                    cell.imgUnboxingVideo.stopLoading()
                         //                            cell.imgUnboxingVideo.image = UIImage(imageLiteralResourceName:"NoImg.png")
                     }
                     

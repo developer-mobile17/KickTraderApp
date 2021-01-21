@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         txfEmail.text = "buyer@gmail.com"
-       // txfEmail.text = "iOS@gmail.com"
+        // txfEmail.text = "iOS@gmail.com"
         txfPassword.text = "1234"
         txfPassword.isSecureTextEntry = false
         
@@ -85,7 +85,7 @@ extension LoginVC {
 
 extension LoginVC {
     func LoginAPICalling(){
-      
+        
         
         guard let email = txfEmail.text else {return}
         guard let password =  txfPassword.text else {return showAlert(alertMessage: "Please Enter Password")}
@@ -98,20 +98,20 @@ extension LoginVC {
             
             switch result{
             case.success(let json):
-               // print(json!)
+                // print(json!)
                 
                 ProgressHUD.dismiss()
                 
                 statusResponse = (json as! loginModelResponse).status
                 if statusResponse == "error" {
-                  //  print("Status Response:",(json as! loginModelResponse).msg!)
+                    //  print("Status Response:",(json as! loginModelResponse).msg!)
                     showAlert(alertMessage:(json as! loginModelResponse).msg!)
                 }
                 else {
                     
                     
                     let role = (json as! loginModelResponse).userInfo?.role
-                  //  print(role!)
+                    //  print(role!)
                     let baseURL = (json as! loginModelResponse).base_url
                     let buyerRef = (json as! loginModelResponse).userInfo?.userRef
                     let userImg = (json as! loginModelResponse).userInfo?.profile_Image
@@ -132,9 +132,6 @@ extension LoginVC {
                     }
                     
                 }
-                
-                
-                
             case.failure(let err):
                 print(err.localizedDescription)
             }

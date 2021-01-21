@@ -53,6 +53,7 @@ class TransctionOrderDetailsVC: UIViewController {
       
     }
     
+
     
 }
 
@@ -85,6 +86,17 @@ extension TransctionOrderDetailsVC  {
         DispatchQueue.main.async {
             self.cancelOrderAPI()
         }
+    }
+
+    @IBAction func actionTapDispute(_ sender: Any)
+    {
+
+        guard let vcAddDispute = storyboard?.instantiateViewController(identifier: "DisputeViewVC") as? DisputeViewVC else{
+
+            return
+        }
+
+        present(vcAddDispute, animated: true)
     }
 }
 

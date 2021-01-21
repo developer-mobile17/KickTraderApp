@@ -84,7 +84,7 @@ extension TransactionVC : UITableViewDataSource,UITableViewDelegate {
         cell.lblSize.text = MyTransctionData.sizeName
         cell.lblColor.backgroundColor = UIColor(hexFromString:MyTransctionData.colorCode!)
         
-        cell.lblPrice.text = MyTransctionData.bidPrice
+        cell.lblPrice.text =  "\("$")\(String(describing: MyTransctionData.bidPrice!))"
         cell.lblDate.text = MyTransctionData.orderedDate
 
 
@@ -96,8 +96,8 @@ extension TransactionVC : UITableViewDataSource,UITableViewDelegate {
         
         
         let orderStatus = MyTransctionData.orderStatus
-        
-        cell.lblStatus.text = orderStatus
+        let capitalizedLable = orderStatus?.capitalized
+        cell.lblStatus.text = capitalizedLable
         if orderStatus == "pending"{
 
             cell.lblStatus.textColor = UIColor.systemYellow
@@ -129,6 +129,7 @@ extension TransactionVC{
         let vcOrderDetails = self.storyboard?.instantiateViewController(identifier: "TransctionOrderDetailsVC") as! TransctionOrderDetailsVC
         //TODO:- Order Number Pass for tracking Order UI
         defaultTrans.setValue(self.arrTransctionData[sender.tag].orderNumber,forKey:"DefaultorderNumber")
+        defaultTrans.setValue(self.arrTransctionData[sender.tag].sellerRef,forKey:"DefaultsellerRef")
         
         //TODO:- Product Info
         let selectedProductRef = self.arrTransctionData[sender.tag].productRef
