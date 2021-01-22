@@ -281,7 +281,52 @@ class APIManger {
     }
     
     
-    
+
+
+
+
+    //MARK:- Change Password API
+
+    func callingChangePassword_API(changePasswordParam:changePasswordRequest ,completionHandler : @escaping Handler) {
+
+        AF.request(ChangePassword_url,
+                   method: .post,
+                   parameters:changePasswordParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+                        let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(changePasswordResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Success Change password API")
+                            }
+                            else{
+                                print("There is an issue withChange password API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                    }
+
+                   }
+    }
+
+
+
+
+
+
     
     //MARK:- Seller GetDrop Down Category API
     

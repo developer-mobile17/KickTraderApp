@@ -10,8 +10,9 @@ import UIKit
 
 class SettingCell: UITableViewCell {
     
-   @IBOutlet var lblTitle: UILabel!
-   @IBOutlet var imgTitle: UIImageView!
+    @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var imgTitle: UIImageView!
+    @IBOutlet var switchNotification: UISwitch!
     
 
     override func awakeFromNib() {

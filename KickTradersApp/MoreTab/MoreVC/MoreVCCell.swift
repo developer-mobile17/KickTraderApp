@@ -10,5 +10,6 @@ import UIKit
 
 class MoreVCCell: UICollectionViewCell {
      @IBOutlet var lblMenuTitle: UILabel!
+    @IBOutlet var imgMenuTitle: UIImageView!
     
 }

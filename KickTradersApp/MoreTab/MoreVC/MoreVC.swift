@@ -9,6 +9,7 @@
 import UIKit
 struct MoreOptionData {
     let moreMenu : String
+    let moremenuImg:String
 }
 
 class MoreVC: UIViewController {
@@ -18,7 +19,14 @@ class MoreVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arrMenus = [MoreOptionData(moreMenu: "Profile"),MoreOptionData(moreMenu: "Transactions"),MoreOptionData(moreMenu: "Favourites"),MoreOptionData(moreMenu: "Unboxing Videos"),MoreOptionData(moreMenu: "Settings"),MoreOptionData(moreMenu: "Notifications"),MoreOptionData(moreMenu: "About"),MoreOptionData(moreMenu: "Contact"),]
+        arrMenus = [MoreOptionData(moreMenu: "Profile", moremenuImg: "transProfile"),
+                    MoreOptionData(moreMenu: "Transactions", moremenuImg: "transaction 1")
+                    ,MoreOptionData(moreMenu: "Favourites", moremenuImg: "transFav")
+                    ,MoreOptionData(moreMenu: "Unboxing Videos", moremenuImg: "TransUnboxing"),
+                    MoreOptionData(moreMenu: "Settings", moremenuImg: "TransSetting"),
+                    MoreOptionData(moreMenu: "Notifications", moremenuImg: "TransNotification"),
+                    MoreOptionData(moreMenu: "About", moremenuImg: "TransAbou"),
+                    MoreOptionData(moreMenu: "Contact", moremenuImg: "transContact"),]
         
     }
     
@@ -44,6 +52,7 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
        
         let MenusModel = arrMenus[indexPath.row]
         cell.lblMenuTitle.text = MenusModel.moreMenu
+        cell.imgMenuTitle.image = UIImage(imageLiteralResourceName: MenusModel.moremenuImg)
       
         
     
@@ -103,12 +112,21 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
             }
             present(vc, animated: true)
         }
-        
-            
+
+
+        else if(strData == "Transactions"){
+             let vcSetting = storyboard?.instantiateViewController(identifier: "TransactionVC") as! TransactionVC
+            self.navigationController?.pushViewController(vcSetting, animated: true)
+
+
+        }
+
+
+        //Transactions
             
         else {
-             let vcTrans = storyboard?.instantiateViewController(identifier: "TransactionVC") as! TransactionVC
-            self.navigationController?.pushViewController(vcTrans, animated: true)
+             let vcSetting = storyboard?.instantiateViewController(identifier: "SettingVC") as! SettingVC
+            self.navigationController?.pushViewController(vcSetting, animated: true)
             
             
         }

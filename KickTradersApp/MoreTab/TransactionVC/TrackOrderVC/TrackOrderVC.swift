@@ -32,7 +32,7 @@ extension TrackOrderVC {
         ProgressHUD.show("Please wait.",  interaction: false)
         OrderNoPass = UserDefaults.standard.value(forKey: "DefaultorderNumber") as? String
 
-        let getShippingParam = getShippingStatusRequest(orderNumber: "KT2479588884")
+        let getShippingParam = getShippingStatusRequest(orderNumber:OrderNoPass!)
         BuyerAPIManager.shareInstance.CallingGetShippingStatus_API(getShippingStatusParam: getShippingParam) { [self] (result) in
 
             switch result {

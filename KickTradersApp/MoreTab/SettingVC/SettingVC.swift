@@ -20,11 +20,16 @@ class SettingVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        arrSetting = [SettingModel (titleSetting: "Notification", imgTitle: "notification"),
-                      SettingModel(titleSetting: "Location", imgTitle: "location")
+        arrSetting = [SettingModel (titleSetting: "Notification", imgTitle: "bell.badge.fill"),
+                      SettingModel(titleSetting: "Location", imgTitle: "location.fill"),
+                      SettingModel(titleSetting: "Change Passoword", imgTitle: "lock.fill")
         ]
         objtbl.tableFooterView = UIView()
 
+    }
+
+    @IBAction func actionBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated:true)
     }
 }
 
@@ -40,9 +45,36 @@ extension SettingVC: UITableViewDelegate,UITableViewDataSource {
         
         let settingData = arrSetting[indexPath.row]
         cellSetting.lblTitle.text = settingData.titleSetting
-        cellSetting.imgTitle.image = UIImage(imageLiteralResourceName: settingData.imgTitle)
+       // cellSetting.imgTitle.image = UIImage(imageLiteralResourceName: settingData.imgTitle)
+        cellSetting.imgTitle.image = UIImage(systemName:settingData.imgTitle)
+
+
+        if cellSetting.lblTitle.text == "Change Passoword" {
+            cellSetting.switchNotification.isHidden = true
+        }
+        else {
+            cellSetting.switchNotification.tag = indexPath.row
+            cellSetting.switchNotification.isHidden = false
+        }
+
+        
+
+        //here is programatically switch make to the table view
+//        let switchView = UISwitch(frame: .zero)
+//        switchView.setOn(false, animated: true)
+//        switchView.tag = indexPath.row // for detect which row switch Changed
+//        // switchView.addTarget(self, action: #selector(self.switchChanged(_:)), for: .valueChanged)
+//        cellSetting.accessoryView = switchView
+
         
         return cellSetting
+    }
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vcChangePassword =  self.storyboard?.instantiateViewController(identifier: "ChangePassword") as! ChangePassword
+        self.navigationController?.pushViewController(vcChangePassword, animated: true)
+        
     }
     
     

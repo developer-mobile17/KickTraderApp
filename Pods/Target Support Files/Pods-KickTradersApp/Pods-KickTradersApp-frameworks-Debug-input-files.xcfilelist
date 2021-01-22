@@ -3,4 +3,6 @@ ${BUILT_PRODUCTS_DIR}/CircleBar/CircleBar.framework
 ${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework
 ${BUILT_PRODUCTS_DIR}/IntroScreen/IntroScreen.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/SnackBar.swift/SnackBar_swift.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/WMSegmentControl/WMSegmentControl.framework

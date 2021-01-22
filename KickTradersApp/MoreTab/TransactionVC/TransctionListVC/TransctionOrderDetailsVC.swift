@@ -7,6 +7,18 @@
 //
 
 import UIKit
+import SnapKit
+import SnackBar_swift
+
+class AppSnackBar: SnackBar {
+
+    override var style: SnackBarStyle {
+        var style = SnackBarStyle()
+        style.background = .black
+        style.textColor = .white
+        return style
+    }
+}
 
 class TransctionOrderDetailsVC: UIViewController {
     
@@ -20,11 +32,14 @@ class TransctionOrderDetailsVC: UIViewController {
     var strSize : String!
     var strOrderStatus : String!
     var strOrderNumber: String!
+
+    var strAuthenticationProductStatus:String!
     
     @IBOutlet var btnUnboxingVideo: UIButton!
     @IBOutlet var btnCancelOrder: UIButton!
     @IBOutlet var btnTrackOrder: UIButton!
     @IBOutlet var btnAddRating: UIButton!
+    @IBOutlet var btnAddAuthentication: UIButton!
     
     @IBOutlet var lblOrderStatus: UILabel!
     @IBOutlet var imgShoes: UIImageView!
@@ -43,24 +58,55 @@ class TransctionOrderDetailsVC: UIViewController {
         super.viewDidLoad()
         
         print(strOrderNumber!)
+        print(strProductRef!)
+
        
         btnUnboxingVideo.isHidden = true
         btnAddRating.isHidden = true
         btnCancelOrder.isHidden = true
         btnTrackOrder.isHidden = true
+        btnAddAuthentication.isHidden = true
         ShowOrderDetails()
 
       
     }
     
 
+    @IBAction func actionAddAuthentication(_ sender: Any) {
+
+        // 1
+        let optionMenu = UIAlertController(title: nil, message:"\("Add Authentication for") \(String(describing: strproductName!))", preferredStyle: .actionSheet)
+           // 2
+        let geniuneAction = UIAlertAction(title: "Product is geniune", style: .default , handler: { (alert: UIAlertAction!) -> Void in
+            print("Product is Geniune")
+            self.strAuthenticationProductStatus = "1"
+            self.addAuthenticationAPI()
+
+        })
+           let fakeAction = UIAlertAction(title: "Product is fake", style: .default , handler: { (alert: UIAlertAction!) -> Void in
+            print("Product is Fake")
+            self.strAuthenticationProductStatus = "0"
+            self.addAuthenticationAPI()
+
+        })
+           // 3
+           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+           // 4
+           optionMenu.addAction(geniuneAction)
+           optionMenu.addAction(fakeAction)
+           optionMenu.addAction(cancelAction)
+
+           // 5
+           self.present(optionMenu, animated: true, completion: nil)
+
+    }
     
 }
 
 //MARK:- UIButton Action
 extension TransctionOrderDetailsVC  {
-    
-    
+
     @IBAction func actionback(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -77,7 +123,12 @@ extension TransctionOrderDetailsVC  {
     }
     
     @IBAction func actionTrackOrder(_ sender: Any) {
-        self.goToTrackOrderClass()
+
+
+        AppSnackBar.make(in: self.view, message: "The Internet connection appears to be offline.", duration: .lengthShort).setAction(with: "Done", action: {
+
+        }).show()
+       // self.goToTrackOrderClass()
     }
     
     
@@ -114,7 +165,7 @@ extension TransctionOrderDetailsVC {
         
         if strOrderStatus == "pending"{
             print("Pending")
-            lblOrderStatus.text = strOrderStatus
+            lblOrderStatus.text = strOrderStatus.capitalized
             lblOrderStatus.textColor = UIColor.systemYellow
             btnCancelOrder.isHidden = false
             btnTrackOrder.isHidden = false
@@ -122,24 +173,56 @@ extension TransctionOrderDetailsVC {
         
         else if strOrderStatus == "cancelled"{
             print("cancelled")
-            lblOrderStatus.text = strOrderStatus
+            lblOrderStatus.text = strOrderStatus.capitalized
             lblOrderStatus.textColor = UIColor.systemRed
         }
         else {
             print("Delivered")
-            lblOrderStatus.text = strOrderStatus
+            lblOrderStatus.text = strOrderStatus.capitalized
             lblOrderStatus.textColor = UIColor.systemGreen
             
             btnUnboxingVideo.isHidden = false
             btnAddRating.isHidden = false
             btnTrackOrder.isHidden = false
+            btnAddAuthentication.isHidden = false
         }
         }
         
         
         
     }
-    
+
+
+
+//MARK:- add Authentication API
+extension TransctionOrderDetailsVC {
+    func addAuthenticationAPI(){
+
+        let addAuthenticationParam = addAuthenticationRequest(userRef:UserDefaults.standard.value(forKey: "DefaultsbuyerRef") as! String, productRef: strProductRef, orderNumber: strOrderNumber, status: strAuthenticationProductStatus)
+        BuyerAPIManager.shareInstance.callingAddAuthentication_API(addAuthenticationParam: addAuthenticationParam) { (result) in
+
+            switch result {
+            case.success(let json):
+                print(json!)
+                ProgressHUD.dismiss()
+                if let msg = (json as! addAuthenticationResponse).msg{
+                    self.showAlert(alertMessage:msg)
+                print(msg)
+                }
+
+            case.failure(let err):
+                ProgressHUD.dismiss()
+                print(err.localizedDescription)
+            }
+
+        }
+
+
+    }
+}
+
+
+
     
 //MARK:- Cancel API
 extension TransctionOrderDetailsVC {

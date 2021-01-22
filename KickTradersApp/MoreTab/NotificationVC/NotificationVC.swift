@@ -70,7 +70,13 @@ extension NotificationVC : UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as!NotificationCell
-        
+
+
+
+
+
+
+
         let getNotificationData = arrGetNotification[indexPath.row]
         let imgURL = URL(string:"\(PRODUCT_COVER_IMAGE)\(getNotificationData.productCoverImage!)")
         cell.imgShoes.kf.setImage(with: imgURL)

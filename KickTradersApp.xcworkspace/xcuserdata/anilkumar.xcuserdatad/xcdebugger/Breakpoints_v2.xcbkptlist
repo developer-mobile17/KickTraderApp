@@ -7,64 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "912E1731-7EAC-4110-9129-53A2D32E45B9"
+            uuid = "2E2208F4-3652-45A5-9774-6A35733B2B03"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KickTradersApp/MoreTab/TransactionVC/DisputeView/DisputeViewVC.swift"
+            filePath = "KickTradersApp/MoreTab/TransactionVC/TransctionListVC/TransctionOrderDetailsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "callingDisputeAPI()"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "912E1731-7EAC-4110-9129-53A2D32E45B9 - 87e167e6948a2e43"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "KickTradersApp.DisputeViewVC.callingDisputeAPI() -&gt; ()"
-                  moduleName = "KickTradersApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTradersApp/MoreTab/TransactionVC/DisputeView/DisputeViewVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "2486">
-               </Location>
-               <Location
-                  uuid = "912E1731-7EAC-4110-9129-53A2D32E45B9 - a9b0316b95768544"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Optional&lt;Any&gt;, KickTradersApp.APIError&gt;) -&gt; () in KickTradersApp.DisputeViewVC.callingDisputeAPI() -&gt; ()"
-                  moduleName = "KickTradersApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTradersApp/MoreTab/TransactionVC/DisputeView/DisputeViewVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "119">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD049B99-C440-4E99-8420-144EC8B87DD3"
+            uuid = "BC0EE056-7A11-48B0-9A0D-5DC0295B8C17"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "KickTradersApp/MoreTab/TransactionVC/DisputeView/DisputeViewVC.swift"
+            filePath = "KickTradersApp/MoreTab/SettingVC/ChangePassword.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "callingDisputeAPI()"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "changePassword_API()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB7102B9-51C1-40F3-BD1C-57B0E463FBAD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KickTradersApp/MoreTab/SettingVC/SettingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CE4E757-5E5E-4B3A-91DE-56250D2BC5B4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KickTradersApp/MoreTab/SettingVC/SettingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

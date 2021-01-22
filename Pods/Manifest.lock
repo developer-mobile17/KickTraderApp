@@ -17,6 +17,9 @@ PODS:
   - PayPal-iOS-SDK/CardIO (2.18.1):
     - CardIO (~> 5.4.1)
   - PayPal-iOS-SDK/Core (2.18.1)
+  - SnackBar.swift (0.1.0):
+    - SnapKit
+  - SnapKit (5.0.1)
   - WMSegmentControl (2.1)
 
 DEPENDENCIES:
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - IntroScreen
   - Kingfisher (~> 5.0)
   - PayPal-iOS-SDK
+  - SnackBar.swift
   - WMSegmentControl
 
 SPEC REPOS:
@@ -38,6 +42,8 @@ SPEC REPOS:
     - IntroScreen
     - Kingfisher
     - PayPal-iOS-SDK
+    - SnackBar.swift
+    - SnapKit
     - WMSegmentControl
 
 SPEC CHECKSUMS:
@@ -49,8 +55,10 @@ SPEC CHECKSUMS:
   IntroScreen: ee7acc92081942c5c3fcf541e52676553a72e653
   Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
   PayPal-iOS-SDK: 70d56697aef502c130b9840e31dea5c6b8a350e1
+  SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   WMSegmentControl: 0490fe4636173212ef69d89922ce2f95d366631a
 
-PODFILE CHECKSUM: 5479fa5cfd74a19635efb74c25bb93a067ace027
+PODFILE CHECKSUM: e27d79fa6dfe4008fbe390c6b97f75324f70a18d
 
 COCOAPODS: 1.10.0

@@ -174,13 +174,11 @@ extension TransactionVC{
         let selectedSellerFull_Name = self.arrTransctionData[sender.tag].sellerInfo?.full_Name
         let selectedSellerProfile_Image = self.arrTransctionData[sender.tag].sellerInfo?.profile_Image
         let selectedSellershop_description = self.arrTransctionData[sender.tag].sellerInfo?.shop_description
-        
-        
+
         defaultTrans.setValue(selectedSellerRef, forKey:"DefaultsSellerRef")
         defaultTrans.setValue(selectedSellerFull_Name, forKey:"DefaultsSellerFull_Name")
         defaultTrans.setValue(selectedSellerProfile_Image, forKey:"DefaultsSellerProfile_Image")
         defaultTrans.setValue(selectedSellershop_description, forKey:"DefaultsSellershop_description")
-        
 
         self.navigationController?.pushViewController(vcOrderDetails, animated: true)
         

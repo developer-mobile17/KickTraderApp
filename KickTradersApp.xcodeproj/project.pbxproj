@@ -60,6 +60,9 @@
 		9E4D46C2254C040A0062306C /* PhotoSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4D46C0254C040A0062306C /* PhotoSliderView.swift */; };
 		9E52572525B1C29D004BA333 /* chatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E52572425B1C29D004BA333 /* chatBubble.swift */; };
 		9E5293E02591D8DB009ADA25 /* VerifyEnterOtpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5293DF2591D8DB009ADA25 /* VerifyEnterOtpModel.swift */; };
+		9E5719E925BAA2BD00CB73B4 /* addAuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5719E825BAA2BD00CB73B4 /* addAuthenticationModel.swift */; };
+		9E5719F925BAB6E800CB73B4 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5719F825BAB6E800CB73B4 /* ChangePassword.swift */; };
+		9E5719FC25BAB9A500CB73B4 /* changePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5719FB25BAB9A500CB73B4 /* changePasswordModel.swift */; };
 		9E5CA97E25ADA6EF00B5FCFB /* ProductCheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CA97D25ADA6EF00B5FCFB /* ProductCheckoutVC.swift */; };
 		9E610B46255BA6380020DEAA /* SellerAddProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E610B45255BA6380020DEAA /* SellerAddProductVC.swift */; };
 		9E65CC7E25A44E50008EBBA9 /* getNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */; };
@@ -222,6 +225,9 @@
 		9E4D46C0254C040A0062306C /* PhotoSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSliderView.swift; sourceTree = "<group>"; };
 		9E52572425B1C29D004BA333 /* chatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatBubble.swift; sourceTree = "<group>"; };
 		9E5293DF2591D8DB009ADA25 /* VerifyEnterOtpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEnterOtpModel.swift; sourceTree = "<group>"; };
+		9E5719E825BAA2BD00CB73B4 /* addAuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addAuthenticationModel.swift; sourceTree = "<group>"; };
+		9E5719F825BAB6E800CB73B4 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		9E5719FB25BAB9A500CB73B4 /* changePasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changePasswordModel.swift; sourceTree = "<group>"; };
 		9E5CA97D25ADA6EF00B5FCFB /* ProductCheckoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCheckoutVC.swift; sourceTree = "<group>"; };
 		9E610B45255BA6380020DEAA /* SellerAddProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerAddProductVC.swift; sourceTree = "<group>"; };
 		9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getNotificationModel.swift; sourceTree = "<group>"; };
@@ -458,6 +464,8 @@
 				9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */,
 				9E3AED6425B6F6250015F7D0 /* getShippingStatusModel.swift */,
 				9EF513FF25B98E1700BEF943 /* addDisputeModel.swift */,
+				9E5719E825BAA2BD00CB73B4 /* addAuthenticationModel.swift */,
+				9E5719FB25BAB9A500CB73B4 /* changePasswordModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -726,6 +734,7 @@
 			children = (
 				9E105CD6254FF2F700522887 /* SettingVC.swift */,
 				9E105CD8254FF31100522887 /* SettingCell.swift */,
+				9E5719F825BAB6E800CB73B4 /* ChangePassword.swift */,
 			);
 			path = SettingVC;
 			sourceTree = "<group>";
@@ -1093,6 +1102,7 @@
 				9EF30ED42553C11F006537FD /* SellerMoreTabVC.swift in Sources */,
 				9E9BE6272574B2EC00651DC9 /* AddShippingAddressVC.swift in Sources */,
 				9EB3B04C2581DF5E0097A0C8 /* SellerAddColorTableCell.swift in Sources */,
+				9E5719E925BAA2BD00CB73B4 /* addAuthenticationModel.swift in Sources */,
 				9E1EE2D5255D057F00F15389 /* APIManger.swift in Sources */,
 				9E6A65402541967A005A9B25 /* UnBoxingVideoVC.swift in Sources */,
 				9E0968C125401EAA00C0C959 /* colorTableCell.swift in Sources */,
@@ -1140,6 +1150,7 @@
 				9E9BE62C2574B6B400651DC9 /* AddressListVC.swift in Sources */,
 				9E0083642599F3B600B35C5C /* ProductVideoVC.swift in Sources */,
 				9E9BD28325678B7B0097C66C /* BuyerAPIManger.swift in Sources */,
+				9E5719FC25BAB9A500CB73B4 /* changePasswordModel.swift in Sources */,
 				9EA82222253B15D80075564F /* ChatVC.swift in Sources */,
 				9E1EE2CD255D03BA00F15389 /* loginModel.swift in Sources */,
 				9ED280E5253D5A2400B9CFEF /* TypeOfAccountVC.swift in Sources */,
@@ -1160,6 +1171,7 @@
 				9EA82224253B17AD0075564F /* ChatVCCell.swift in Sources */,
 				9E105CD9254FF31100522887 /* SettingCell.swift in Sources */,
 				9E6A653A254191BF005A9B25 /* NotificationVC.swift in Sources */,
+				9E5719F925BAB6E800CB73B4 /* ChangePassword.swift in Sources */,
 				9ED28117253DB63D00B9CFEF /* HomeVC.swift in Sources */,
 				9E0A56B5254D6B6E00BFF96B /* OrderVC.swift in Sources */,
 				9E8DC8F92551667600375A63 /* SellerHomeCell.swift in Sources */,
@@ -1374,7 +1386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H79WZ4VR49;
+				DEVELOPMENT_TEAM = 29C5FGJZU4;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1395,7 +1407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H79WZ4VR49;
+				DEVELOPMENT_TEAM = 29C5FGJZU4;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (

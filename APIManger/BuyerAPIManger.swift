@@ -1218,6 +1218,55 @@ class BuyerAPIManager {
     }
 
 
-    
+
+
+
+
+    //MARK:- Add Authentication  API Implementatin
+
+
+
+    func callingAddAuthentication_API(addAuthenticationParam:addAuthenticationRequest ,completionHandler : @escaping Handler) {
+
+    AF.request(addAuthentication_Url,
+               method: .post,
+               parameters: addAuthenticationParam,
+               encoder: URLEncodedFormParameterEncoder.default,
+               headers: nil).response {
+               response in
+
+                switch response.result{
+                case .success(let data):
+                    do {
+
+
+                        let jsonDecoder = JSONDecoder()
+                        let responseModel = try jsonDecoder.decode(addAuthenticationResponse.self, from: data!)
+                        print(responseModel)
+
+                        if response.response?.statusCode == 200{
+                            completionHandler(.success(responseModel))
+                            print("Successfully Hit Add Authentication API")
+                        }
+                        else{
+                            print("There is an issue with addAuthentication_Url API, Please check!")
+                        }
+
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+
+        }
+    }
+
+
+
+
+
+
     
 }
