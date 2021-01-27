@@ -20,6 +20,9 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet var objScroll: UIScrollView!
     @IBOutlet var objTable: UITableView!
     @IBOutlet var tblUserReview: UITableView!
+    @IBOutlet var btnAddToCart: UIButton!
+    @IBOutlet var btnPlaceBid: UIButton!
+    @IBOutlet var objFooterView: UIView!
     
     
     
@@ -29,6 +32,8 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet var productPrice: UILabel!
     @IBOutlet var btnPlayVideo: UIButton!
     
+    @IBOutlet var productVerifiedCheck: UILabel!
+    @IBOutlet var imgProductVerfied: UIImageView!
     
     @IBOutlet var sellerName: UILabel!
     @IBOutlet var sellerPostingDate: UILabel!
@@ -43,6 +48,12 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
 
 
     //TODO:- Seller Total Rating & Review Count
+
+    @IBOutlet var imgWarning1: UIImageView!
+    @IBOutlet var imgWarning2: UIImageView!
+    @IBOutlet var imgWarning3: UIImageView!
+    
+    
     @IBOutlet var sellerTotalAvgRating: UILabel!
     @IBOutlet var sellerTotalReviewCount: UILabel!
     @IBOutlet var objSellerRating: FloatRatingView!
@@ -70,10 +81,20 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imgWarning1.isHidden = true
+        imgWarning2.isHidden = true
+        imgWarning3.isHidden = true
 
-        lblNoReviewsYet.text = "There are no reviews yet.\n Only logged in customers who have purchased this product may leave a review."
+
+       // lblNoReviewsYet.text = "There are no reviews yet.\n Only logged in customers who have purchased this product may leave a review."
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishDownloading), name: Notification.Name(rawValue: "check"), object: nil)
-        objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 1700))
+
+
+
+        tblUserReview.tableFooterView? = objFooterView
+
+       // if modelName == ""
+        objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 2600))
         self.productDetailAPI()
         
         
@@ -190,6 +211,22 @@ extension ProductDetailVC{
                 self.productPrice.text! =   "\("$")\(resPonseProduct.productPrice!)"
                 self.defaultss.setValue(resPonseProduct.productRef, forKey:"DefaultsproductRef")
 
+
+                //TODO:- Product Authentication check here and do App logic accordingly
+                let productIsVerified = Int((resPonseProduct.authCount)!)
+                if productIsVerified! >= 7 {
+                    imgProductVerfied.image = UIImage(systemName: "checkmark.circle.fill")
+                    productVerifiedCheck.text = "Verified"
+
+                }
+                else {
+                    
+                    productVerifiedCheck.text = "Not Verified"
+                    productVerifiedCheck.textColor = UIColor.red
+                }
+
+
+
                 //TODO:- Update the Seller Description Info
 
                 let img = (json as! BuyerGetProductDetailsModelResponse).productInfo?.sellerDetail?.profile_Image!
@@ -208,6 +245,23 @@ extension ProductDetailVC{
                     "( \(String(arrComment.count)) \( "Review") )"
 
 
+
+
+                //TODO:- Seller Dispute Count here and do App logic accordingly
+                let disputeCount = Int((resPonseProduct.sellerDetail?.disputeCount)!)
+                if disputeCount == 3 {
+                    imgWarning1.isHidden = false
+
+                }
+                if disputeCount! >= 6 || disputeCount! <= 9 {
+                    imgWarning1.isHidden = false
+                    imgWarning2.isHidden = false
+
+                }
+
+                else {
+
+                }
 
                 if arrComment.count == 0 {
                     self.sellerTotalAvgRating.text = "0"

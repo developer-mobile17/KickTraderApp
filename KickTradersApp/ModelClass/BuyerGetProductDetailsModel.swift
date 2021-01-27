@@ -45,6 +45,7 @@ struct ProductInfo : Codable {
     let productStatus : String?
     let productCoverImage : String?
     let productVideo : String?
+    let authCount : String?
     let created_at : String?
     let favorite : Bool?
     let brandName : String?
@@ -67,6 +68,7 @@ struct ProductInfo : Codable {
         case productStatus = "productStatus"
         case productCoverImage = "productCoverImage"
         case productVideo = "productVideo"
+        case authCount = "authCount"
         case created_at = "created_at"
         case favorite = "favorite"
         case brandName = "brandName"
@@ -90,6 +92,7 @@ struct ProductInfo : Codable {
         productStatus = try values.decodeIfPresent(String.self, forKey: .productStatus)
         productCoverImage = try values.decodeIfPresent(String.self, forKey: .productCoverImage)
         productVideo = try values.decodeIfPresent(String.self, forKey: .productVideo)
+        authCount = try values.decodeIfPresent(String.self, forKey: .authCount)
         created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
         favorite = try values.decodeIfPresent(Bool.self, forKey: .favorite)
         brandName = try values.decodeIfPresent(String.self, forKey: .brandName)

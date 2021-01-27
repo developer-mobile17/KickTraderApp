@@ -89,8 +89,12 @@ extension LoginVC {
         
         guard let email = txfEmail.text else {return}
         guard let password =  txfPassword.text else {return showAlert(alertMessage: "Please Enter Password")}
+
+        if UserDefaults.standard.value(forKey: "AppDeviceToekn") != nil {
+            
+        }
         
-        let loginn = loginModel(Password: password, Role: "", FieldType: "Email", Email: email, deviceToken: "jfalsjdflksjd4124IOS", mobileType: "iOS")
+        let loginn = loginModel(Password: password, Role: "", FieldType: "Email", Email: email, deviceToken: UserDefaults.standard.value(forKey: "AppDeviceToekn") as! String, mobileType: "iOS")
         
         ProgressHUD.show("Loading...", interaction: false)
         

@@ -7,20 +7,36 @@
 //
 
 import UIKit
+import Lottie
 
 class OrderPlacedSuccessfullyVC: UIViewController {
 
+    @IBOutlet var animationView: AnimationView!
     @IBOutlet var imgOrderPlaced: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
+        self.createAnimation()
+
+    }
+
+
+    func createAnimation() {
+        // 1. Set animation content mode
+        animationView.contentMode = .scaleAspectFit
+        // 2. Set animation loop mode
+        animationView.loopMode = .playOnce
+        // 3. Adjust animation speed
+        animationView.animationSpeed = 0.7
+        // 4. Play animation
+        animationView.play()
     }
     
     @IBAction func actionViewOrder(_ sender: Any) {
 
         let vcTrans = storyboard?.instantiateViewController(identifier: "TransactionVC") as! TransactionVC
-       self.navigationController?.pushViewController(vcTrans, animated: true)
+        self.navigationController?.pushViewController(vcTrans, animated: true)
 
     }
     

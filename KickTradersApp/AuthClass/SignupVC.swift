@@ -88,7 +88,7 @@ extension SignupVC {
 extension SignupVC {
     func signUpAPICalling (){
         
-        deviceToken = ""
+        deviceToken = (UserDefaults.standard.value(forKey: "AppDeviceToekn") as! String)
         
         ProgressHUD.show("Please Wait.", interaction: false)
         //Set Your URL

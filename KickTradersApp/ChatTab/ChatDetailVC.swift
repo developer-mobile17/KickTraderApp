@@ -9,6 +9,13 @@
 import UIKit
 import Kingfisher
 
+class CellIds {
+
+    static let senderCellId = "SenderChatCell"
+
+    static let receiverCellId = "ReceiverChatCell"
+}
+
 
 class ChatDetailVC:UIViewController,UITextViewDelegate{
     @IBOutlet var lblHeaderTitle: UILabel!
@@ -25,7 +32,6 @@ class ChatDetailVC:UIViewController,UITextViewDelegate{
     var orderNoPass:String!
 
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,23 +48,24 @@ class ChatDetailVC:UIViewController,UITextViewDelegate{
 
 
 
-        //TODO:- Register Table Cell Here.
-        let senderXib = UINib(nibName: "SenderChatCell", bundle: nil)
-        self.objChatTable.register(senderXib, forCellReuseIdentifier: "SenderChatCell")
-        let receiverXib = UINib(nibName: "ReceiverChatCell", bundle: nil)
-        self.objChatTable.register(receiverXib, forCellReuseIdentifier: "ReceiverChatCell")
+//        //TODO:- Register Table Cell Here.
+//        let senderXib = UINib(nibName: "SenderChatCell", bundle: nil)
+//        self.objChatTable.register(senderXib, forCellReuseIdentifier: CellIds.senderCellId)
+//        let receiverXib = UINib(nibName: "ReceiverChatCell", bundle: nil)
+//        self.objChatTable.register(receiverXib, forCellReuseIdentifier:CellIds.receiverCellId)
+
+
+        self.objChatTable.edges([.left, .right], to: self.view, offset: .zero)
 
         self.objChatTable.dataSource = self
         self.objChatTable.delegate = self
+        self.objChatTable.register(CustomTableViewCell.self, forCellReuseIdentifier: CellIds.receiverCellId)
+        self.objChatTable.register(CustomTableViewCell.self, forCellReuseIdentifier: CellIds.senderCellId)
 
         objTxvSendMessage.delegate = self
         objTxvSendMessage.text = "Write your message here..."
 
-
-
     }
-
-
 
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,15 +105,10 @@ extension ChatDetailVC {
 
                 self.arrChatHistory = (json as! ChatHistoryModelResponse).chatHistory!
                // print(self.arrChatHistory)
-                self.objChatTable.reloadData()
 
                 DispatchQueue.main.async {
-                        let indexPath = IndexPath(row: self.arrChatHistory.count-1, section: 0)
-                        self.objChatTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                    }
-
-
-
+                    self.objChatTable.reloadData()
+                }
 
             case.failure(let err):
                 ProgressHUD.dismiss()
@@ -119,70 +121,143 @@ extension ChatDetailVC {
 
 }
 
-extension ChatDetailVC : UITableViewDataSource,UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrChatHistory.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell_Sender = tableView.dequeueReusableCell(withIdentifier: "SenderChatCell") as! SenderChatCell
-        let cell_Receiver = tableView.dequeueReusableCell(withIdentifier: "ReceiverChatCell") as! ReceiverChatCell
-        let ChatHistoryModel = arrChatHistory[indexPath.row]
-
-
-      //   cell_Sender.setData(arrChatHistory[indexPath.row])
-      //  SenderChatCell.setData(arrChatHistory[indexPath.row])
+extension ChatDetailVC : UITableViewDataSource{
 
 
 
-
-        //TODO:-String to Date Convert
-        let dateString =  ChatHistoryModel.created_at!
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let s = dateFormatter.date(from: dateString)
-
-
-        //TODO:- CONVERT FROM NSDate to String
-
-        let date2Formatter = DateFormatter()
-        date2Formatter.dateFormat = "MMM d, h:mm a"
-        let date2String = date2Formatter.string(from:s! as Date)
-        print(date2String)
-        //cell.lblDate.text = date2String
-
-
-
-
-
-        let userType = ChatHistoryModel.userType
-        if userType == "Buyer" {
-            cell_Sender.lblSenderTextMessage.text = ChatHistoryModel.message!
-            cell_Sender.lblSenderDate.text = date2String
-
-
-
-          return cell_Sender
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return arrChatHistory.count
         }
 
-        else {
-            print(ChatHistoryModel.message!)
-            cell_Receiver.lblReceiverTextMessage.text = ChatHistoryModel.message!
-            cell_Receiver.lblReceiverDate.text = date2String
-
-            let imgURL = URL(string:"\(chatImgBase_Url)\(ChatHistoryModel.chatImage!)")
-            cell_Receiver.imgReceiverChat.kf.setImage(with: imgURL)
-
-
-
-            return cell_Receiver
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return 1
         }
 
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+            let ChatHistoryModel = arrChatHistory[indexPath.section]
 
 
+                    //TODO:-String to Date Convert
+                    let dateString =  ChatHistoryModel.created_at!
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let s = dateFormatter.date(from: dateString)
+
+
+                    //TODO:- CONVERT FROM NSDate to String
+
+                    let date2Formatter = DateFormatter()
+                    date2Formatter.dateFormat = "MMM d, h:mm a"
+                    let date2String = date2Formatter.string(from:s! as Date)
+                    print(date2String)
+                    //cell.lblDate.text = date2String
+
+
+            let userType = ChatHistoryModel.userType
+
+            if userType == "Buyer" {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: CellIds.senderCellId, for: indexPath) as? CustomTableViewCell {
+                    cell.selectionStyle = .none
+                    cell.textView.text = ChatHistoryModel.message
+                    cell.bottomLabel.text = date2String
+                    //cell.showTopLabel = true
+                    return cell
+                }
+            }
+            else {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: CellIds.receiverCellId, for: indexPath) as? CustomTableViewCell {
+                    cell.selectionStyle = .none
+                    cell.textView.text = ChatHistoryModel.message
+                    cell.bottomLabel.text = date2String
+
+
+                    let imgURL = URL(string:"\(chatImgBase_Url)\(ChatHistoryModel.chatImage!)")!
+                    print(imgURL)
+                    cell.imgVW.kf.setImage(with: imgURL)
+                    return cell
+                }
+            }
+            return UITableViewCell()
+        }
+
+    
+
+
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//         return arrChatHistory.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//        let cell_Sender = tableView.dequeueReusableCell(withIdentifier:CellIds.senderCellId) as! SenderChatCell
+//        let cell_Receiver = tableView.dequeueReusableCell(withIdentifier:CellIds.receiverCellId) as! ReceiverChatCell
+//
+//        let ChatHistoryModel = arrChatHistory[indexPath.row]
+//
+//
+//
+//        //TODO:-String to Date Convert
+//        let dateString =  ChatHistoryModel.created_at!
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        let s = dateFormatter.date(from: dateString)
+//
+//
+//        //TODO:- CONVERT FROM NSDate to String
+//
+//        let date2Formatter = DateFormatter()
+//        date2Formatter.dateFormat = "MMM d, h:mm a"
+//        let date2String = date2Formatter.string(from:s! as Date)
+//        print(date2String)
+//        //cell.lblDate.text = date2String
+//
+//
+//
+//
+//        let userType = ChatHistoryModel.userType
+//        if userType == "Buyer" {
+//            cell_Sender.textView.text = ChatHistoryModel.message!
+//            cell_Sender.bottomLabel.text = date2String
+//            cell_Sender.setupSendersCell()
+//
+//
+//
+//          return cell_Sender
+//        }
+//
+//        else {
+//            print(ChatHistoryModel.message!)
+//            cell_Receiver.textViewR.text = ChatHistoryModel.message!
+//            cell_Receiver.bottomLabelR.text = date2String
+//            cell_Receiver.setupReceiverCell()
+//
+//            let imgURL = URL(string:"\(chatImgBase_Url)\(ChatHistoryModel.chatImage!)")
+//            cell_Receiver.imgReceiverChat.kf.setImage(with: imgURL)
+//
+//
+//
+//            return cell_Receiver
+//        }
+//
+//
+//
+//    }
+
+}
+
+
+
+extension ChatDetailVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
-
 }
 
 
@@ -221,7 +296,6 @@ extension ChatDetailVC {
     }
 
 }
-
 
 
 extension ChatDetailVC  {

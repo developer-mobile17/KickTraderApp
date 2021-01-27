@@ -40,6 +40,8 @@
 		9E1EE2D2255D048100F15389 /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1EE2D1255D048100F15389 /* constant.swift */; };
 		9E1EE2D5255D057F00F15389 /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1EE2D4255D057F00F15389 /* APIManger.swift */; };
 		9E1EE2D9255D05D800F15389 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9E1EE2D8255D05D800F15389 /* Alamofire */; };
+		9E24F73425BEA44A005E27A9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 9E24F73325BEA44A005E27A9 /* Lottie */; };
+		9E24F74525BEA6FC005E27A9 /* 10470-confirm.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E24F74425BEA6FC005E27A9 /* 10470-confirm.json */; };
 		9E37017E255AA0B200EEA40B /* SellerProductEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E37017D255AA0B200EEA40B /* SellerProductEditVC.swift */; };
 		9E3880FC25B15FBA00A527A0 /* SenderChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3880FA25B15FBA00A527A0 /* SenderChatCell.swift */; };
 		9E3880FD25B15FBA00A527A0 /* SenderChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3880FB25B15FBA00A527A0 /* SenderChatCell.xib */; };
@@ -66,6 +68,7 @@
 		9E5CA97E25ADA6EF00B5FCFB /* ProductCheckoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CA97D25ADA6EF00B5FCFB /* ProductCheckoutVC.swift */; };
 		9E610B46255BA6380020DEAA /* SellerAddProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E610B45255BA6380020DEAA /* SellerAddProductVC.swift */; };
 		9E65CC7E25A44E50008EBBA9 /* getNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */; };
+		9E69824B25C153B80017A076 /* UIDeviceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69824A25C153B80017A076 /* UIDeviceCheck.swift */; };
 		9E69C4CF2566967900ECC1F9 /* sellerGetOtpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E69C4CE2566967900ECC1F9 /* sellerGetOtpModel.swift */; };
 		9E6A65362541550C005A9B25 /* GendertableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6A65352541550C005A9B25 /* GendertableCell.swift */; };
 		9E6A65382541551E005A9B25 /* GenderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6A65372541551E005A9B25 /* GenderCollectionCell.swift */; };
@@ -81,6 +84,8 @@
 		9E70D2A02580EBEB00FFCE9A /* sellerAddColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E70D29F2580EBEB00FFCE9A /* sellerAddColorVC.swift */; };
 		9E71C5EF25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */; };
 		9E7219F8257F3DEB002145DD /* TransctionOrderDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */; };
+		9E72FB6325BBE0FD002E79FF /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72FB6225BBE0FC002E79FF /* Utilities.swift */; };
+		9E72FB6625BC04A0002E79FF /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E72FB6525BC049F002E79FF /* CustomTableViewCell.swift */; };
 		9E81725A25526FF6006E8027 /* SellerOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725925526FF6006E8027 /* SellerOrderCell.swift */; };
 		9E81725D25527D2E006E8027 /* BindingRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725C25527D2E006E8027 /* BindingRequestVC.swift */; };
 		9E81725F25527D47006E8027 /* BindingRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81725E25527D47006E8027 /* BindingRequestCell.swift */; };
@@ -205,6 +210,7 @@
 		9E1EE2CC255D03BA00F15389 /* loginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginModel.swift; sourceTree = "<group>"; };
 		9E1EE2D1255D048100F15389 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
 		9E1EE2D4255D057F00F15389 /* APIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
+		9E24F74425BEA6FC005E27A9 /* 10470-confirm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "10470-confirm.json"; path = "../../../Downloads/ChromeDownload/10470-confirm.json"; sourceTree = "<group>"; };
 		9E37017D255AA0B200EEA40B /* SellerProductEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerProductEditVC.swift; sourceTree = "<group>"; };
 		9E3880FA25B15FBA00A527A0 /* SenderChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderChatCell.swift; sourceTree = "<group>"; };
 		9E3880FB25B15FBA00A527A0 /* SenderChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SenderChatCell.xib; sourceTree = "<group>"; };
@@ -231,6 +237,9 @@
 		9E5CA97D25ADA6EF00B5FCFB /* ProductCheckoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCheckoutVC.swift; sourceTree = "<group>"; };
 		9E610B45255BA6380020DEAA /* SellerAddProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerAddProductVC.swift; sourceTree = "<group>"; };
 		9E65CC7D25A44E50008EBBA9 /* getNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getNotificationModel.swift; sourceTree = "<group>"; };
+		9E69824A25C153B80017A076 /* UIDeviceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceCheck.swift; sourceTree = "<group>"; };
+		9E69825A25C184B10017A076 /* KickTradersAppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KickTradersAppRelease.entitlements; sourceTree = "<group>"; };
+		9E69825C25C1850E0017A076 /* KickTradersApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KickTradersApp.entitlements; sourceTree = "<group>"; };
 		9E69C4CE2566967900ECC1F9 /* sellerGetOtpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sellerGetOtpModel.swift; sourceTree = "<group>"; };
 		9E6A65352541550C005A9B25 /* GendertableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GendertableCell.swift; sourceTree = "<group>"; };
 		9E6A65372541551E005A9B25 /* GenderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCollectionCell.swift; sourceTree = "<group>"; };
@@ -246,6 +255,8 @@
 		9E70D29F2580EBEB00FFCE9A /* sellerAddColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sellerAddColorVC.swift; sourceTree = "<group>"; };
 		9E71C5EE25AEC03300FFD88F /* OrderPlacedSuccessfullyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacedSuccessfullyVC.swift; sourceTree = "<group>"; };
 		9E7219F7257F3DEB002145DD /* TransctionOrderDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransctionOrderDetailsVC.swift; sourceTree = "<group>"; };
+		9E72FB6225BBE0FC002E79FF /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		9E72FB6525BC049F002E79FF /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		9E81725925526FF6006E8027 /* SellerOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerOrderCell.swift; sourceTree = "<group>"; };
 		9E81725C25527D2E006E8027 /* BindingRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequestVC.swift; sourceTree = "<group>"; };
 		9E81725E25527D47006E8027 /* BindingRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingRequestCell.swift; sourceTree = "<group>"; };
@@ -343,6 +354,7 @@
 			files = (
 				8952FFDEDCFC762F97ECD4B8 /* Pods_KickTradersApp.framework in Frameworks */,
 				9E1EE2D9255D05D800F15389 /* Alamofire in Frameworks */,
+				9E24F73425BEA44A005E27A9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +389,9 @@
 		9E04DE2B25380B9600A988EB = {
 			isa = PBXGroup;
 			children = (
+				9E24F74425BEA6FC005E27A9 /* 10470-confirm.json */,
 				9E1CB16C25B8358C00988BFB /* KickTraderApp-Bridging-Header.h */,
+				9E72FB6225BBE0FC002E79FF /* Utilities.swift */,
 				9E52572425B1C29D004BA333 /* chatBubble.swift */,
 				9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */,
 				9E6BF45225B0500F00AB4769 /* ChatHistoryModel.swift */,
@@ -405,6 +419,8 @@
 		9E04DE3625380B9600A988EB /* KickTradersApp */ = {
 			isa = PBXGroup;
 			children = (
+				9E69825C25C1850E0017A076 /* KickTradersApp.entitlements */,
+				9E69825A25C184B10017A076 /* KickTradersAppRelease.entitlements */,
 				9E1EE2C8255D034600F15389 /* ModelClass */,
 				9ED40C2A2546A5E400C95770 /* AuthClass */,
 				9ED40C2B2546A63000C95770 /* MainTab */,
@@ -439,6 +455,7 @@
 				9E1EE2C5255CF6F500F15389 /* ProgressHUD.swift */,
 				9EE42A8D257910B700D53E02 /* FloatRatingView.swift */,
 				9EF4B9BB259AEF850009E780 /* ThumbnailGenrator.swift */,
+				9E69824A25C153B80017A076 /* UIDeviceCheck.swift */,
 			);
 			path = HelperClass;
 			sourceTree = "<group>";
@@ -652,6 +669,7 @@
 			children = (
 				9E6BF44E25B044F300AB4769 /* ChatListOfUser */,
 				9E6BF44F25B0452200AB4769 /* ChatDetailVC.swift */,
+				9E72FB6525BC049F002E79FF /* CustomTableViewCell.swift */,
 				9E3880FA25B15FBA00A527A0 /* SenderChatCell.swift */,
 				9E3880FB25B15FBA00A527A0 /* SenderChatCell.xib */,
 				9E3880FF25B15FDB00A527A0 /* ReceiverChatCell.swift */,
@@ -965,6 +983,7 @@
 			name = KickTradersApp;
 			packageProductDependencies = (
 				9E1EE2D8255D05D800F15389 /* Alamofire */,
+				9E24F73325BEA44A005E27A9 /* Lottie */,
 			);
 			productName = KickTradersApp;
 			productReference = 9E04DE3425380B9600A988EB /* KickTradersApp.app */;
@@ -997,6 +1016,7 @@
 			packageReferences = (
 				9E1EE2D7255D05D800F15389 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				9E411199256E5EE300F47329 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9E24F73225BEA44A005E27A9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 9E04DE3525380B9600A988EB /* Products */;
 			projectDirPath = "";
@@ -1013,6 +1033,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4D46C1254C040A0062306C /* PhotoSliderView.xib in Resources */,
+				9E24F74525BEA6FC005E27A9 /* 10470-confirm.json in Resources */,
 				9E04DE4425380B9D00A988EB /* LaunchScreen.storyboard in Resources */,
 				9E3880FD25B15FBA00A527A0 /* SenderChatCell.xib in Resources */,
 				9E04DE4125380B9D00A988EB /* Assets.xcassets in Resources */,
@@ -1097,6 +1118,7 @@
 				9E9BE65925751A6400651DC9 /* sellerGetBidsModel.swift in Sources */,
 				9E8254BA2578AAF500124E64 /* getFavoriteByBuyerModel.swift in Sources */,
 				9E6A653C254191E4005A9B25 /* NotificationCell.swift in Sources */,
+				9E72FB6625BC04A0002E79FF /* CustomTableViewCell.swift in Sources */,
 				9E8DC261257109F700D0872D /* buyProductModel.swift in Sources */,
 				9E1EE2C6255CF6F500F15389 /* ProgressHUD.swift in Sources */,
 				9EF30ED42553C11F006537FD /* SellerMoreTabVC.swift in Sources */,
@@ -1158,6 +1180,7 @@
 				9E38810525B19C4B00A527A0 /* ChatSendMessageModel.swift in Sources */,
 				9E6BF45325B0500F00AB4769 /* ChatHistoryModel.swift in Sources */,
 				9EB4BD8325396433000AB2D8 /* LoginVC.swift in Sources */,
+				9E72FB6325BBE0FD002E79FF /* Utilities.swift in Sources */,
 				9E8254C22578ACFC00124E64 /* FavouriteProductVc.swift in Sources */,
 				9E5CA97E25ADA6EF00B5FCFB /* ProductCheckoutVC.swift in Sources */,
 				9EFD36D3253EF03800A50EE3 /* MoreVC.swift in Sources */,
@@ -1182,6 +1205,7 @@
 				9EB4BD812539640E000AB2D8 /* EnterOTPVC.swift in Sources */,
 				9E0968BB2540110F00C0C959 /* SearchTopBrandCell.swift in Sources */,
 				9EEF37CC25A83A9D0090930A /* SellerGetEarningModel.swift in Sources */,
+				9E69824B25C153B80017A076 /* UIDeviceCheck.swift in Sources */,
 				9E70D2972580AFBA00FFCE9A /* SearchEditVC.swift in Sources */,
 				9EE42A8E257910B700D53E02 /* FloatRatingView.swift in Sources */,
 				9E65CC7E25A44E50008EBBA9 /* getNotificationModel.swift in Sources */,
@@ -1297,6 +1321,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1358,6 +1383,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1385,10 +1411,11 @@
 			baseConfigurationReference = C961381FBBE65266C6B40ABF /* Pods-KickTradersApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KickTradersApp/KickTradersApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29C5FGJZU4;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1406,10 +1433,11 @@
 			baseConfigurationReference = E8CFFE3578892E87F1348DBC /* Pods-KickTradersApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KickTradersApp/KickTradersAppRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29C5FGJZU4;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1454,6 +1482,14 @@
 				minimumVersion = 5.4.0;
 			};
 		};
+		9E24F73225BEA44A005E27A9 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.9;
+			};
+		};
 		9E411199256E5EE300F47329 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1469,6 +1505,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9E1EE2D7255D05D800F15389 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		9E24F73325BEA44A005E27A9 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E24F73225BEA44A005E27A9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
