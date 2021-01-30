@@ -98,7 +98,7 @@ extension SearchEditVC{
         
         
        
-        let productDetailParam = BuyerGetProductDetailsModel(productRef:strProductRef)
+        let productDetailParam = BuyerGetProductDetailsModel(productRef:strProductRef, buyerRef: "")
         BuyerAPIManager.shareInstance.callingBuyergetProductDetailAPI(buyerProductDetails: productDetailParam) { [self] (result) in
             
             

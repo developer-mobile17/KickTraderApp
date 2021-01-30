@@ -41,21 +41,21 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
     
     
 
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 2
         return arrMenus.count
     }
 
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoreVCCell", for: indexPath) as! MoreVCCell
-    
-       
+
+
         let MenusModel = arrMenus[indexPath.row]
         cell.lblMenuTitle.text = MenusModel.moreMenu
         cell.imgMenuTitle.image = UIImage(imageLiteralResourceName: MenusModel.moremenuImg)
-      
+
         
-    
+
         return cell
     }
     
@@ -74,8 +74,46 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
             
             present(vc, animated: true)
         }
-            
-            
+        
+
+
+        else if (strData ==  "Favourites"){
+            guard let vc = storyboard?.instantiateViewController(identifier: "FavouriteProductVc") as? FavouriteProductVc else{
+
+                return
+            }
+            present(vc, animated: true)
+        }
+
+
+
+        else if(strData == "Transactions"){
+            let vcSetting = storyboard?.instantiateViewController(identifier: "TransactionVC") as! TransactionVC
+            self.navigationController?.pushViewController(vcSetting, animated: true)
+
+
+        }
+
+
+
+        else if (strData ==  "Unboxing Videos"){
+            guard let vc = storyboard?.instantiateViewController(identifier: "UnBoxingVideoVC") as? UnBoxingVideoVC else{
+
+                return
+            }
+            present(vc, animated: true)
+        }
+
+
+
+        else if(strData == "Setting"){
+            let vcSetting = storyboard?.instantiateViewController(identifier: "SettingVC") as! SettingVC
+            self.navigationController?.pushViewController(vcSetting, animated: true)
+
+
+        }
+
+
         else if (strData ==  "Notifications"){
             guard let vc = storyboard?.instantiateViewController(identifier: "NotificationVC") as? NotificationVC else{
                 
@@ -83,28 +121,10 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
             }
             present(vc, animated: true)
         }
-            
-            
-        else if (strData ==  "Unboxing Videos"){
-            guard let vc = storyboard?.instantiateViewController(identifier: "UnBoxingVideoVC") as? UnBoxingVideoVC else{
-                
-                return
-            }
-            present(vc, animated: true)
-        }
-            
-            
-        else if (strData ==  "Favourites"){
-            guard let vc = storyboard?.instantiateViewController(identifier: "FavouriteProductVc") as? FavouriteProductVc else{
-                
-                return
-            }
-            present(vc, animated: true)
-        }
-        
-        
-        
-        
+
+
+
+
         else if (strData ==  "About"){
             guard let vc = storyboard?.instantiateViewController(identifier: "AboutUsVC") as? AboutUsVC else{
                 
@@ -114,24 +134,17 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
         }
 
 
-        else if(strData == "Transactions"){
-             let vcSetting = storyboard?.instantiateViewController(identifier: "TransactionVC") as! TransactionVC
-            self.navigationController?.pushViewController(vcSetting, animated: true)
-
-
-        }
-
-
-        //Transactions
-            
         else {
-             let vcSetting = storyboard?.instantiateViewController(identifier: "SettingVC") as! SettingVC
-            self.navigationController?.pushViewController(vcSetting, animated: true)
-            
+
+
+            guard let vc = storyboard?.instantiateViewController(identifier: "ContactUsVC") as? ContactUsVC else{
+
+                return
+            }
+            present(vc, animated: true)
+
             
         }
-        
-        
     }
 
     

@@ -99,12 +99,15 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
 
         cell.lblBrandName.text = unboxingVideoData.brandName
         cell.lblShoeName.text = unboxingVideoData.productName
-        cell.lblPrice.text = unboxingVideoData.productPrice
+        cell.lblPrice.text = "\("$")\(unboxingVideoData.productPrice ?? "00")"
 
-//        if let avgRating = Double(Float(unboxingVideoData.averageRating)) {
-//
-//        }
-       // cell.vwStarRating.rating = Double(Float(unboxingVideoData.averageRating!)!)
+        if let avgRating = unboxingVideoData.averageRating {
+        cell.vwStarRating.rating = Double(Float(avgRating)!)
+        }
+        else {
+
+        }
+
         
         
         

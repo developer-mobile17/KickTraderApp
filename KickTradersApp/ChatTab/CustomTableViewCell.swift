@@ -149,13 +149,15 @@ class CustomTableViewCell: UITableViewCell {
 
         self.bgView.addSubview(imgVW)
 
-      //  imgVW = UIImageView(frame: CGRect.init(x: 10, y: 10, width: 50, height: 50))
+      //  imgVW = UIImageView(frame: CGRect.init(x: 10, y: 10, width: 100, height: 100))
 
-        imgVW.edges([.left, .top, .bottom, .right], to: self.bgView, offset: .init(top: innerSpacing, left: innerSpacing, bottom: 0, right: 0))
-//        bgView.leadingAnchor.constraint(greaterThanOrEqualTo: self.contentView.leadingAnchor, constant: extraSpacing).isActive = true
+       imgVW.edges([.left, .top, .bottom, .right], to: self.bgView, offset: .init(top: innerSpacing, left: innerSpacing, bottom: innerSpacing, right: innerSpacing))
+
+        bgView.leadingAnchor.constraint(greaterThanOrEqualTo: self.contentView.leadingAnchor, constant: extraSpacing).isActive = true
+      //  imgVW.contentMode = .scaleAspectFit
         imgVW.layer.cornerRadius = 8
         imgVW.backgroundColor = UIColor.green
-
+       // self.bgView.addSubview(imgVW)
 
 
 

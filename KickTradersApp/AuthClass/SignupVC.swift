@@ -19,8 +19,7 @@ class SignupVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCon
     @IBOutlet var txfConfirmPass: UITextField!
     @IBOutlet var btnGender: UIButton!
     
-    
-    var deviceToken: String?
+
     var imagePicker = UIImagePickerController()
     var alert = UIAlertController()
     
@@ -88,7 +87,7 @@ extension SignupVC {
 extension SignupVC {
     func signUpAPICalling (){
         
-        deviceToken = (UserDefaults.standard.value(forKey: "AppDeviceToekn") as! String)
+       let deviceToken =  UserDefaults.standard.value(forKey: "AppDeviceToken") ?? "askldfjksdjfjkfj"
         
         ProgressHUD.show("Please Wait.", interaction: false)
         //Set Your URL

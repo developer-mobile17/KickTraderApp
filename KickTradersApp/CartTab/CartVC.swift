@@ -16,12 +16,14 @@ class CartVC:UIViewController{
     @IBOutlet var imgEmptyCart: UIImageView!
     var arrCartData = [CartItem]()
      var selecteCartRef : String = ""
+     var selectedProductRef : String = ""
      var strBidPrice: String = " "
      var strstatus: String = " "
      var strBtnTitleChecked: String = ""
      var strPlaceABidPrice: String = ""
      var strcartRef: String = ""
      var defaults = UserDefaults.standard
+    var strActionFav: String?
 
 
 
@@ -92,8 +94,20 @@ extension CartVC : UITableViewDataSource,UITableViewDelegate {
         cell.lblColor.backgroundColor = UIColor(hexFromString:MyCartData.colorCode!)
         cell.lblProductPrice.text = "\("Product Price:$")\(MyCartData.productPrice!)"
         strBidPrice = MyCartData.bidPrice!
-        
-        
+
+
+        //TODO:- check favourite ID and show the icon accordingly
+
+        if let getFavID =  MyCartData.favoriteId {
+           print(getFavID)
+            cell.btnAddToFavourite.isSelected = true
+
+        }
+         else
+        {
+            cell.btnAddToFavourite.isSelected = false
+        }
+
         if strBidPrice == "" {
             cell.lblBidPrice.isHidden = true
         }
@@ -136,7 +150,10 @@ extension CartVC : UITableViewDataSource,UITableViewDelegate {
         cell.lblStatus.text = MyCartData.status?.capitalized
         
         
-        
+
+        //TODO:- UIButton Action Favourite
+         cell.btnAddToFavourite.tag = indexPath.row
+         cell.btnAddToFavourite .addTarget(self, action: #selector(bntAddToFavouriteClicked), for:.touchUpInside)
         
         
        //TODO:- UIButton Action Delete
@@ -295,6 +312,40 @@ extension CartVC{
 }
 
 
+
+//MARK:- Button add to favourite
+extension CartVC{
+    @objc func bntAddToFavouriteClicked(sender: UIButton){
+
+        selecteCartRef = self.arrCartData[sender.tag].productRef!
+        print(selecteCartRef)
+
+
+        sender.isSelected.toggle()
+
+        if sender.isSelected {
+            print("selected")
+
+            strActionFav = "1"
+            self.addProductToFavourite()
+        }
+        else {
+            print("Not selected")
+            strActionFav = "0"
+          self.addProductToFavourite()
+
+        }
+
+
+
+
+        //self.callingRemoveCartAPI()
+    }
+}
+
+
+
+
 //MARK:- removeCartItem API
 extension CartVC {
     func callingRemoveCartAPI(){
@@ -316,6 +367,30 @@ extension CartVC {
     
         }
   
+    }
+}
+
+
+extension CartVC {
+    func addProductToFavourite(){
+
+        ProgressHUD.show(interaction: false)
+        let addFavouriteParma = addFavoriteModel(buyerRef:defaults.value(forKey: "DefaultsbuyerRef") as! String , productRef: selecteCartRef ,action:strActionFav!)
+       // print(addFavouriteParma)
+        BuyerAPIManager.shareInstance.addFavoriteAPI(addFavoriteParam: addFavouriteParma) {(result) in
+
+            switch result{
+            case.success(let json):
+                ProgressHUD.dismiss()
+                print((json as! addFavoriteModelResponse).msg)
+                AppSnackBar.make(in: self.view, message: ((json as! addFavoriteModelResponse).msg), duration: .lengthShort).show()
+
+            case.failure(let err):
+                print(err.localizedDescription)
+            }
+
+        }
+
     }
 }
 

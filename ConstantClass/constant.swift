@@ -19,6 +19,7 @@ let sellerSignUpVerifcation_url = "\(base_url)/verify"
 let sellerGetOtp_url = "\(base_url)/getOTP"
 let CreateNewPassword_url = "\(base_url)/CreateNewPassword"
 let ChangePassword_url = "\(base_url)/changePassword"
+let contactUs_url = "\(base_url)/contactUs"
 
 
 

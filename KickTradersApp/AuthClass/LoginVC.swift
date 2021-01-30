@@ -90,11 +90,13 @@ extension LoginVC {
         guard let email = txfEmail.text else {return}
         guard let password =  txfPassword.text else {return showAlert(alertMessage: "Please Enter Password")}
 
+        let deviceToken = UserDefaults.standard.value(forKey: "AppDeviceToken") ?? "askldfjksdjfjkfj"
+        print("Save Device token is: \(String(describing: deviceToken))")
         if UserDefaults.standard.value(forKey: "AppDeviceToekn") != nil {
             
         }
         
-        let loginn = loginModel(Password: password, Role: "", FieldType: "Email", Email: email, deviceToken: UserDefaults.standard.value(forKey: "AppDeviceToekn") as! String, mobileType: "iOS")
+        let loginn = loginModel(Password: password, Role: "", FieldType: "Email", Email: email, deviceToken: deviceToken as! String, mobileType: "iOS")
         
         ProgressHUD.show("Loading...", interaction: false)
         
@@ -124,6 +126,11 @@ extension LoginVC {
                     defaults.set(baseURL, forKey: "DefaultsBaseURL")
                     defaults.set(buyerRef, forKey: "DefaultsbuyerRef")
                     defaults.setValue(userImg, forKey: "Defaultsprofile_Image")
+
+
+                    //TODO:- Check First Time Login
+                   // let FirstTimeLogin = "Yes"
+                    UserDefaults.standard.setValue(true, forKey:"DefaultFirstTimeLogin")
                     
                     
                     

@@ -7,6 +7,10 @@
 //
 
 import UIKit
+//import SnapKit
+//import SnackBar_swift
+
+
 
 var arrProductColor = [COlors]()
 var arrSize = [SIze]()
@@ -19,7 +23,6 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet var productImgSlider : PhotoSliderView!
     @IBOutlet var objScroll: UIScrollView!
     @IBOutlet var objTable: UITableView!
-    @IBOutlet var tblUserReview: UITableView!
     @IBOutlet var btnAddToCart: UIButton!
     @IBOutlet var btnPlaceBid: UIButton!
     @IBOutlet var objFooterView: UIView!
@@ -31,7 +34,8 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet var productDescription: UILabel!
     @IBOutlet var productPrice: UILabel!
     @IBOutlet var btnPlayVideo: UIButton!
-    
+    @IBOutlet var btnSetFavourite: UIButton!
+
     @IBOutlet var productVerifiedCheck: UILabel!
     @IBOutlet var imgProductVerfied: UIImageView!
     
@@ -56,6 +60,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     
     @IBOutlet var sellerTotalAvgRating: UILabel!
     @IBOutlet var sellerTotalReviewCount: UILabel!
+    @IBOutlet var btnTotalReviewCount: UIButton!
     @IBOutlet var objSellerRating: FloatRatingView!
 
     var arrComment = [Comments]()
@@ -70,6 +75,8 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     
 
     var productVideo: String!
+    var checkFavoutite : String!
+    var strActionFav: String?
     
     // var arrSellerDetails = [SellerDetail]()
     
@@ -85,24 +92,31 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
         imgWarning2.isHidden = true
         imgWarning3.isHidden = true
 
-
-       // lblNoReviewsYet.text = "There are no reviews yet.\n Only logged in customers who have purchased this product may leave a review."
         NotificationCenter.default.addObserver(self, selector: #selector(didFinishDownloading), name: Notification.Name(rawValue: "check"), object: nil)
 
+        objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 1700))
 
 
-        tblUserReview.tableFooterView? = objFooterView
+        DispatchQueue.main.async {
+            ProgressHUD.show("Loading product info.",  interaction: false)
+            self.productDetailAPI()
 
-       // if modelName == ""
-        objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height: 2600))
-        self.productDetailAPI()
+        }
+
         
-        
+
 
         
         
     }
 
+    @IBAction func actionTotalReviewSee(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: "CustomerReviewVC") as? CustomerReviewVC else{
+
+            return
+        }
+        present(vc, animated: true)
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -121,10 +135,35 @@ extension ProductDetailVC{
 
         let productVidVC = self.storyboard?.instantiateViewController(identifier: "ProductVideoVC") as! ProductVideoVC
         productVidVC.productVideoPass = productVideo
-        productVidVC.productNamePass =  self.productName.text 
-        
+        productVidVC.productNamePass =  self.productName.text
+
         self.navigationController?.pushViewController(productVidVC, animated: true)
         
+    }
+
+
+
+
+    @IBAction func actionSetFav(_ sender: UIButton) {
+
+        sender.isSelected.toggle()
+
+        if sender.isSelected {
+            print("selected")
+
+
+            strActionFav = "1"
+            self.addProductToFavourite()
+        }
+        else {
+            print("Not selected")
+
+            strActionFav = "0"
+            self.addProductToFavourite()
+
+        }
+
+
     }
     
     @IBAction func actionPlaceBid(_ sender: Any) {
@@ -154,12 +193,14 @@ extension ProductDetailVC{
 //TODO:- Product Details API
 extension ProductDetailVC{
     func productDetailAPI(){
-        
-        
+
+
         print("product Ref is: ",defaultss.string(forKey: "DefaultsproductRef")!)
-        let productDetailParam = BuyerGetProductDetailsModel(productRef:defaultss.string(forKey: "DefaultsproductRef")!)
+        let productDetailParam = BuyerGetProductDetailsModel(productRef:defaultss.string(forKey: "DefaultsproductRef")!,buyerRef: defaultss.value(forKey: "DefaultsbuyerRef") as! String)
         BuyerAPIManager.shareInstance.callingBuyergetProductDetailAPI(buyerProductDetails: productDetailParam) { [self] (result) in
-            
+
+
+
             
             switch result {
             case.success(let json):
@@ -167,9 +208,30 @@ extension ProductDetailVC{
                 arrProductColor = ((json as! BuyerGetProductDetailsModelResponse).productInfo?.colors)!
                 arrSize = arrProductColor[0].size!
                 arrComment = resPonseProduct.comments!
-                self.tblUserReview.reloadData()
+
+                //TODO:- Pass StructArray into UserDefaults
+
+                let selectedArrPass = resPonseProduct.comments!
+                if let data = try? PropertyListEncoder().encode(selectedArrPass) {
+
+                    UserDefaults.standard.set(data, forKey: "arrCommentPass")
+
+                }
+
                 
-                
+
+                //TODO:- Check Product is Favourite or not!
+                print(resPonseProduct.favorite!)
+
+                if (resPonseProduct.favorite) == true {
+                    btnSetFavourite.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+
+                }
+                else {
+                    btnSetFavourite.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+                }
+
+
                 //TODO:- Show Slider Images On Product Detail
                 
                 self.arrimgShoe = arrProductColor[0].image!
@@ -177,13 +239,7 @@ extension ProductDetailVC{
                 productImgSlider.configure(with: shoeImgs)
                 
                 
-                
-                
-                //TODO:- Update the Table View
-                self.objTable.reloadData()
-                
-                
-                
+
                 //TODO:- Get ProductVideo and Pass to ProductVideoVC
                 productVideo = resPonseProduct.productVideo
 
@@ -241,10 +297,18 @@ extension ProductDetailVC{
                 self.sellerName.text = resPonseProduct.sellerDetail?.full_Name
                 self.sellerPostingDate.text = resPonseProduct.sellerDetail?.shop_description
                 self.sellerProductDescription.text = resPonseProduct.productDescription
-                self.sellerTotalReviewCount.text =
-                    "( \(String(arrComment.count)) \( "Review") )"
 
 
+                if arrComment.count == 0 {
+                    btnTotalReviewCount.setTitle("( \(String(arrComment.count)) \("Review.") )", for: .normal)
+                    btnTotalReviewCount.isUserInteractionEnabled = false
+
+                }
+
+                else {
+                    btnTotalReviewCount.setTitle("( \(String(arrComment.count)) \( "Review, Tap to see all.") )", for: .normal)
+
+                }
 
 
                 //TODO:- Seller Dispute Count here and do App logic accordingly
@@ -265,11 +329,11 @@ extension ProductDetailVC{
 
                 if arrComment.count == 0 {
                     self.sellerTotalAvgRating.text = "0"
-                    lblNoReviewsYet.isHidden = false
+
                 }
                 else {
 
-                    lblNoReviewsYet.isHidden = true
+                    //  lblNoReviewsYet.isHidden = true
                     let floatCommentCOunt = Float(arrComment.count)
                     let ratingMap = arrComment.map({$0.rating})
                     let ratingConvertToINT = ratingMap.map {Float($0!)!}
@@ -280,10 +344,15 @@ extension ProductDetailVC{
                 }
 
 
+                //TODO:- Update the Table View
+                self.objTable.reloadData()
+                ProgressHUD.dismiss()
+
 
 
             case.failure(let err):
                 print(err.localizedDescription)
+                ProgressHUD.dismiss()
             }
         }
     }
@@ -295,113 +364,79 @@ extension ProductDetailVC{
 extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // return 2
+        return 2
 
-        if tableView == tblUserReview {
-            return 1
-        }
-        else {
-            return 2
-        }
+        //        if tableView == tblUserReview {
+        //            return 1
+        //        }
+        //        else {
+        //            return 2
+        //        }
 
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == tblUserReview {
-            return arrComment.count
-        }
-        else {
-            return 1
-        }
+
+        return 1
+        //        if tableView == tblUserReview {
+        //            return arrComment.count
+        //        }
+        //        else {
+        //            return 1
+        //        }
         
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        if tableView == tblUserReview{
-            
-            let userReview_cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailReviewCell", for: indexPath) as! ProductDetailReviewCell
-            
-            if arrComment.count == 0 {
-                print("NO Data")
 
-            }
-            else {
 
-                let imgURL = URL(string:"\(PROFILE_IMAGE)\(arrComment[indexPath.row].profile_Image!)")
-                userReview_cell.imgCommentUser.kf.setImage(with: imgURL)
+        if indexPath.section == 0 {
+            let SizeCell = tableView.dequeueReusableCell(withIdentifier: "ProductSizeCell", for: indexPath) as! ProductSizeCell
+            SizeCell.reloadProductSizeCC()
 
-                userReview_cell.lblUsername.text = arrComment[indexPath.row].full_Name
-                userReview_cell.lblReviewDate.text = arrComment[indexPath.row].create_at
-                userReview_cell.lblReviewDesc.text = arrComment[indexPath.row].comment
-                userReview_cell.lblReviewRating.text = arrComment[indexPath.row].rating
-                
-                return userReview_cell
-            }
-            
-            
+            return SizeCell
         }
-        
-        else if tableView == objTable {
-            
-            if indexPath.section == 0 {
-                let SizeCell = tableView.dequeueReusableCell(withIdentifier: "ProductSizeCell", for: indexPath) as! ProductSizeCell
-                SizeCell.reloadProductSizeCC()
-                
-                return SizeCell
-            }
-            if indexPath.section == 1 {
-                
-                let ColroCell = tableView.dequeueReusableCell(withIdentifier: "ProductColorCell", for: indexPath) as! ProductColorCell
-                ColroCell.reloadProductColorCC()
-                
-                
-                return ColroCell
-                
-            }
+        if indexPath.section == 1 {
+
+            let ColroCell = tableView.dequeueReusableCell(withIdentifier: "ProductColorCell", for: indexPath) as! ProductColorCell
+            ColroCell.reloadProductColorCC()
+
+
+            return ColroCell
+
         }
-        
+
         return UITableViewCell()
-        
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        if tableView == tblUserReview {
-            
+
+        let label = UILabel()
+        // let Color = UIColor(red: 200.0/255.0, green: 16.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+
+        if section == 0 {
+            label.text = "Size:"
+            //  label.textColor = Color
+            label.font = label.font.withSize(15)
+        } else  {
+            label.text = "Colors: "
+            // label.textColor = Color
+            label.font = label.font.withSize(15)
         }
-        else {
-            
-            
-            let label = UILabel()
-            // let Color = UIColor(red: 200.0/255.0, green: 16.0/255.0, blue: 46.0/255.0, alpha: 1.0)
-            
-            if section == 0 {
-                label.text = "Size:"
-                //  label.textColor = Color
-                label.font = label.font.withSize(15)
-            } else  {
-                label.text = "Colors: "
-                // label.textColor = Color
-                label.font = label.font.withSize(15)
-            }
-            
-            return label
-            
-        }
-        return UILabel()
-        
+
+        return label
+
     }
-    
-    
+
     
 }
 
 //TODO:- Add to Cart API
 extension ProductDetailVC {
     func callingAddToCartAPI() {
+
+
 
         guard let buyerRef = defaultss.string(forKey: "DefaultsbuyerRef") else {return}
         print(buyerRef)
@@ -525,3 +560,32 @@ extension ProductDetailVC {
         
     }
 }
+
+
+
+extension ProductDetailVC {
+    func addProductToFavourite(){
+
+        ProgressHUD.show(interaction: false)
+
+        let addFavouriteParma = addFavoriteModel(buyerRef:defaultss.value(forKey: "DefaultsbuyerRef") as! String , productRef:defaultss.string(forKey: "DefaultsproductRef")! ,action:strActionFav!)
+        // print(addFavouriteParma)
+        BuyerAPIManager.shareInstance.addFavoriteAPI(addFavoriteParam: addFavouriteParma) {(result) in
+
+            switch result{
+            case.success(let json):
+                ProgressHUD.dismiss()
+                print((json as! addFavoriteModelResponse).msg)
+
+                AppSnackBar.make(in: self.view, message: ((json as! addFavoriteModelResponse).msg), duration: .lengthShort).show()
+
+            case.failure(let err):
+                print(err.localizedDescription)
+            }
+
+        }
+
+    }
+}
+
+

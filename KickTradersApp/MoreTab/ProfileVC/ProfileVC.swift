@@ -37,6 +37,11 @@ class ProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     @IBAction func actionSaveChanges(_ sender: Any) {
         self.CallingUpdateUserInfoAPI()
     }
+
+
+
+
+    
 }
 
 
@@ -215,8 +220,8 @@ extension ProfileVC {
                   print("Cancel")
               })
               
-              action1.setValue(UIColor.purple, forKey: "titleTextColor")
-              action2.setValue(UIColor.green, forKey: "titleTextColor")
+//              action1.setValue(UIColor.purple, forKey: "titleTextColor")
+//              action2.setValue(UIColor.green, forKey: "titleTextColor")
             
               alertController.addAction(action1)
               alertController.addAction(action2)
@@ -269,4 +274,5 @@ extension ProfileVC {
     }
     
 }
+
 

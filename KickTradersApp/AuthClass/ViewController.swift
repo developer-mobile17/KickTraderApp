@@ -10,11 +10,25 @@ import UIKit
 
 
 class ViewController: UIViewController {
+    var checkFirtLogin: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
+
+
+        let launchedBefore = UserDefaults.standard.bool(forKey: "DefaultFirstTimeLogin")
+                if launchedBefore
+                {
+                    print("Not first launch.")
+                    self.goToBuyerHome()
+                }
+                else
+                {
+                    print("First launch")
+                    UserDefaults.standard.set(true, forKey: "DefaultFirstTimeLogin")
+                }
+
+
         
     }
 
@@ -23,9 +37,6 @@ class ViewController: UIViewController {
                 self.navigationController?.pushViewController(loginVW, animated: true)
     }
     @IBAction func actionLogin(_ sender: Any) {
-        
-        
-     
         let loginVW = self.storyboard?.instantiateViewController(identifier: "LoginVC") as! LoginVC
          self.navigationController?.pushViewController(loginVW, animated: true)
         
@@ -33,3 +44,12 @@ class ViewController: UIViewController {
     
 }
 
+
+extension ViewController {
+
+    func goToBuyerHome(){
+        let TabbarVC = self.storyboard?.instantiateViewController(identifier: "mainTabVC") as! mainTabVC
+
+        self.navigationController?.pushViewController(TabbarVC, animated: true)
+    }
+}

@@ -9,5 +9,7 @@ target 'KickTradersApp' do
 	pod 'GooglePlaces'
 	pod 'PayPal-iOS-SDK'
 	pod 'SnackBar.swift'
+	pod 'IQKeyboardManagerSwift'
+	pod 'TransitionButton'
   
 end

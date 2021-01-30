@@ -13,6 +13,7 @@ class cartCell: UITableViewCell {
     
      @IBOutlet var btnBuyOrPlaceBid: UIButton!
      @IBOutlet var btnDelete: UIButton!
+    @IBOutlet var btnAddToFavourite: UIButton!
      @IBOutlet var imgShoes: UIImageView!
      @IBOutlet var lblShoeName: UILabel!
      @IBOutlet var lblSize: UILabel!

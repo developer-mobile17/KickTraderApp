@@ -34,6 +34,7 @@ struct getCartModelResponse:Codable {
 
 struct CartItem : Codable {
     let cartRef : String?
+    let favoriteId : String?
     let bidPrice : String?
     let status : String?
     let productRef : String?
@@ -59,6 +60,7 @@ struct CartItem : Codable {
     enum CodingKeys: String, CodingKey {
 
         case cartRef = "cartRef"
+        case favoriteId = "favoriteId"
         case bidPrice = "bidPrice"
         case status = "status"
         case productRef = "productRef"
@@ -85,6 +87,7 @@ struct CartItem : Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         cartRef = try values.decodeIfPresent(String.self, forKey: .cartRef)
+        favoriteId = try values.decodeIfPresent(String.self, forKey: .favoriteId)
         bidPrice = try values.decodeIfPresent(String.self, forKey: .bidPrice)
         status = try values.decodeIfPresent(String.self, forKey: .status)
         productRef = try values.decodeIfPresent(String.self, forKey: .productRef)

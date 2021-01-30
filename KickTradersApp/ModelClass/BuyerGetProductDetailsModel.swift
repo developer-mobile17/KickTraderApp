@@ -12,6 +12,7 @@ import Foundation
 
 struct BuyerGetProductDetailsModel:Encodable {
     let productRef:String
+    let buyerRef: String
 }
 
 

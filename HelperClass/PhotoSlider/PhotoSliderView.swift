@@ -25,16 +25,22 @@ class PhotoSliderView: UIView {
                                                       width: scrollViewWidth,
                                                       height: scrollViewHeight))
             
-            
-         
-            
-            let sliderImgUrl = URL(string:"\(PRODUCT_IMAGE)\(image)")
-            print(sliderImgUrl!)
-          
-            imageView.kf.setImage(with:sliderImgUrl!)
-            imageView.contentMode = .scaleAspectFit
-            imageView.clipsToBounds = true
-            scrollView.addSubview(imageView)
+            imageView.showLoading(color: UIColor.red)
+
+            DispatchQueue.main.async {
+                let sliderImgUrl = URL(string:"\(PRODUCT_IMAGE)\(image)")
+                print(sliderImgUrl!)
+
+                imageView.kf.setImage(with:sliderImgUrl!)
+                imageView.contentMode = .scaleAspectFit
+                imageView.clipsToBounds = true
+                self.scrollView.addSubview(imageView)
+                imageView.stopLoading()
+
+            }
+
+
+
         }
         
         // Set the scrollView contentSize

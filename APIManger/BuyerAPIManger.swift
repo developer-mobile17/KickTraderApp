@@ -27,39 +27,39 @@ class BuyerAPIManager {
     
     func callingEnterOtpAPI(EnterOtpParam:EnterOtpModel ,completionHandler : @escaping Handler) {
         
-    AF.request(sellerSignUpVerifcation_url,
-               method: .post,
-               parameters: EnterOtpParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
-            
-                switch response.result{
-                case .success(let data):
-                    do {
-                        
-                        
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(EnterOtpModelResponse.self, from: data!)
-                        print(responseModel)
-                        
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Success Go to Home UI")
+        AF.request(sellerSignUpVerifcation_url,
+                   method: .post,
+                   parameters: EnterOtpParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+
+
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(EnterOtpModelResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Success Go to Home UI")
+                            }
+                            else{
+                                print("There is an issue with Enter Otp API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with Enter Otp API, Please check!")
-                        }
-                        
-                    } catch  {
-                        print(error.localizedDescription)
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
-                    
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-            
-        }
+
+                   }
     }
     
     
@@ -146,14 +146,17 @@ class BuyerAPIManager {
                             }
                             else{
                                 print("There is an issue with Buyer Get Product Details API, Please check!")
+                                ProgressHUD.dismiss()
                             }
                             
                         } catch  {
                             print(error.localizedDescription)
+                            ProgressHUD.dismiss()
                         }
                         
                     case .failure(let err):
                         print(err.localizedDescription)
+                        ProgressHUD.dismiss()
                     }
                     
                    }
@@ -853,7 +856,7 @@ class BuyerAPIManager {
                     
                    }
     }
-        
+
     //TODO:- cancelOrderAPI Buyer / Seller
     
     func cancelOrderAPI(cancelOrderParam:cancelOrderModel ,completionHandler : @escaping Handler) {
@@ -909,36 +912,36 @@ class BuyerAPIManager {
                    method: .get,
                    parameters: nil,
                    headers:nil ).response
-                   { response in
-            
-                switch response.result{
-                case .success(let data):
-                    do {
-                        
-                        let jsonDecoder = JSONDecoder()
-                        let responseAddProModel = try jsonDecoder.decode(unboxingVideoModel.self, from: data!)
-                        print(responseAddProModel)
-                        
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseAddProModel))
-                            print("Success List of Unboxing Video UI")
-                        }
-                        else{
+            { response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+
+                            let jsonDecoder = JSONDecoder()
+                            let responseAddProModel = try jsonDecoder.decode(unboxingVideoModel.self, from: data!)
+                            print(responseAddProModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseAddProModel))
+                                print("Success List of Unboxing Video UI")
+                            }
+                            else{
+                                ProgressHUD.dismiss()
+                                print("There is an issue with Unboxing Video API, Please check!")
+                            }
+
+                        } catch  {
                             ProgressHUD.dismiss()
-                            print("There is an issue with Unboxing Video API, Please check!")
+                            print(error.localizedDescription)
                         }
-                        
-                    } catch  {
+
+                    case .failure(let err):
                         ProgressHUD.dismiss()
-                        print(error.localizedDescription)
+                        print(err.localizedDescription)
                     }
-                    
-                case .failure(let err):
-                    ProgressHUD.dismiss()
-                    print(err.localizedDescription)
-                }
-            
-        }
+
+                   }
     }
     
     
@@ -948,39 +951,39 @@ class BuyerAPIManager {
     
     func callingGetNotificationAPI(getNotificationParam:getNotificationRequestModel ,completionHandler : @escaping Handler) {
         
-    AF.request(getNotification_Url,
-               method: .post,
-               parameters: getNotificationParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
-            
-                switch response.result{
-                case .success(let data):
-                    do {
-                        
-                        
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(getNotificationResponse.self, from: data!)
-                        print(responseModel)
-                        
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully Fetch User Notification")
+        AF.request(getNotification_Url,
+                   method: .post,
+                   parameters: getNotificationParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+
+
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(getNotificationResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Fetch User Notification")
+                            }
+                            else{
+                                print("There is an issue with Get Notification, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with Get Notification, Please check!")
-                        }
-                        
-                    } catch  {
-                        print(error.localizedDescription)
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
-                    
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-            
-        }
+
+                   }
     }
     
     
@@ -994,39 +997,39 @@ class BuyerAPIManager {
     
     func CallingGetChatListAPI(getChatListParam:getChatListRequest ,completionHandler : @escaping Handler) {
         
-    AF.request(getChatList_Url,
-               method: .post,
-               parameters: getChatListParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
-            
-                switch response.result{
-                case .success(let data):
-                    do {
-                        
-                        
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(getChatListResponse.self, from: data!)
-                        print(responseModel)
-                        
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully Fetch User Chat List")
+        AF.request(getChatList_Url,
+                   method: .post,
+                   parameters: getChatListParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+
+
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(getChatListResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Fetch User Chat List")
+                            }
+                            else{
+                                print("There is an issue with Get get Chat List API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with Get get Chat List API, Please check!")
-                        }
-                        
-                    } catch  {
-                        print(error.localizedDescription)
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
-                    
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-            
-        }
+
+                   }
     }
     
     
@@ -1041,39 +1044,39 @@ class BuyerAPIManager {
 
     func CallingGetChat_HistoryAPI(getChat_HistoryParam:ChatHistoryModelRequest ,completionHandler : @escaping Handler) {
 
-    AF.request(getChatHistory_Url,
-               method: .post,
-               parameters: getChat_HistoryParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
+        AF.request(getChatHistory_Url,
+                   method: .post,
+                   parameters: getChat_HistoryParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
 
-                switch response.result{
-                case .success(let data):
-                    do {
+                    switch response.result{
+                    case .success(let data):
+                        do {
 
 
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(ChatHistoryModelResponse.self, from: data!)
-                        print(responseModel)
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(ChatHistoryModelResponse.self, from: data!)
+                            print(responseModel)
 
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully Fetch User Chat History")
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Fetch User Chat History")
+                            }
+                            else{
+                                print("There is an issue with get ChatHistory_Url API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with get ChatHistory_Url API, Please check!")
-                        }
 
-                    } catch  {
-                        print(error.localizedDescription)
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
 
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-
-        }
+                   }
     }
 
 
@@ -1088,39 +1091,39 @@ class BuyerAPIManager {
 
     func CallingSendMessage_API(sendMessageParam:ChatSendMessageRequest ,completionHandler : @escaping Handler) {
 
-    AF.request(chatSendMessage_Url,
-               method: .post,
-               parameters: sendMessageParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
+        AF.request(chatSendMessage_Url,
+                   method: .post,
+                   parameters: sendMessageParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
 
-                switch response.result{
-                case .success(let data):
-                    do {
+                    switch response.result{
+                    case .success(let data):
+                        do {
 
 
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(ChatSendMessageResponse.self, from: data!)
-                        print(responseModel)
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(ChatSendMessageResponse.self, from: data!)
+                            print(responseModel)
 
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully Send Message")
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Send Message")
+                            }
+                            else{
+                                print("There is an issue with get (http://hourlylancer.com/kickTraders/api/v1/sendMessage) API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with get (http://hourlylancer.com/kickTraders/api/v1/sendMessage) API, Please check!")
-                        }
 
-                    } catch  {
-                        print(error.localizedDescription)
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
 
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-
-        }
+                   }
     }
 
 
@@ -1137,39 +1140,39 @@ class BuyerAPIManager {
 
     func CallingGetShippingStatus_API(getShippingStatusParam:getShippingStatusRequest ,completionHandler : @escaping Handler) {
 
-    AF.request(getShippingStatus_Url,
-               method: .post,
-               parameters: getShippingStatusParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
+        AF.request(getShippingStatus_Url,
+                   method: .post,
+                   parameters: getShippingStatusParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
 
-                switch response.result{
-                case .success(let data):
-                    do {
+                    switch response.result{
+                    case .success(let data):
+                        do {
 
 
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(getShippingStatusResponse.self, from: data!)
-                        print(responseModel)
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(getShippingStatusResponse.self, from: data!)
+                            print(responseModel)
 
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully fetch getShippingStatusRequest")
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully fetch getShippingStatusRequest")
+                            }
+                            else{
+                                print("There is an issue with get getShippingStatusRequest API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with get getShippingStatusRequest API, Please check!")
-                        }
 
-                    } catch  {
-                        print(error.localizedDescription)
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
 
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-
-        }
+                   }
     }
 
 
@@ -1182,39 +1185,39 @@ class BuyerAPIManager {
 
     func callingAddDispute_API(addDisputeParam:addDisputeRequest ,completionHandler : @escaping Handler) {
 
-    AF.request(addDispute_Url,
-               method: .post,
-               parameters: addDisputeParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
+        AF.request(addDispute_Url,
+                   method: .post,
+                   parameters: addDisputeParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
 
-                switch response.result{
-                case .success(let data):
-                    do {
+                    switch response.result{
+                    case .success(let data):
+                        do {
 
 
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(addDisputeResponse.self, from: data!)
-                        print(responseModel)
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(addDisputeResponse.self, from: data!)
+                            print(responseModel)
 
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully sent Dispute")
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully sent Dispute")
+                            }
+                            else{
+                                print("There is an issue with get add dispute API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with get add dispute API, Please check!")
-                        }
 
-                    } catch  {
-                        print(error.localizedDescription)
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
 
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
-
-        }
+                   }
     }
 
 
@@ -1228,39 +1231,83 @@ class BuyerAPIManager {
 
     func callingAddAuthentication_API(addAuthenticationParam:addAuthenticationRequest ,completionHandler : @escaping Handler) {
 
-    AF.request(addAuthentication_Url,
-               method: .post,
-               parameters: addAuthenticationParam,
-               encoder: URLEncodedFormParameterEncoder.default,
-               headers: nil).response {
-               response in
+        AF.request(addAuthentication_Url,
+                   method: .post,
+                   parameters: addAuthenticationParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
 
-                switch response.result{
-                case .success(let data):
-                    do {
+                    switch response.result{
+                    case .success(let data):
+                        do {
 
 
-                        let jsonDecoder = JSONDecoder()
-                        let responseModel = try jsonDecoder.decode(addAuthenticationResponse.self, from: data!)
-                        print(responseModel)
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(addAuthenticationResponse.self, from: data!)
+                            print(responseModel)
 
-                        if response.response?.statusCode == 200{
-                            completionHandler(.success(responseModel))
-                            print("Successfully Hit Add Authentication API")
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Hit Add Authentication API")
+                            }
+                            else{
+                                print("There is an issue with addAuthentication_Url API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
                         }
-                        else{
-                            print("There is an issue with addAuthentication_Url API, Please check!")
-                        }
 
-                    } catch  {
-                        print(error.localizedDescription)
+                    case .failure(let err):
+                        print(err.localizedDescription)
                     }
 
-                case .failure(let err):
-                    print(err.localizedDescription)
-                }
+                   }
+    }
 
-        }
+
+
+
+
+
+    //MARK:- Add Authentication  API Implementatin
+
+    func callingContactUs_API(contactUsParam:ContactUs_Request ,completionHandler : @escaping Handler) {
+
+        AF.request(contactUs_url,
+                   method: .post,
+                   parameters: contactUsParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+
+
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(ContactUs_Response.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Hit Contact Us API")
+                            }
+                            else{
+                                print("There is an issue with contactUs_url API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                    }
+
+                   }
     }
 
 

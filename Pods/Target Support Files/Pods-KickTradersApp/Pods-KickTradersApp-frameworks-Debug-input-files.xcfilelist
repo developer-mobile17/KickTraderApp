@@ -1,8 +1,10 @@
 ${PODS_ROOT}/Target Support Files/Pods-KickTradersApp/Pods-KickTradersApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CircleBar/CircleBar.framework
+${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework
 ${BUILT_PRODUCTS_DIR}/IntroScreen/IntroScreen.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/SnackBar.swift/SnackBar_swift.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework
 ${BUILT_PRODUCTS_DIR}/WMSegmentControl/WMSegmentControl.framework

@@ -52,6 +52,15 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         }
 
     }
+    @IBAction func actionGoToFavouriteUI(_ sender: Any) {
+
+
+        guard let vc = storyboard?.instantiateViewController(identifier: "FavouriteProductVc") as? FavouriteProductVc else{
+
+            return
+        }
+        present(vc, animated: true)
+    }
     //TODO:-  Get the User Profile
     func getProfileImg (){
 
@@ -202,6 +211,8 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
 
             //TODO:- Set Defualt Img To Product Cover Image
             let imgProductCover = SellerProductModel.productCoverImage
+
+           // cell.imgShoes.showLoading(color: .systemRed)
             if imgProductCover == "" {
                 
                 cell.imgShoes.image =  UIImage(imageLiteralResourceName:"NoImg.png")
@@ -210,6 +221,7 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
             {
                 let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(arrShoesBuyerProduct[indexPath.row].productCoverImage!)")
                 cell.imgShoes?.kf.setImage(with: imgURL)
+              //  cell.imgShoes.stopLoading()
                 
             }
 
@@ -240,8 +252,11 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
         if checkCategory == "2" {
             
             let SellerSneakerModel = arrSneakersBuyerProduct[indexPath.row]
+          //  cell.imgShoes.showLoading(color: .systemRed)
+
             let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(arrSneakersBuyerProduct[indexPath.row].productCoverImage!)")
             cell.imgShoes?.kf.setImage(with: imgURL)
+         //   cell.imgShoes.stopLoading()
 
             print("Fav ID of SneakerShoe.",SellerSneakerModel.favoriteId as Any)
             if let checkFavID = SellerSneakerModel.favoriteId {
@@ -266,9 +281,11 @@ extension HomeVC : UITableViewDataSource,UITableViewDelegate {
 
         else if checkCategory == "3" {
             let SellerBootProductModel = arrBootBuyerProduct[indexPath.row]
+          //  cell.imgShoes.showLoading(color: .systemRed)
             
             let imgURL =  URL(string:"\(PRODUCT_COVER_IMAGE)\(arrBootBuyerProduct[indexPath.row].productCoverImage!)")
             cell.imgShoes?.kf.setImage(with: imgURL)
+           // cell.imgShoes.stopLoading()
 
             if let checkFavID = SellerBootProductModel.favoriteId {
                print(checkFavID)
@@ -361,6 +378,7 @@ extension HomeVC {
             case.success(let json):
                 ProgressHUD.dismiss()
                 print((json as! addFavoriteModelResponse).msg)
+                AppSnackBar.make(in: self.view, message: ((json as! addFavoriteModelResponse).msg), duration: .lengthShort).show()
                 self.getBuyerProductList()
             case.failure(let err):
                 print(err.localizedDescription)

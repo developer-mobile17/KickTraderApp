@@ -22,6 +22,11 @@ class DisputeViewVC: UIViewController,UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        txvAddDispute.delegate = self
+        txvAddDispute.text = "Enter your dispute message."
+        txvAddDispute.textColor = UIColor.lightGray
+
         self.showShoeDetails()
 
     }
@@ -41,8 +46,30 @@ class DisputeViewVC: UIViewController,UITextViewDelegate {
         lblShoeBrandName.text =  UserDefaults.standard.value(forKey: "DefaultsbrandName") as? String
         lblShoeName.text =  (UserDefaults.standard.value(forKey: "DefaultsproductName") as! String)
         lblSize.text =  (UserDefaults.standard.value(forKey: "DefaultsproductSize") as! String)
-        lblPrice.text = "\("Bid Price:$") \(UserDefaults.standard.value(forKey: "DefaultsbidPrice") as? String ?? "")"
+        lblPrice.text = "\("Bid Price: $")\(UserDefaults.standard.value(forKey: "DefaultsbidPrice") as? String ?? "")"
         lblColor.backgroundColor = UIColor(hexFromString: (UserDefaults.standard.value(forKey: "DefaultscolorCode") as? String)!)
+    }
+
+
+
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
+            txvAddDispute.textColor = UIColor.lightGray
+            txvAddDispute.text = ""
+            txvAddDispute.textColor = UIColor.black
+        }
+
+
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+
+        if txvAddDispute.text == "" {
+
+            txvAddDispute.text = "Enter your dispute message."
+            txvAddDispute.textColor = UIColor.lightGray
+        }
+
     }
 }
 
