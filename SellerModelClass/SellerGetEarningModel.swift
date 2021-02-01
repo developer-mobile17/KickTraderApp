@@ -43,14 +43,16 @@ struct EarningDetails : Codable {
     let activeAppointment : String?
     let activeAppointmentCount : String?
     let pendingClearance : Int?
-    let cancelledAppointment : Int?
+    let cancelledAppointment : String?
     let cancelOrderCount : String?
+    let cancelOrderList : [String]?
+    let pendingOrderList : [PendingOrderList]?
     let totalOrders : String?
     let earnedToday : Int?
     let inProgress : String?
     let orderQueue : Int?
     let withdraw : Int?
-    let sellerDetail : SellerDetailHome?
+    let sellerDetail : SellerDetail?
 
     enum CodingKeys: String, CodingKey {
 
@@ -62,6 +64,8 @@ struct EarningDetails : Codable {
         case pendingClearance = "pendingClearance"
         case cancelledAppointment = "cancelledAppointment"
         case cancelOrderCount = "cancelOrderCount"
+        case cancelOrderList = "cancelOrderList"
+        case pendingOrderList = "pendingOrderList"
         case totalOrders = "totalOrders"
         case earnedToday = "earnedToday"
         case inProgress = "inProgress"
@@ -78,14 +82,16 @@ struct EarningDetails : Codable {
         activeAppointment = try values.decodeIfPresent(String.self, forKey: .activeAppointment)
         activeAppointmentCount = try values.decodeIfPresent(String.self, forKey: .activeAppointmentCount)
         pendingClearance = try values.decodeIfPresent(Int.self, forKey: .pendingClearance)
-        cancelledAppointment = try values.decodeIfPresent(Int.self, forKey: .cancelledAppointment)
+        cancelledAppointment = try values.decodeIfPresent(String.self, forKey: .cancelledAppointment)
         cancelOrderCount = try values.decodeIfPresent(String.self, forKey: .cancelOrderCount)
+        cancelOrderList = try values.decodeIfPresent([String].self, forKey: .cancelOrderList)
+        pendingOrderList = try values.decodeIfPresent([PendingOrderList].self, forKey: .pendingOrderList)
         totalOrders = try values.decodeIfPresent(String.self, forKey: .totalOrders)
         earnedToday = try values.decodeIfPresent(Int.self, forKey: .earnedToday)
         inProgress = try values.decodeIfPresent(String.self, forKey: .inProgress)
         orderQueue = try values.decodeIfPresent(Int.self, forKey: .orderQueue)
         withdraw = try values.decodeIfPresent(Int.self, forKey: .withdraw)
-        sellerDetail = try values.decodeIfPresent(SellerDetailHome.self, forKey: .sellerDetail)
+        sellerDetail = try values.decodeIfPresent(SellerDetail.self, forKey: .sellerDetail)
     }
 
 }
@@ -107,6 +113,7 @@ struct SellerDetailHome : Codable {
     let open_time : String?
     let close_time : String?
     let shop_description : String?
+    let paypalAccountEmail : String?
     let is_Active : String?
     let deviceToken : String?
     let mobileType : String?
@@ -115,6 +122,8 @@ struct SellerDetailHome : Codable {
     let location : String?
     let validation_Code : String?
     let disputeCount : String?
+    let bidCount : String?
+    let notificationCount : String?
     let isSuspend : String?
     let suspendTill : String?
     let createdDtm : String?
@@ -136,6 +145,7 @@ struct SellerDetailHome : Codable {
         case open_time = "open_time"
         case close_time = "close_time"
         case shop_description = "shop_description"
+        case paypalAccountEmail = "paypalAccountEmail"
         case is_Active = "Is_Active"
         case deviceToken = "deviceToken"
         case mobileType = "mobileType"
@@ -144,6 +154,8 @@ struct SellerDetailHome : Codable {
         case location = "location"
         case validation_Code = "Validation_Code"
         case disputeCount = "disputeCount"
+        case bidCount = "bidCount"
+        case notificationCount = "notificationCount"
         case isSuspend = "isSuspend"
         case suspendTill = "suspendTill"
         case createdDtm = "createdDtm"
@@ -166,6 +178,7 @@ struct SellerDetailHome : Codable {
         open_time = try values.decodeIfPresent(String.self, forKey: .open_time)
         close_time = try values.decodeIfPresent(String.self, forKey: .close_time)
         shop_description = try values.decodeIfPresent(String.self, forKey: .shop_description)
+        paypalAccountEmail = try values.decodeIfPresent(String.self, forKey: .paypalAccountEmail)
         is_Active = try values.decodeIfPresent(String.self, forKey: .is_Active)
         deviceToken = try values.decodeIfPresent(String.self, forKey: .deviceToken)
         mobileType = try values.decodeIfPresent(String.self, forKey: .mobileType)
@@ -174,9 +187,36 @@ struct SellerDetailHome : Codable {
         location = try values.decodeIfPresent(String.self, forKey: .location)
         validation_Code = try values.decodeIfPresent(String.self, forKey: .validation_Code)
         disputeCount = try values.decodeIfPresent(String.self, forKey: .disputeCount)
+        bidCount = try values.decodeIfPresent(String.self, forKey: .bidCount)
+        notificationCount = try values.decodeIfPresent(String.self, forKey: .notificationCount)
         isSuspend = try values.decodeIfPresent(String.self, forKey: .isSuspend)
         suspendTill = try values.decodeIfPresent(String.self, forKey: .suspendTill)
         createdDtm = try values.decodeIfPresent(String.self, forKey: .createdDtm)
+    }
+
+}
+
+
+struct PendingOrderList : Codable {
+    let productName : String?
+    let brandName : String?
+    let bidPrice : String?
+    let orderedDate : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case productName = "productName"
+        case brandName = "brandName"
+        case bidPrice = "bidPrice"
+        case orderedDate = "orderedDate"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        productName = try values.decodeIfPresent(String.self, forKey: .productName)
+        brandName = try values.decodeIfPresent(String.self, forKey: .brandName)
+        bidPrice = try values.decodeIfPresent(String.self, forKey: .bidPrice)
+        orderedDate = try values.decodeIfPresent(String.self, forKey: .orderedDate)
     }
 
 }

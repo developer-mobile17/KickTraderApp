@@ -366,24 +366,11 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
 
-        //        if tableView == tblUserReview {
-        //            return 1
-        //        }
-        //        else {
-        //            return 2
-        //        }
 
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return 1
-        //        if tableView == tblUserReview {
-        //            return arrComment.count
-        //        }
-        //        else {
-        //            return 1
-        //        }
-        
 
     }
     

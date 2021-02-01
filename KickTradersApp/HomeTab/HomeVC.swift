@@ -167,8 +167,10 @@ extension HomeVC {
                 
                 self.filteredRecipes =  self.arrShoesBuyerProduct
                 
-                
-                self.objTable.reloadData()
+                DispatchQueue.main.async {
+                    self.objTable.reloadData()
+                }
+
                 
             case.failure(let err):
                 print(err.localizedDescription)

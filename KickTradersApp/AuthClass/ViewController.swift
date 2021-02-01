@@ -16,17 +16,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
 
-        let launchedBefore = UserDefaults.standard.bool(forKey: "DefaultFirstTimeLogin")
-                if launchedBefore
-                {
-                    print("Not first launch.")
-                    self.goToBuyerHome()
-                }
-                else
-                {
-                    print("First launch")
-                    UserDefaults.standard.set(true, forKey: "DefaultFirstTimeLogin")
-                }
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "DefaultFirstTimeLogin")
+//                if launchedBefore
+//                {
+//                    print("Not first launch.")
+//                    self.goToBuyerHome()
+//                }
+//                else
+//                {
+//                    print("First launch")
+//                    UserDefaults.standard.set(true, forKey: "DefaultFirstTimeLogin")
+//                }
 
 
         

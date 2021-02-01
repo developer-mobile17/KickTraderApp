@@ -194,6 +194,19 @@ extension SellerSearchProducctTab: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vcProductEdit = self.storyboard?.instantiateViewController(identifier: "SellerProductEditVC")as! SellerProductEditVC
+
+        if checkCategory == "1"{
+            vcProductEdit.getProductRef = arrShoesSellerProduct[indexPath.row].productRef
+
+        }
+       else if checkCategory == "2" {
+        vcProductEdit.getProductRef = arrShoesSellerProduct[indexPath.row].productRef
+        }
+       else {
+        vcProductEdit.getProductRef = arrShoesSellerProduct[indexPath.row].productRef
+       }
+
+
         self.navigationController?.pushViewController(vcProductEdit, animated: true)
     }
     

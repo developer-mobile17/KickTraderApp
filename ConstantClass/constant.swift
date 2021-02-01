@@ -24,6 +24,7 @@ let contactUs_url = "\(base_url)/contactUs"
 
 
 //TODO:- Seller API's
+let getSellerProductDetail_url = "\(base_url)/getProductByRef"
 let getAllDropdownList_url = "\(base_url)/getAllDropdownList"
 let getSellerProduct_url = "\(base_url)/getProduct"
 let SellerOrderProduct_url = "\(base_url)/getOrderList"

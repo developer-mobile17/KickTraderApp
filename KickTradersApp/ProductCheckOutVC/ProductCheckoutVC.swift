@@ -80,27 +80,27 @@ class ProductCheckoutVC: UIViewController, PayPalPaymentDelegate {
 
 
         //TODO:- Go to success Screen
-        let orderPlaced = self.storyboard?.instantiateViewController(identifier: "OrderPlacedSuccessfullyVC") as! OrderPlacedSuccessfullyVC
-        self.navigationController?.pushViewController(orderPlaced, animated: true)
+//        let orderPlaced = self.storyboard?.instantiateViewController(identifier: "OrderPlacedSuccessfullyVC") as! OrderPlacedSuccessfullyVC
+//        self.navigationController?.pushViewController(orderPlaced, animated: true)
 
 
 
-//        let totalAmount = totalChargesGenric(bidPrice: bidPriceToNumeric!, shippingCharges: 7)
-//        let TotalAmtDecimal =  NSDecimalNumber(value: totalAmount)
-//
-//        //TODO:- paypal payment gateway calling here on button click
-//        let payment = PayPalPayment(amount: TotalAmtDecimal, currencyCode: "USD", shortDescription: (DefaultsCheckOut.value(forKey: "CheckoutProductName") as! String), intent: .sale)
-//
-//
-//        if (payment.processable) {
-//            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
-//            present(paymentViewController!, animated: true, completion: nil)
-//        }
-//        else {
-//
-//            print("Payment not processalbe: \(payment)")
-//            showAlert(alertMessage:"Payment not processalbe")
-//        }
+        let totalAmount = totalChargesGenric(bidPrice: bidPriceToNumeric!, shippingCharges: 7)
+        let TotalAmtDecimal =  NSDecimalNumber(value: totalAmount)
+
+        //TODO:- paypal payment gateway calling here on button click
+        let payment = PayPalPayment(amount: TotalAmtDecimal, currencyCode: "USD", shortDescription: (DefaultsCheckOut.value(forKey: "CheckoutProductName") as! String), intent: .sale)
+
+
+        if (payment.processable) {
+            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
+            present(paymentViewController!, animated: true, completion: nil)
+        }
+        else {
+
+            print("Payment not processalbe: \(payment)")
+            showAlert(alertMessage:"Payment not processalbe")
+        }
 
     }
     

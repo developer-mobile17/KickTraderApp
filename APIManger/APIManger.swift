@@ -327,6 +327,48 @@ class APIManger {
 
 
 
+    //MARK:- Seller Product Detail API
+
+    func callingSellerProductDetail_API(sellerProductDetailParam:SelelrGetProductDetailsRequest ,completionHandler : @escaping Handler) {
+
+        AF.request(getSellerProductDetail_url,
+                   method: .post,
+                   parameters:sellerProductDetailParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+                        let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(SelelrGetProductDetailsResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Success getSellerProductDetail_url API")
+                            }
+                            else{
+                                print("There is an issue getSellerProductDetail_url API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                    }
+
+                   }
+    }
+
+
+
+
+
+
     
     //MARK:- Seller GetDrop Down Category API
     
