@@ -43,15 +43,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //MARK:- Register the app with APN server.
 
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-    {
-        var token = ""
-        for i in 0..<deviceToken.count {
-            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
-        }
-        print(token)
-        UserDefaults.standard.set(token, forKey: "AppDeviceToken")
+    func application(
+      _ application: UIApplication,
+      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+      let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+      let token = tokenParts.joined()
+      print("Device Token: \(token)")
+      UserDefaults.standard.set(token, forKey: "AppDeviceToken")
     }
+
+
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("failed to register for remote notifications: \(error.localizedDescription)")

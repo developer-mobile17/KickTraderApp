@@ -155,9 +155,6 @@ extension SellerAddProductVC {
                   print("Cancel")
               })
               
-              action1.setValue(UIColor.purple, forKey: "titleTextColor")
-              action2.setValue(UIColor.green, forKey: "titleTextColor")
-            
               alertController.addAction(action1)
               alertController.addAction(action2)
               alertController.addAction(maybeAction)
@@ -319,40 +316,17 @@ extension SellerAddProductVC {
     }
 
     @IBAction func actionAddProductClicked(_ sender: Any){
-        
-        self.SellerAddProductApiCalling()
-        
+
+        if txfName.text == "" {showAlert(alertMessage: "Please enter all detail")}
+        if txfPrice.text == "" {showAlert(alertMessage: "Please enter all detail")}
+        if txvDescription.text == "" {showAlert(alertMessage: "Please enter all detail")}
+        if txvDescription.text == "" {showAlert(alertMessage: "Please enter all detail")}
+        if imgProductCover.image == nil {showAlert(alertMessage: "Please enter all detail")}
+        else {
+            self.SellerAddProductApiCalling()
+        }
     }
 }
-
-
-//extension SellerAddProductVC {
-//    func SellerAddProductApiCalling() {
-//
-//
-//        guard let name  = txfName.text else {return}
-//        guard let price = txfPrice.text else {return}
-//        guard let description = txvDescription.text else {return}
-//
-//
-//        let addProductParam = SellerAddProductModel(name: name, categoryRef: categoryRef!, subCategory: subCategory!, price: price, brandRef: brandRef!, description: description, sellerRef:defaults.value(forKey: "DefaultssellerRef") as! String  , productVideo: "", productCoverImage: "")
-//        APIManger.shareInstance.callingSellerAddProductAPI(sellerAddProduct: addProductParam) {(result) in
-
-//            switch result{
-//            case.success(let json):
-//                print(json!)
-//
-//            case.failure(let err):
-//                print(err.localizedDescription)
-//            }
-//
-//
-//
-//        }
-//
-//    }
-//}
-
 
 
 //TODO:- Update User Info API
@@ -456,6 +430,3 @@ extension SellerAddProductVC{
 }
 
 
-
-
-//}

@@ -22,7 +22,7 @@ class SellerMoreTabVC: UIViewController {
     var arrMoreMenu = [SellerMoreMenu]()
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         arrMoreMenu = [SellerMoreMenu(TitleMenu: "Profile", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Earnings", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Settings", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Notifications", ImgTitle: ""),SellerMoreMenu(TitleMenu: "About", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Contact", ImgTitle:"")]
         
         
@@ -56,52 +56,40 @@ extension SellerMoreTabVC:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let strMenu = arrMoreMenu[indexPath.row].TitleMenu
-        
-               if (strMenu ==  "Profile"){
-                   guard let vcProfile = storyboard?.instantiateViewController(identifier: "SellerProfileVC") as? SellerProfileVC else{
-       
-                       return
-                   }
-                
-                let navController = UINavigationController(rootViewController: vcProfile)
-                   present(navController, animated: true)
-               }
+        if (strMenu ==  "Profile"){
+            guard let vcProfile = storyboard?.instantiateViewController(identifier: "SellerProfileVC") as? SellerProfileVC else{
+
+                return
+            }
+
+            let navController = UINavigationController(rootViewController: vcProfile)
+            present(navController, animated: true)
+        }
         
         
         else if(strMenu ==  "Earnings"){
-                    guard let vcEarning = storyboard?.instantiateViewController(identifier: "SellerEarningVC") as? SellerEarningVC else{
-        
-                        return
-                    }
+            guard let vcEarning = storyboard?.instantiateViewController(identifier: "SellerEarningVC") as? SellerEarningVC else{
+                return
+            }
             self.navigationController?.pushViewController(vcEarning, animated: true)
-                }
+        }
         
-//
-//        guard let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as? selle else{
-//
-//                       return
-//                   }
-//                   present(vc, animated: true)
-//               }
-//
+        else if(strMenu == "About") {
+            guard let vc = storyboard?.instantiateViewController(identifier: "SellerAboutUSVC") as? SellerAboutUSVC else{
+                return
+            }
+            present(vc, animated: true)
+        }
+
+        else if(strMenu == "Contact") {
+            guard let vc = storyboard?.instantiateViewController(identifier: "SellerContactUSVc") as? SellerContactUSVc else{
+                return
+            }
+            present(vc, animated: true)
+        }
         
-        //  print("You selected cell #\(indexPath.item)!")
-//
-//        let strData = arrMoreMenu[indexPath.item].
-//        print(strData)
-//
-//        if (strData ==  "Profile"){
-//            guard let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as? ProfileVC else{
-//
-//                return
-//            }
-//            present(vc, animated: true)
-//        }
-//
-//
-//
-//    }
-}
+
+    }
 
 }
 
@@ -110,12 +98,12 @@ extension SellerMoreTabVC:UICollectionViewDelegate,UICollectionViewDataSource {
 extension SellerMoreTabVC : UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-             return CGSize(width: 107 , height: 126)
-         }
+        return CGSize(width: 107 , height: 126)
+    }
 
-         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-             return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-         }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
 
 
 }

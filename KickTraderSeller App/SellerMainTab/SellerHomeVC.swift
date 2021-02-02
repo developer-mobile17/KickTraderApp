@@ -11,8 +11,7 @@ import UIKit
 
 class SellerHomeVC: UIViewController {
     @IBOutlet var objScroll : UIScrollView!
-    @IBOutlet var objTbl : UITableView!
-    
+
     
     //TODO:- Seller Order Details
     
@@ -27,6 +26,15 @@ class SellerHomeVC: UIViewController {
     @IBOutlet var lblEarnToday: UILabel!
     @IBOutlet var lblOrderQueue: UILabel!
     @IBOutlet var lblInProgress: UILabel!
+
+
+    @IBOutlet var lblPersonalBalance: UILabel!
+    @IBOutlet var lblAvgSellingPrice: UILabel!
+    @IBOutlet var lblPendingClearance: UILabel!
+    @IBOutlet var lblEarningLastMonth: UILabel!
+    @IBOutlet var lblActiveOrder: UILabel!
+    @IBOutlet var lblCancelledOrders: UILabel!
+    
     
     
     var arrEarnings = [EarningDetails]()
@@ -34,7 +42,6 @@ class SellerHomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.callingGetSellerEarningAPI()
-        self.objTbl.tableFooterView = UIView()
         objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height:1200))
         
     }
@@ -74,20 +81,28 @@ extension SellerHomeVC {
                 
                 ProgressHUD.dismiss()
                 let getSellerEarning = (json as! SellerGetEarningResponse).earningDetails
-                
-                
-                
-                self.arrEarnings.append(getSellerEarning!)
-                print(self.arrEarnings)
-                
+
+
                 self.lblShopName.text = getSellerEarning?.sellerDetail?.full_Name
                 self.lblShopDesc.text = getSellerEarning?.sellerDetail?.shop_description
-                
                 self.lblTotolOrder.text = getSellerEarning?.totalOrders
                 self.lblEarnToday.text =  "\("$")\(String(getSellerEarning?.earnedToday ?? 00))"
                 self.lblOrderQueue.text =  String(getSellerEarning?.orderQueue ?? 00)
                 self.lblInProgress.text = getSellerEarning?.inProgress
-                self.objTbl.reloadData()
+
+
+
+
+                //TODO:- Show Earning Detail Here
+                self.lblPersonalBalance.text = "\("$")\(String(getSellerEarning?.personalBalance ?? 00))"
+                self.lblAvgSellingPrice.text = "\("$")\(getSellerEarning?.avgSellingPrice ?? "No Data")"
+                self.lblPendingClearance.text = "\("$")\(String(getSellerEarning?.pendingClearance ?? 00))"
+                self.lblEarningLastMonth.text = "\("$")\(getSellerEarning?.lastMonthEarnings ?? "No Data")"
+                self.lblActiveOrder.text = "\(getSellerEarning?.activeAppointmentCount ?? "No Data") \("$")\(getSellerEarning?.activeAppointment ?? "No Data")"
+                self.lblCancelledOrders.text = "\(getSellerEarning?.cancelOrderCount ?? "No Data") \("$")\(getSellerEarning?.cancelledAppointment ?? "No Data")"
+
+
+
                 
             case.failure(let err):
                 print(err.localizedDescription)
@@ -99,23 +114,3 @@ extension SellerHomeVC {
 }
 
 
-
-
-extension SellerHomeVC: UITableViewDataSource,UITableViewDelegate{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        arrEarnings.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SellerHomeCell", for: indexPath) as! SellerHomeCell
-        
-        let EarningDataModel = arrEarnings[indexPath.row]
-    
-        cell.lblTitle?.text =  "\("Personal Balance            ")\(String(EarningDataModel.personalBalance!))"
-      //  cell.lblPrice?.text = EarningDataModel.priceEarning
-        
-        return cell
-    }
-    
-    
-}

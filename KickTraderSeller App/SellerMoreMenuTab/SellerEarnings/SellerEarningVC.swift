@@ -17,6 +17,18 @@ struct SellerEarningData {
 class SellerEarningVC: UIViewController {
     @IBOutlet var objView: UIView!
     @IBOutlet var objTbl: UITableView!
+
+    @IBOutlet var lblPersonalBalance: UILabel!
+    @IBOutlet var lblAvgSellingPrice: UILabel!
+    @IBOutlet var lblLastMonthEarning: UILabel!
+    @IBOutlet var lblActiveAppoinemnt: UILabel!
+    @IBOutlet var lblPendingClearance: UILabel!
+    @IBOutlet var lblCancelAppointment: UILabel!
+    
+
+
+
+    
     var arrSellerEarnings = [SellerEarningData]()
 
     override func viewDidLoad() {
@@ -26,6 +38,7 @@ class SellerEarningVC: UIViewController {
         
         
         self.objTbl.tableHeaderView = self.objView
+        self.callingGetSellerEarningAPI()
         
     }
     
@@ -94,3 +107,47 @@ extension SellerEarningVC: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+
+
+//MARK:- Get Seller Bid Request API
+extension SellerEarningVC {
+    func callingGetSellerEarningAPI(){
+
+        ProgressHUD.show("Loading...", interaction: false)
+
+
+
+      //  let getSellerEarningParam = SellerGetEarningRequest(sellerRef: "gdj6Xt0Ik3XEj")
+
+       let getSellerEarningParam = SellerGetEarningRequest(sellerRef: UserDefaults.standard.value(forKey: "DefaultssellerRef") as! String)
+//
+//
+        APIManger.shareInstance.callingGetEarningsAPI(SellerGetEarningParam: getSellerEarningParam) {(result) in
+
+            switch result{
+            case.success(let json):
+              //  print(json!)
+
+                ProgressHUD.dismiss()
+                let getSellerEarning = (json as! SellerGetEarningResponse).earningDetails
+
+                //TODO:- Show Earning Detail Here
+                self.lblPersonalBalance.text = "\("$")\(String(getSellerEarning?.personalBalance ?? 00))"
+                self.lblAvgSellingPrice.text = "\("$")\(getSellerEarning?.avgSellingPrice ?? "No Data")"
+                self.lblPendingClearance.text = "\("$")\(String(getSellerEarning?.pendingClearance ?? 00))"
+                self.lblLastMonthEarning.text = "\("$")\(getSellerEarning?.lastMonthEarnings ?? "No Data")"
+                self.lblActiveAppoinemnt.text = "\("$")\(getSellerEarning?.activeAppointment ?? "No Data")"
+                self.lblCancelAppointment.text = "\("$")\(getSellerEarning?.cancelledAppointment ?? "No Data")"
+
+            case.failure(let err):
+                print(err.localizedDescription)
+            }
+
+        }
+
+    }
+}
+
+
+

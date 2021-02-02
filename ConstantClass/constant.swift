@@ -11,7 +11,11 @@ import Foundation
 
 //TODO:- Auth API for Seller & Buyer
 
-let base_url = "http://hourlylancer.com/kickTraders/api/v1"
+//let base_url = "http://hourlylancer.com/kickTraders/api/v1"
+let base_url = "http://167.172.244.4/api/v1"
+
+//http://167.172.244.4/
+
 let login_url = "\(base_url)/login"
 let forgerPassword_url = "\(base_url)/ForgetPassword"
 let sellerSignUp_url = "\(base_url)/signup"
