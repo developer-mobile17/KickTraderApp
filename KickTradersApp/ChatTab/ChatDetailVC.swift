@@ -35,6 +35,12 @@ class ChatDetailVC:UIViewController,UITextViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         lblHeaderTitle.text = receiverName
 
         let strURL = "\(PROFILE_IMAGE)\(String(describing: receiverPhoto!))"
@@ -65,8 +71,22 @@ class ChatDetailVC:UIViewController,UITextViewDelegate{
         objTxvSendMessage.delegate = self
         objTxvSendMessage.text = "Write your message here..."
 
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMessages), name: Notification.Name(rawValue: "reloadChatListTable"), object: nil)
     }
 
+
+    @objc func updateMessages(notification: NSNotification) {
+
+        DispatchQueue.main.async {
+            print("Chat Message list called.")
+            self.callingGetChatHistoryAPI()
+        }
+
+        // Handle your notifications...
+
+
+      }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -93,25 +113,36 @@ extension ChatDetailVC {
     func callingGetChatHistoryAPI() {
 
         let getChatHistoryParam = ChatHistoryModelRequest(chatRef:chatRefPass, userRef:UserDefaults.standard.value(forKey: "DefaultsbuyerRef") as! String)
-        ProgressHUD.show(interaction: false)
+      //  ProgressHUD.show(interaction: false)
 
         BuyerAPIManager.shareInstance.CallingGetChat_HistoryAPI(getChat_HistoryParam: getChatHistoryParam) { (result) in
 
 
             switch result {
             case.success(let json):
-              //  print(json!)
-                ProgressHUD.dismiss()
+            //  print(json!)
+          //  ProgressHUD.dismiss()
 
-                self.arrChatHistory = (json as! ChatHistoryModelResponse).chatHistory!
-               // print(self.arrChatHistory)
+            self.arrChatHistory = (json as! ChatHistoryModelResponse).chatHistory!
+            // print(self.arrChatHistory)
 
+
+
+
+            self.objChatTable.reloadData()
                 DispatchQueue.main.async {
-                    self.objChatTable.reloadData()
+                    let lastSectionIndex = self.objChatTable.numberOfSections - 1 // last section
+                    let lastRowIndex =  self.objChatTable.numberOfRows(inSection: lastSectionIndex) - 1 // last row
+                    self.objChatTable.scrollToRow(at: IndexPath(row: lastRowIndex, section: lastSectionIndex), at: .bottom, animated: true)
+
                 }
 
+
+
+
+
             case.failure(let err):
-                ProgressHUD.dismiss()
+               // ProgressHUD.dismiss()
                 print(err.localizedDescription)
             }
 
@@ -142,6 +173,7 @@ extension ChatDetailVC : UITableViewDataSource{
                     let dateString =  ChatHistoryModel.created_at!
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                  //  dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
                     let s = dateFormatter.date(from: dateString)
 
 
@@ -149,6 +181,7 @@ extension ChatDetailVC : UITableViewDataSource{
 
                     let date2Formatter = DateFormatter()
                     date2Formatter.dateFormat = "MMM d, h:mm a"
+                  //  date2Formatter.timeZone = NSTimeZone.local
                     let date2String = date2Formatter.string(from:s! as Date)
                     print(date2String)
                     //cell.lblDate.text = date2String
@@ -174,14 +207,23 @@ extension ChatDetailVC : UITableViewDataSource{
 
                     let imgURL = URL(string:"\(chatImgBase_Url)\(ChatHistoryModel.chatImage!)")!
                     print(imgURL)
-                    cell.imgVW.kf.setImage(with: imgURL)
+                 //   cell.imgVW.kf.setImage(with: imgURL)
                     return cell
                 }
             }
             return UITableViewCell()
         }
 
-    
+
+
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+
+
+    }
+
+
 
 
 //    func numberOfSections(in tableView: UITableView) -> Int {

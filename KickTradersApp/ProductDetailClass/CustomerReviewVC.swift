@@ -15,6 +15,12 @@ class CustomerReviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         let defaults = UserDefaults.standard
               if let data = defaults.data(forKey: "arrCommentPass") {
                 arrComments = try! PropertyListDecoder().decode([Comments].self, from: data)

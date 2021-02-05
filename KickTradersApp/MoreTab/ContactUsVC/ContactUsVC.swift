@@ -13,6 +13,12 @@ class ContactUsVC: UIViewController,UITextViewDelegate {
     @IBOutlet var txvContactUs: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
         txvContactUs.delegate = self
         txvContactUs.text = "Enter your message."
         txvContactUs.textColor = UIColor.lightGray

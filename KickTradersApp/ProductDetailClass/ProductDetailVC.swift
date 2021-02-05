@@ -88,6 +88,12 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         imgWarning1.isHidden = true
         imgWarning2.isHidden = true
         imgWarning3.isHidden = true
@@ -182,8 +188,6 @@ extension ProductDetailVC{
     
     @objc func didFinishDownloading()
     {
-
-
         productImgSlider.configure(with: UserDefaults.standard.value(forKey: "imgPass") as! [Any])
 
     }

@@ -465,6 +465,7 @@
 		9E04DE4F25386DF000A988EB /* HelperClass */ = {
 			isa = PBXGroup;
 			children = (
+				9EFCA34125CD6BC1006CAA81 /* ThumbimageGenerator */,
 				9E4D46BE254C03F70062306C /* PhotoSlider */,
 				9E04DE5025386E9700A988EB /* Extensioninspectable.swift */,
 				9EFF0C7C2597452A00184969 /* Reachbility.swift */,
@@ -987,6 +988,13 @@
 				9EF513FB25B96E4D00BEF943 /* DisputeViewVC.swift */,
 			);
 			path = DisputeView;
+			sourceTree = "<group>";
+		};
+		9EFCA34125CD6BC1006CAA81 /* ThumbimageGenerator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThumbimageGenerator;
 			sourceTree = "<group>";
 		};
 		DFF2EEED21F351710D588C63 /* Pods */ = {

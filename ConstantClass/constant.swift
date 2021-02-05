@@ -181,11 +181,11 @@ let chatImgBase_Url = "http://hourlylancer.com/kickTraders/admin/assets/uploads/
 
 
 //TODO:- Product Images
-let  PRODUCT_UNBOXING_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/unboxingVideo/"
-let  PRODUCT_VIDEO = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productVideo/"
-let  PRODUCT_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productImages/"
-let  PRODUCT_COVER_IMAGE = "http://hourlylancer.com/kickTraders/admin/assets/uploads/productCoverImage/"
-let  PROFILE_IMAGE =  "http://hourlylancer.com/kickTraders/admin/assets/uploads/profile_pic/"
+let  PRODUCT_UNBOXING_VIDEO = "http://45.55.126.236/admin/assets/uploads/unboxingVideo/"
+let  PRODUCT_VIDEO = "http://45.55.126.236/admin/assets/uploads/productVideo/"
+let  PRODUCT_IMAGE = "http://45.55.126.236/admin/assets/uploads/productImages/"
+let  PRODUCT_COVER_IMAGE = "http://45.55.126.236/admin/assets/uploads/productCoverImage/"
+let  PROFILE_IMAGE =  "http://45.55.126.236/admin/assets/uploads/profile_pic/"
 
 
 let  About_US = "https://kicktraders.com/about-us/"

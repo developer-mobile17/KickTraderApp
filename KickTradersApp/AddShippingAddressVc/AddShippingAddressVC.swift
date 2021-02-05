@@ -13,7 +13,8 @@ class AddShippingAddressVC: UIViewController {
 
     @IBOutlet var txfFullname: UITextField!
     @IBOutlet var txfPhoneNumber: UITextField!
-    @IBOutlet var btnZipCode: UIButton!
+    
+    @IBOutlet var txfZipCode: UITextField!
     @IBOutlet var txfAddress: UITextField!
     @IBOutlet var txfCity: UITextField!
     @IBOutlet var txfState: UITextField!
@@ -25,6 +26,11 @@ class AddShippingAddressVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
         
         
         GMSPlacesClient.provideAPIKey("AIzaSyADyDKWRpepDv2l00WJ4EVvEFmS3IlzPVc")
@@ -56,33 +62,26 @@ class AddShippingAddressVC: UIViewController {
     
     
     @IBAction func actionAddNewAddress(_ sender: Any) {
-        
         self.callingAddNewShippingAddressAPI()
     }
-    
 }
-
-
 
 //TODO:- Add New  Shipping Address API
 extension AddShippingAddressVC {
     func callingAddNewShippingAddressAPI() {
         
         ProgressHUD.show("Please wait.",  interaction: false)
-        
-        
         let strBuyRef = defaultsAddress.value(forKey:"DefaultsbuyerRef")
         guard let fullname = txfFullname.text else {return}
         guard let phoneNumber = txfPhoneNumber.text else {return}
-       // guard let zipCode = txfFullname.text else {return}
+        guard let zipCode = txfZipCode.text else {return}
         guard let address = txfAddress.text else {return}
         guard let city = txfCity.text else {return}
         guard let state = txfState.text else {return}
         
         
-        
-     
-        let addShippingAddressParam = addShippingAddressModel(buyerRef:strBuyRef as! String, deliveredTo: fullname, mobile: phoneNumber, address: address, city: city, state: state, pin: "140603")
+
+        let addShippingAddressParam = addShippingAddressModel(buyerRef:strBuyRef as! String, deliveredTo: fullname, mobile: phoneNumber, address: address, city: city, state: state, pin: zipCode)
        
         BuyerAPIManager.shareInstance.addNewShippingAddressAPI(addShippingAddressParam: addShippingAddressParam) { (result) in
             
@@ -107,45 +106,3 @@ extension AddShippingAddressVC {
   
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-//extension AddShippingAddressVC: GMSAutocompleteViewControllerDelegate {
-//
-//  // Handle the user's selection.
-//  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-//    print("Place name: \(place.name)")
-//    print("Place ID: \(place.placeID)")
-//    print("Place attributions: \(place.attributions)")
-//    dismiss(animated: true, completion: nil)
-//  }
-//
-//  func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-//    // TODO: handle the error.
-//    print("Error: ", error.localizedDescription)
-//  }
-//
-//  // User canceled the operation.
-//  func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-//    dismiss(animated: true, completion: nil)
-//  }
-//
-//  // Turn the network activity indicator on and off again.
-//  func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-//  }
-//
-//  func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-//    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//  }
-//
-//}

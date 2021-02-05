@@ -23,6 +23,12 @@ class SellerMoreTabVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         arrMoreMenu = [SellerMoreMenu(TitleMenu: "Profile", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Earnings", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Settings", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Notifications", ImgTitle: ""),SellerMoreMenu(TitleMenu: "About", ImgTitle: ""),SellerMoreMenu(TitleMenu: "Contact", ImgTitle:"")]
         
         

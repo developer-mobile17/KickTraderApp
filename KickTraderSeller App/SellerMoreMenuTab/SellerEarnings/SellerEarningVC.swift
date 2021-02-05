@@ -34,6 +34,12 @@ class SellerEarningVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
        arrSellerEarnings = [SellerEarningData(earningTitle: "Cancelled Orders", earningPrice: "$50"),SellerEarningData(earningTitle: "Pending Clearance", earningPrice: "$20"),SellerEarningData(earningTitle: "Withdraw", earningPrice: "$45"),SellerEarningData(earningTitle: "Cleared", earningPrice: "$145")]
         
         

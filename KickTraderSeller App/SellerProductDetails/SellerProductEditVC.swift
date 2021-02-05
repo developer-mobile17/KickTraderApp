@@ -53,6 +53,12 @@ class SellerProductEditVC: UIViewController {
         super.viewDidLoad()
 
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         NotificationCenter.default.addObserver(self, selector: #selector(NotificatonCallToUpdateImageOfShoe), name: Notification.Name(rawValue: "checkSize"), object: nil)
     objScroll.contentSize = (CGSize(width: self.objScroll.frame.size.width, height:1200))
         objTbl.tableFooterView = UIView()

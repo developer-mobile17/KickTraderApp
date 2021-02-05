@@ -25,6 +25,12 @@ class ProfileVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
         self.CallingGetUserInfoAPI()
 
     }
@@ -173,6 +179,8 @@ extension ProfileVC{
                     print("Success!")
                     print(dictionary)
                     ProgressHUD.dismiss()
+
+                    AppSnackBar.make(in: self.view, message:"Profile updated successfully.", duration: .lengthShort).show()
                 }
                 catch {
                     // catch error.

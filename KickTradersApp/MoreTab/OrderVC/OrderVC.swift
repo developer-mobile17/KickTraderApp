@@ -26,6 +26,12 @@ class OrderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         arrOrderData = [OrderModelData(ShoeImg: "ezgif1 1",ShoesName: "Puma Shoes", Size: "7",Color: #colorLiteral(red: 0.7019607843, green: 0.09803921569, blue: 0.1333333333, alpha: 1),Price: "$105", Status: "Delivered"),
                      OrderModelData(ShoeImg: "ezgif1 1",ShoesName: "Nike Shoes", Size: "7",Color: #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1),Price: "$105", Status: "Cancelled"),
         

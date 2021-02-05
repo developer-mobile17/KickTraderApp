@@ -13,7 +13,9 @@ class PhotoSliderView: UIView {
     // MARK: Configure Methods
     
     func configure(with images: [Any]) {
-        
+
+
+
         // Get the scrollView width and height
         let scrollViewWidth: CGFloat = scrollView.frame.width
         let scrollViewHeight: CGFloat = scrollView.frame.height
@@ -25,9 +27,11 @@ class PhotoSliderView: UIView {
                                                       width: scrollViewWidth,
                                                       height: scrollViewHeight))
             
-            imageView.showLoading(color: UIColor.red)
 
             DispatchQueue.main.async {
+                imageView.showLoading(color: UIColor.red)
+
+
                 let sliderImgUrl = URL(string:"\(PRODUCT_IMAGE)\(image)")
                 print(sliderImgUrl!)
 
@@ -38,9 +42,6 @@ class PhotoSliderView: UIView {
                 imageView.stopLoading()
 
             }
-
-
-
         }
         
         // Set the scrollView contentSize

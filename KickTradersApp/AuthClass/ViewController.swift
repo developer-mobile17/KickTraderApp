@@ -15,18 +15,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
 
-//        let launchedBefore = UserDefaults.standard.bool(forKey: "DefaultFirstTimeLogin")
-//                if launchedBefore
-//                {
-//                    print("Not first launch.")
-//                    self.goToBuyerHome()
-//                }
-//                else
-//                {
-//                    print("First launch")
-//                    UserDefaults.standard.set(true, forKey: "DefaultFirstTimeLogin")
-//                }
+
+        let launchedBefore = UserDefaults.standard.bool(forKey: "DefaultFirstTimeLogin")
+                if launchedBefore
+                {
+                    print("Not first launch.")
+                    self.goToBuyerHome()
+                }
+                else
+                {
+                    print("First launch")
+                    UserDefaults.standard.set(true, forKey: "DefaultFirstTimeLogin")
+                }
 
 
         

@@ -18,6 +18,12 @@ class MoreVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // overrideUserInterfaceStyle is available with iOS 13
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
         
         arrMenus = [MoreOptionData(moreMenu: "Profile", moremenuImg: "transProfile"),
                     MoreOptionData(moreMenu: "Transactions", moremenuImg: "transaction 1")
@@ -33,13 +39,9 @@ class MoreVC: UIViewController {
     @IBAction func actionBuyerLogout(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
-    
 }
 
 extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
-    
-    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // 2
@@ -106,7 +108,7 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
 
 
 
-        else if(strData == "Setting"){
+        else if(strData == "Settings"){
             let vcSetting = storyboard?.instantiateViewController(identifier: "SettingVC") as! SettingVC
             self.navigationController?.pushViewController(vcSetting, animated: true)
 
@@ -142,33 +144,29 @@ extension MoreVC : UICollectionViewDataSource, UICollectionViewDelegate{
                 return
             }
             present(vc, animated: true)
-
-            
         }
     }
-
-    
 }
 extension MoreVC: UICollectionViewDelegateFlowLayout {
 
 
-func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
-    
-    let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-    
-    let numberofItem: CGFloat = 3
-    
-    let collectionViewWidth = self.objCollection.bounds.width
-    
-    let extraSpace = (numberofItem - 1) * flowLayout.minimumInteritemSpacing
-    
-    let inset = flowLayout.sectionInset.right + flowLayout.sectionInset.left
-    
-    let width = Int((collectionViewWidth - extraSpace - inset) / numberofItem)
-    
-   // print(width)
-    
-    return CGSize(width: width, height: width)
-}
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+        let numberofItem: CGFloat = 3
+
+        let collectionViewWidth = self.objCollection.bounds.width
+
+        let extraSpace = (numberofItem - 1) * flowLayout.minimumInteritemSpacing
+
+        let inset = flowLayout.sectionInset.right + flowLayout.sectionInset.left
+
+        let width = Int((collectionViewWidth - extraSpace - inset) / numberofItem)
+
+        // print(width)
+
+        return CGSize(width: width, height: width)
+    }
 }

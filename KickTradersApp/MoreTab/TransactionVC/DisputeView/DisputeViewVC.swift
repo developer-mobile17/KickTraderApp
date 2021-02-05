@@ -23,6 +23,12 @@ class DisputeViewVC: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         txvAddDispute.delegate = self
         txvAddDispute.text = "Enter your dispute message."
         txvAddDispute.textColor = UIColor.lightGray

@@ -17,6 +17,12 @@ class ChatVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
         
         self.callingGetChatListAPI()
         
@@ -88,8 +94,7 @@ extension ChatVC : UITableViewDataSource,UITableViewDelegate{
 
 
 
-        DispatchQueue.main.async {
-            
+      
             self.getProfileImgOfChatUser = URL(string:"\(PROFILE_IMAGE)\(ChatListModel.profile_Image!)")
             cell.imgUser.kf.setImage(with: self.getProfileImgOfChatUser)
             cell.imgUser.stopLoading()
@@ -98,7 +103,7 @@ extension ChatVC : UITableViewDataSource,UITableViewDelegate{
          //   cell.lblDate.text = ChatListModel.create_at
           //
             
-        }
+      //  }
         
         return cell
         

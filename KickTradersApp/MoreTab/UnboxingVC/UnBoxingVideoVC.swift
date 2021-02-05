@@ -20,6 +20,13 @@ class UnBoxingVideoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
         
         self.CallingGetUnboxingVideoAPI()
         
@@ -40,7 +47,9 @@ extension UnBoxingVideoVC {
                 
                 ProgressHUD.dismiss()
                 self.arrUnboxingResult = ((json as! unboxingVideoModel).unboxingResult)!
-                strBaseUrl = ((json as! unboxingVideoModel).base_url)!
+
+                guard let videoBaseURL = (json as? unboxingVideoModel)?.base_url else {return}
+                strBaseUrl = videoBaseURL
                 self.objTable.reloadData()
                 
                 
@@ -63,14 +72,18 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "unBoxingVideoCell", for: indexPath) as!unBoxingVideoCell
-       
+     //   let thumbnail = ROThumbnail.sharedInstance
         let unboxingVideoData = self.arrUnboxingResult[indexPath.row]
         
         cell.btnVideoPlayClicked.isHidden = true
         cell.imgShoes.showLoading(color: .systemRed)
+        self.imgURL =  URL(string:"\(self.strBaseUrl!)\(unboxingVideoData.unboxingVideo!)")!
+      //  cell.imgShoes.image = thumbnail.getThumbnail(self.imgURL)
+
+
         
         DispatchQueue.global().async { [self] in
-           
+
         do {
             self.imgURL =  URL(string:"\(self.strBaseUrl!)\(unboxingVideoData.unboxingVideo!)")!
             let asset = AVURLAsset(url: self.imgURL!)
@@ -83,18 +96,18 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
                 cell.imgShoes.image = thumbnail
                 cell.btnVideoPlayClicked.isHidden = false
             }
-           
+
                     }catch{
                         print("Error is : \(error)")
                         DispatchQueue.main.async {
                             cell.imgShoes.stopLoading()
-                           // cell.imgShoes.image = UIImage(imageLiteralResourceName:"NoImg.png")
-                            
+                            cell.imgShoes.image = UIImage(imageLiteralResourceName:"NoImg.png")
+
                                     }
-                       
+
                     }
-        
-        
+
+
         }
 
         cell.lblBrandName.text = unboxingVideoData.brandName
@@ -108,13 +121,9 @@ extension UnBoxingVideoVC : UITableViewDataSource,UITableViewDelegate {
 
         }
 
-        
-        
-        
         cell.btnVideoPlayClicked.tag = indexPath.row
         cell.btnVideoPlayClicked .addTarget(self, action: #selector(btnVideoPlayClicked), for:.touchUpInside)
-        
-        
+
         return cell
     }
     

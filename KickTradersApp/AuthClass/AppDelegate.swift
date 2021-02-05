@@ -11,79 +11,98 @@ import UserNotifications
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 
     var deviceAppToken : String!
+    let notificationCenter = UNUserNotificationCenter.current()
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
 
         IQKeyboardManager.shared.enable = true
-//        IQKeyboardManager.shared.toolbarPreviousNextAllowedClasses.add(UIStackView.self)
+        //IQKeyboardManager.shared.toolbarPreviousNextAllowedClasses.add(UIStackView.self)
         //TODO:- Set Paypal credential
         PayPalMobile.initializeWithClientIds(forEnvironments: [PayPalEnvironmentSandbox:"AS86-0SRgY00ibp3Sm8hWzF3b-gfdd0FvM7-sRJ5dGGS65GaRB3gVDPxP2P1lfDTPPxzswZlveBKhWaO"])
-      
-       // TODO:- Ask user for Notification permission
+
+        // TODO:- Ask user for Notification permission
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-        (granted, error) in
-        guard granted else { return }
-        DispatchQueue.main.async {
-        UIApplication.shared.registerForRemoteNotifications()
+            (granted, error) in
+            guard granted else { return }
+            DispatchQueue.main.async {
+                self.notificationCenter.delegate = self
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
-        }
-
-
         return true
 
     }
 
 
 
-//MARK:- Register the app with APN server.
-
-
+    //MARK:- Register the app with APN server.
     func application(
-      _ application: UIApplication,
-      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-      let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-      let token = tokenParts.joined()
-      print("Device Token: \(token)")
-      UserDefaults.standard.set(token, forKey: "AppDeviceToken")
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        UserDefaults.standard.set(token, forKey: "AppDeviceToken")
     }
 
-
-
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-    print("failed to register for remote notifications: \(error.localizedDescription)")
+        print("failed to register for remote notifications: \(error.localizedDescription)")
     }
 
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-    print("Received push notification: \(userInfo)")
-    let aps = userInfo["aps"] as! [String: Any]
-    print("\(aps)")
+        print("Received push notification: \(userInfo)")
+        let aps = userInfo["aps"] as! [String: Any]
+        print("\(aps)")
     }
 
+    func application(_ application: UIApplication,didReceiveRemoteNotification userInfo: [AnyHashable: Any],fetchCompletionHandler completionHandler:@escaping (UIBackgroundFetchResult) -> Void) {
+
+        let state : UIApplication.State = application.applicationState
+            if (state == .inactive || state == .background) {
+                // go to screen relevant to Notification content
+                print("background")
+            } else {
+                // App is in UIApplicationStateActive (running in foreground)
+                print("foreground")
+               // showLocalNotification()
+            }
+        }
+
+    //MARK:- Set UserNotification Center
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                        willPresent notification: UNNotification,
+                                        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+        {
+            completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+
+               // completionHandler([.alert, .sound])
+            let userInfoApns = notification.request.content.userInfo
+            print(userInfoApns)
+
+            if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive || UIApplication.shared.applicationState == .active {
+
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadChatListTable"), object: nil)
+                 }
+            }
 
 
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-       
+
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         
-    }
-
-
-}
-extension String {
-    public init(deviceToken: Data) {
-        self = deviceToken.map { String(format: "%.2hhx", $0) }.joined()
     }
 }
 

@@ -16,6 +16,12 @@ class SellerAboutUSVC: UIViewController,WKNavigationDelegate,WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         webload = WKWebView()
         webload.navigationDelegate = self
         webload.uiDelegate = self

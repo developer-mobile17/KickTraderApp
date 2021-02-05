@@ -16,7 +16,14 @@ class LoginVC: UIViewController {
     var statusResponse: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
         txfEmail.text = "buyer@gmail.com"
        // txfEmail.text = "iOS@gmail.com"
         txfPassword.text = "1234"
