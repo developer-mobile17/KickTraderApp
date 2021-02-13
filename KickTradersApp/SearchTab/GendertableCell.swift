@@ -45,13 +45,18 @@ extension GendertableCell: UICollectionViewDataSource, UICollectionViewDelegate,
         return cellGender
     }
     
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         print("You selected cell #\(indexPath.item)! \(arrGender[indexPath.row])")
         let cell = collectionView.cellForItem(at: indexPath) as? GenderCollectionCell
         cell?.isSelected = true
+
+
+        print("Selected Gender is", arrGender[indexPath.row])
+
+
+        UserDefaults.standard.setValue(arrGender[indexPath.row], forKey: "DefaultSearchGender")
         cell?.toggleSelected()
     }
 

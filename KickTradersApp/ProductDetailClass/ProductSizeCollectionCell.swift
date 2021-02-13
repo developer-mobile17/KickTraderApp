@@ -18,12 +18,14 @@ class ProductSizeCollectionCell: UICollectionViewCell {
 
             lblSize.layer.cornerRadius = lblSize.bounds.height/2
             lblSize.layer.backgroundColor = UIColor.black.cgColor
+            lblSize.textColor = UIColor.white
             
         }
 
         else {
             lblSize.cornerRadius = 0
             lblSize.layer.backgroundColor = UIColor.clear.cgColor
+            lblSize.textColor = UIColor.black
         }
 
     }

@@ -207,7 +207,7 @@ extension ChatDetailVC : UITableViewDataSource{
 
                     let imgURL = URL(string:"\(chatImgBase_Url)\(ChatHistoryModel.chatImage!)")!
                     print(imgURL)
-                 //   cell.imgVW.kf.setImage(with: imgURL)
+                    cell.imgVW.kf.setImage(with: imgURL)
                     return cell
                 }
             }

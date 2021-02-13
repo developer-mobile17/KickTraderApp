@@ -94,7 +94,7 @@ extension ForgetPasswordVC {
     func GoToEnterOTPView() {
         
        let  vwEnterOTP = self.storyboard?.instantiateViewController(identifier: "EnterOTPVC") as! EnterOTPVC
-        vwEnterOTP.passOTP = self.oTP
+        vwEnterOTP.passOTP = String(self.oTP)
         vwEnterOTP.passMobileNo = mobilePass
         self.navigationController?.pushViewController(vwEnterOTP, animated: true)
     

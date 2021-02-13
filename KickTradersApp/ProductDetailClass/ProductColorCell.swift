@@ -44,9 +44,11 @@ extension ProductColorCell: UICollectionViewDataSource,UICollectionViewDelegate,
         let colorDataModel = arrProductColor[indexPath.row]
         
         SizeCollection.lblColor.backgroundColor =  UIColor(hexFromString:colorDataModel.colorCode!)
-        SizeCollection.lblColor.layer.cornerRadius = 7
-        SizeCollection.lblColor.clipsToBounds = true
-        
+
+        SizeCollection.lblColor.borderColor = UIColor.white
+        SizeCollection.lblColor.textDropShadow()
+        SizeCollection.lblColor.borderWidth = 3
+
         
         return SizeCollection
     }
@@ -54,13 +56,12 @@ extension ProductColorCell: UICollectionViewDataSource,UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
-        let CCell : UICollectionViewCell = collectionView.cellForItem(at: indexPath) as!ProductColorCollectionCell
+
+        let CCell = collectionView.cellForItem(at: indexPath) as! ProductColorCollectionCell
 
         CCell.isSelected = true
-        CCell.layer.borderColor = UIColor.black.cgColor
-        CCell.layer.borderWidth = 2
-        CCell.layer.cornerRadius = 5
+        CCell.toggleColorSelection()
+
 
         let arrSelecetSize = arrProductColor[indexPath.row].size!
         if let data = try? PropertyListEncoder().encode(arrSelecetSize) {
@@ -94,9 +95,13 @@ extension ProductColorCell: UICollectionViewDataSource,UICollectionViewDelegate,
         
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        let CCell : UICollectionViewCell = collectionView.cellForItem(at: indexPath) as!ProductColorCollectionCell
-        CCell.layer.backgroundColor = UIColor.clear.cgColor
-        CCell.layer.borderColor = UIColor.clear.cgColor
+//        let CCell : UICollectionViewCell = collectionView.cellForItem(at: indexPath) as!ProductColorCollectionCell
+
+        let CCell = collectionView.cellForItem(at: indexPath) as! ProductColorCollectionCell
+        CCell.isSelected = false
+        CCell.toggleColorSelection()
+//        CCell.layer.backgroundColor = UIColor.clear.cgColor
+//        CCell.layer.borderColor = UIColor.clear.cgColor
         
     }
     

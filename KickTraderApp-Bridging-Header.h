@@ -8,7 +8,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "PayPalMobile.h"
+
 
 #ifndef KickTraderApp_Bridging_Header_h
 #define KickTraderApp_Bridging_Header_h

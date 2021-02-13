@@ -74,6 +74,14 @@ let buyerRemoveCartItem_url = "\(base_url)/removeCartItem"
 let buyerAddItemToCart_url = "\(base_url)/addToCart"
 let buyerPlaceABid_url = "\(base_url)/placeBid"
 
+let buyerRemoveReview_url = "\(base_url)/removeReview"
+
+
+
+//TODO:- Buyer API's
+//TODO:- Search Tab API
+let BuyerSearchProduct_url = "\(base_url)/searchProduct"
+
 
 
 
@@ -138,6 +146,7 @@ let addReview_Url = "\(base_url)/addReview"
 //TODO:- Unboxing Video API's
 
 let getUnboxingVideo_Url = "\(base_url)/getUnboxingVideo"
+let addUnboxingVideo_Url = "\(base_url)/addUnboxingVideo"
 
 
 
@@ -173,7 +182,7 @@ let getChatList_Url = "\(base_url)/getChatList"
 let getChatHistory_Url = "\(base_url)/chatHistory"
 let chatSendMessage_Url = "\(base_url)/sendMessage"
 
-let chatImgBase_Url = "http://hourlylancer.com/kickTraders/admin/assets/uploads/chatImage/"
+let chatImgBase_Url = "http://45.55.126.236/admin/assets/uploads/chatImage/"
 
 
 
@@ -189,3 +198,6 @@ let  PROFILE_IMAGE =  "http://45.55.126.236/admin/assets/uploads/profile_pic/"
 
 
 let  About_US = "https://kicktraders.com/about-us/"
+
+let payPalWebViewURL = "http://45.55.126.236/paypalExpress/checkout.php?id="
+

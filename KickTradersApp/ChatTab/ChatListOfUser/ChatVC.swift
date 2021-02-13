@@ -8,24 +8,62 @@
 
 import UIKit
 
-
 class ChatVC: UIViewController{
-     @IBOutlet var objTbl : UITableView!
-     var arrGetChatList = [ChatDataList]()
-     var getDate:Date!
-     var getProfileImgOfChatUser: URL!
-    
+    @IBOutlet var objTbl : UITableView!
+    @IBOutlet var imgUserProfile: UIButton!
+    var arrGetChatList = [ChatDataList]()
+    var getDate:Date!
+    var getProfileImgOfChatUser: URL!
+    var strImgURLofloginUser:String!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
 
         // overrideUserInterfaceStyle is available with iOS 13
             if #available(iOS 13.0, *) {
                 // Always adopt a light interface style.
                 overrideUserInterfaceStyle = .light
             }
-        
+        //self.getProfileImg()
         self.callingGetChatListAPI()
+
         
+    }
+
+    @IBAction func actionGoToUserProfile(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as? ProfileVC else{
+
+            return
+        }
+        present(vc, animated: true)
+    }
+
+    //TODO:-  Get the User Profile
+    func getProfileImg (){
+        imgUserProfile.layer.cornerRadius = 12
+        imgUserProfile.clipsToBounds = true
+        
+        strImgURLofloginUser = UserDefaults.standard.value(forKey: "Defaultsprofile_Image")! as? String
+        if strImgURLofloginUser == nil {
+            print("No Profile Img")
+        }
+        else {
+            let imgProfileURL =  URL(string: "\(PROFILE_IMAGE)\(strImgURLofloginUser!)")
+            self.imgUserProfile.kf.setImage(with: imgProfileURL, for: .normal)
+            
+            
+            
+        }
+        
+        
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.getProfileImg()
     }
 
 }

@@ -30,6 +30,7 @@ class PhotoSliderView: UIView {
 
             DispatchQueue.main.async {
                 imageView.showLoading(color: UIColor.red)
+                imageView.backgroundColor = UIColor.white
 
 
                 let sliderImgUrl = URL(string:"\(PRODUCT_IMAGE)\(image)")

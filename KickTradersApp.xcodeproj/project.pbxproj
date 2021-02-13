@@ -30,6 +30,7 @@
 		9E0A56B3254D6B5400BFF96B /* orderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A56B2254D6B5400BFF96B /* orderCell.swift */; };
 		9E0A56B5254D6B6E00BFF96B /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A56B4254D6B6E00BFF96B /* OrderVC.swift */; };
 		9E0A56B7254D763400BFF96B /* RateSellerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A56B6254D763400BFF96B /* RateSellerVC.swift */; };
+		9E0BEAB825D254860040FDD1 /* removeReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0BEAB725D254860040FDD1 /* removeReviewModel.swift */; };
 		9E0CF33C25625B2B003E6FCC /* ForgetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0CF33B25625B2B003E6FCC /* ForgetPasswordModel.swift */; };
 		9E0FA3CF25A6DC65005929A0 /* ChatModelClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */; };
 		9E105CD7254FF2F700522887 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E105CD6254FF2F700522887 /* SettingVC.swift */; };
@@ -113,6 +114,7 @@
 		9E8DC8FD25518AD700375A63 /* SellerOrderTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DC8FC25518AD700375A63 /* SellerOrderTab.swift */; };
 		9E967A472551220300804A75 /* SellerMainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E967A462551220300804A75 /* SellerMainTab.swift */; };
 		9E967A4A255128C900804A75 /* SellerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E967A49255128C900804A75 /* SellerStoryboard.storyboard */; };
+		9E9979BF25D411DB00749016 /* addUnboxingVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9979BE25D411DB00749016 /* addUnboxingVideoModel.swift */; };
 		9E9BD28325678B7B0097C66C /* BuyerAPIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BD28225678B7B0097C66C /* BuyerAPIManger.swift */; };
 		9E9BD286256795680097C66C /* BuyerSignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BD285256795680097C66C /* BuyerSignUpModel.swift */; };
 		9E9BD2892567C5B60097C66C /* BuyerGetProductDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BD2882567C5B60097C66C /* BuyerGetProductDetailsModel.swift */; };
@@ -155,6 +157,9 @@
 		9ED40C342546B6AC00C95770 /* ProductSizeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED40C332546B6AC00C95770 /* ProductSizeCollectionCell.swift */; };
 		9ED40C362546B6C400C95770 /* ProductColorCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED40C352546B6C400C95770 /* ProductColorCollectionCell.swift */; };
 		9ED6286F258C9B560010D8F3 /* ProductDetailReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6286E258C9B560010D8F3 /* ProductDetailReviewCell.swift */; };
+		9EE160AB25D68565001761A4 /* searchProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE160AA25D68565001761A4 /* searchProductModel.swift */; };
+		9EE160BA25D6B25D001761A4 /* SearchedProductListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE160B925D6B25D001761A4 /* SearchedProductListVC.swift */; };
+		9EE160BE25D6B277001761A4 /* SearchProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE160BD25D6B277001761A4 /* SearchProductListCell.swift */; };
 		9EE42A8E257910B700D53E02 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE42A8D257910B700D53E02 /* FloatRatingView.swift */; };
 		9EE66463255A6AEA007E3F9F /* SellerEarningDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE66462255A6AEA007E3F9F /* SellerEarningDetailCell.swift */; };
 		9EE66466255A6B04007E3F9F /* SellerEarningDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE66465255A6B04007E3F9F /* SellerEarningDetailsVC.swift */; };
@@ -210,6 +215,7 @@
 		9E0A56B2254D6B5400BFF96B /* orderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderCell.swift; sourceTree = "<group>"; };
 		9E0A56B4254D6B6E00BFF96B /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
 		9E0A56B6254D763400BFF96B /* RateSellerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSellerVC.swift; sourceTree = "<group>"; };
+		9E0BEAB725D254860040FDD1 /* removeReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = removeReviewModel.swift; sourceTree = "<group>"; };
 		9E0CF33B25625B2B003E6FCC /* ForgetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordModel.swift; sourceTree = "<group>"; };
 		9E0FA3CE25A6DC65005929A0 /* ChatModelClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModelClass.swift; sourceTree = "<group>"; };
 		9E105CD6254FF2F700522887 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		9E8DC8FC25518AD700375A63 /* SellerOrderTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerOrderTab.swift; sourceTree = "<group>"; };
 		9E967A462551220300804A75 /* SellerMainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerMainTab.swift; sourceTree = "<group>"; };
 		9E967A49255128C900804A75 /* SellerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SellerStoryboard.storyboard; sourceTree = "<group>"; };
+		9E9979BE25D411DB00749016 /* addUnboxingVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addUnboxingVideoModel.swift; sourceTree = "<group>"; };
 		9E9BD28225678B7B0097C66C /* BuyerAPIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerAPIManger.swift; sourceTree = "<group>"; };
 		9E9BD285256795680097C66C /* BuyerSignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSignUpModel.swift; sourceTree = "<group>"; };
 		9E9BD2882567C5B60097C66C /* BuyerGetProductDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerGetProductDetailsModel.swift; sourceTree = "<group>"; };
@@ -335,6 +342,9 @@
 		9ED40C332546B6AC00C95770 /* ProductSizeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSizeCollectionCell.swift; sourceTree = "<group>"; };
 		9ED40C352546B6C400C95770 /* ProductColorCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductColorCollectionCell.swift; sourceTree = "<group>"; };
 		9ED6286E258C9B560010D8F3 /* ProductDetailReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailReviewCell.swift; sourceTree = "<group>"; };
+		9EE160AA25D68565001761A4 /* searchProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchProductModel.swift; sourceTree = "<group>"; };
+		9EE160B925D6B25D001761A4 /* SearchedProductListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedProductListVC.swift; sourceTree = "<group>"; };
+		9EE160BD25D6B277001761A4 /* SearchProductListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductListCell.swift; sourceTree = "<group>"; };
 		9EE42A8D257910B700D53E02 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		9EE66462255A6AEA007E3F9F /* SellerEarningDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerEarningDetailCell.swift; sourceTree = "<group>"; };
 		9EE66465255A6B04007E3F9F /* SellerEarningDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerEarningDetailsVC.swift; sourceTree = "<group>"; };
@@ -504,6 +514,9 @@
 				9E5719E825BAA2BD00CB73B4 /* addAuthenticationModel.swift */,
 				9E5719FB25BAB9A500CB73B4 /* changePasswordModel.swift */,
 				9E40679425C535280089B088 /* ContactUsModel.swift */,
+				9E0BEAB725D254860040FDD1 /* removeReviewModel.swift */,
+				9E9979BE25D411DB00749016 /* addUnboxingVideoModel.swift */,
+				9EE160AA25D68565001761A4 /* searchProductModel.swift */,
 			);
 			path = ModelClass;
 			sourceTree = "<group>";
@@ -678,6 +691,7 @@
 		9E86AF49256CBF0A00D65220 /* SearchTab */ = {
 			isa = PBXGroup;
 			children = (
+				9EE160B825D6B22F001761A4 /* SearchedProductList */,
 				9E0968B82540078F00C0C959 /* SearchVC.swift */,
 				9E0968BA2540110F00C0C959 /* SearchTopBrandCell.swift */,
 				9E0968C025401EAA00C0C959 /* colorTableCell.swift */,
@@ -942,6 +956,15 @@
 			path = ProductDetailClass;
 			sourceTree = "<group>";
 		};
+		9EE160B825D6B22F001761A4 /* SearchedProductList */ = {
+			isa = PBXGroup;
+			children = (
+				9EE160B925D6B25D001761A4 /* SearchedProductListVC.swift */,
+				9EE160BD25D6B277001761A4 /* SearchProductListCell.swift */,
+			);
+			path = SearchedProductList;
+			sourceTree = "<group>";
+		};
 		9EE66461255A6AB9007E3F9F /* SellerEarningDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1018,7 +1041,6 @@
 				9E04DE3125380B9600A988EB /* Frameworks */,
 				9E04DE3225380B9600A988EB /* Resources */,
 				4A81755A9644B130EF8FE73A /* [CP] Embed Pods Frameworks */,
-				E4F33157227F9D8177F2F776 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1130,23 +1152,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E4F33157227F9D8177F2F776 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KickTradersApp/Pods-KickTradersApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KickTradersApp/Pods-KickTradersApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KickTradersApp/Pods-KickTradersApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1165,6 +1170,7 @@
 				9E6A653C254191E4005A9B25 /* NotificationCell.swift in Sources */,
 				9E72FB6625BC04A0002E79FF /* CustomTableViewCell.swift in Sources */,
 				9E8DC261257109F700D0872D /* buyProductModel.swift in Sources */,
+				9E0BEAB825D254860040FDD1 /* removeReviewModel.swift in Sources */,
 				9E1EE2C6255CF6F500F15389 /* ProgressHUD.swift in Sources */,
 				9EF30ED42553C11F006537FD /* SellerMoreTabVC.swift in Sources */,
 				9E9BE6272574B2EC00651DC9 /* AddShippingAddressVC.swift in Sources */,
@@ -1242,6 +1248,7 @@
 				9E9DB8D72566438E00AB00BB /* SellerSignUpVerficationModel.swift in Sources */,
 				9EA82224253B17AD0075564F /* ChatVCCell.swift in Sources */,
 				9E105CD9254FF31100522887 /* SettingCell.swift in Sources */,
+				9EE160BA25D6B25D001761A4 /* SearchedProductListVC.swift in Sources */,
 				9E1D2CA325C2D151006583A6 /* CustomerReviewVC.swift in Sources */,
 				9E6A653A254191BF005A9B25 /* NotificationVC.swift in Sources */,
 				9E5719F925BAB6E800CB73B4 /* ChangePassword.swift in Sources */,
@@ -1278,6 +1285,7 @@
 				9E40679925C538540089B088 /* ContactUsVC.swift in Sources */,
 				9E0CF33C25625B2B003E6FCC /* ForgetPasswordModel.swift in Sources */,
 				9ED28119253DB66A00B9CFEF /* HomeCell.swift in Sources */,
+				9EE160AB25D68565001761A4 /* searchProductModel.swift in Sources */,
 				9E7219F8257F3DEB002145DD /* TransctionOrderDetailsVC.swift in Sources */,
 				9EB3B0492581DF470097A0C8 /* SellerAddSizeTableCell.swift in Sources */,
 				9EFD36CD253EC5C100A50EE3 /* CartVC.swift in Sources */,
@@ -1291,6 +1299,7 @@
 				9E8DC25B2570B7C100D0872D /* PlaceABidModel.swift in Sources */,
 				9EFEF61D25C7CAAD000A571A /* SellerGetProductByRef.swift in Sources */,
 				9EE66463255A6AEA007E3F9F /* SellerEarningDetailCell.swift in Sources */,
+				9E9979BF25D411DB00749016 /* addUnboxingVideoModel.swift in Sources */,
 				9E0083512599B83400B35C5C /* unboxingVideoModel.swift in Sources */,
 				9E81726125528EB0006E8027 /* BiddingDetailsCell.swift in Sources */,
 				9ED280EC253D67ED00B9CFEF /* introScreen2VC.swift in Sources */,
@@ -1303,6 +1312,7 @@
 				9E1EE2D2255D048100F15389 /* constant.swift in Sources */,
 				9EFD36D5253EF06200A50EE3 /* MoreVCCell.swift in Sources */,
 				9E3AED6525B6F6250015F7D0 /* getShippingStatusModel.swift in Sources */,
+				9EE160BE25D6B277001761A4 /* SearchProductListCell.swift in Sources */,
 				9E41114B256E2F9300F47329 /* updateUserInfoModel.swift in Sources */,
 				9E9BE6532574FD4E00651DC9 /* addShippingAddressModel.swift in Sources */,
 				9E9BE65625750F2800651DC9 /* removeAddressModel.swift in Sources */,
@@ -1466,8 +1476,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KickTradersApp/KickTradersApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29C5FGJZU4;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -1477,7 +1487,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.KickTraders.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DevKickTraderApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTraderApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1490,8 +1500,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = KickTradersApp/KickTradersApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29C5FGJZU4;
 				INFOPLIST_FILE = KickTradersApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -1501,7 +1511,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.KickTraders.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = DevKickTraderApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anilkumar/Desktop/SwiftAPP/KickTradersApp/KickTraderApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

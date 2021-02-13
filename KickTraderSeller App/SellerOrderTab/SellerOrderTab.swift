@@ -145,6 +145,7 @@ extension SellerOrderTab: UITableViewDelegate,UITableViewDataSource{
             cell.lblBrandName.text = SellerOrderModel.brandName
             cell.lblShoeName.text = SellerOrderModel.productName
             cell.lblSize.text = SellerOrderModel.sizeName
+
             cell.lblColor.backgroundColor = UIColor.init(hexFromString: SellerOrderModel.colorCode!)
             cell.lblBidprice.text = "\("$")\(SellerOrderModel.bidPrice!)"
             cell.lblOrderStatus.text = SellerOrderModel.orderStatus
@@ -164,6 +165,7 @@ extension SellerOrderTab: UITableViewDelegate,UITableViewDataSource{
             cell.lblBrandName.text = SellerOrderModel.brandName
             cell.lblShoeName.text = SellerOrderModel.productName
             cell.lblSize.text = SellerOrderModel.sizeName
+
             cell.lblColor.backgroundColor = UIColor.init(hexFromString: SellerOrderModel.colorCode!)
             cell.lblBidprice.text = "\("$")\(SellerOrderModel.bidPrice!)"
             cell.lblOrderStatus.text = "No Data"

@@ -14,6 +14,7 @@ class colorTableCell: UITableViewCell {
     
     
     var arrColorSelected = [Int]()
+    var arrColorSelectedRef = [String]()
     
     
 
@@ -24,16 +25,9 @@ class colorTableCell: UITableViewCell {
     }
     
     func reloadColorCollectionView() -> Void {
-        
-        
         self.ShowColorCollection.reloadData()
     }
-    
-    
-    
-    
-    
-    
+
 }
 
 extension colorTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
@@ -80,8 +74,9 @@ extension colorTableCell: UICollectionViewDataSource, UICollectionViewDelegate,U
         cell.toggleSelected()
         
         let data = arrcolor[indexPath.row].colorRef
-        print("The color is: ",data!)
-        
+        arrColorSelectedRef.append(data!)
+        print("The color ref is: ",arrColorSelectedRef)
+        UserDefaults.standard.setValue(arrColorSelectedRef, forKey: "DefaultSearchColor")
         
         arrColorSelected.append(indexPath.row)
         

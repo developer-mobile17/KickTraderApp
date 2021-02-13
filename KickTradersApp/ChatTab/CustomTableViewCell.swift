@@ -85,6 +85,12 @@ class CustomTableViewCell: UITableViewCell {
     var textviewTopConstraintToBg: NSLayoutConstraint!
     
     var textviewTopConstraintToTopLabel: NSLayoutConstraint!
+
+
+
+
+    var imgVWTopConstraintToBg: NSLayoutConstraint!
+    var imgVWTopConstraintToTopLabel: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -145,21 +151,23 @@ class CustomTableViewCell: UITableViewCell {
         bgView.backgroundColor =  UIColor.red.withAlphaComponent(0.1)
 
 
-//        self.bgView.addSubview(imgVW)
-//
-//      //  imgVW = UIImageView(frame: CGRect.init(x: 10, y: 10, width: 100, height: 100))
-//
-//       imgVW.edges([.left, .top, .bottom, .right], to: self.bgView, offset: .init(top: innerSpacing, left: innerSpacing, bottom: innerSpacing, right: innerSpacing))
-//
-//        bgView.leadingAnchor.constraint(greaterThanOrEqualTo: self.contentView.leadingAnchor, constant: extraSpacing).isActive = true
-//      //  imgVW.contentMode = .scaleAspectFit
-//        imgVW.layer.cornerRadius = 8
-//        imgVW.backgroundColor = UIColor.green
-//       // self.bgView.addSubview(imgVW)
-//
+        //TODO:-  Set Image Cell here
+
+        self.bgView.addSubview(imgVW)
+        imgVW.contentMode = .scaleAspectFit
+     //  imgVW = UIImageView(frame: CGRect.init(x: 10, y: 10, width: 100, height: 100))
+
+        imgVW.edges([.top, .left, .bottom, .right], to: self.bgView, offset: .init(top: 10, left: 10, bottom: -10, right: -10))
+////
+//        bgView.leadingAnchor.constraint(greaterThanOrEqualTo: self.imgVW.leadingAnchor, constant: extraSpacing).isActive = true
+
+        imgVW.layer.cornerRadius = 8
+       // imgVW.backgroundColor = UIColor.green
 
 
 
+
+        //TODO:----------------------------------------
         self.bgView.addSubview(topLabel)
         topLabel.edges([.left, .top], to: self.bgView, offset: UIEdgeInsets(top: secondaryPadding, left: secondaryPadding, bottom: 0, right: 0))
         topLabel.font = UIFont.boldSystemFont(ofSize: 14)

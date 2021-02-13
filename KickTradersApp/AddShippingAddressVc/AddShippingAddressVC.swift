@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GooglePlaces
+import CoreLocation
 
 class AddShippingAddressVC: UIViewController {
 
@@ -18,6 +18,9 @@ class AddShippingAddressVC: UIViewController {
     @IBOutlet var txfAddress: UITextField!
     @IBOutlet var txfCity: UITextField!
     @IBOutlet var txfState: UITextField!
+    var getCity:String?
+    var getState:String?
+    var checkNewAddress:String?
     
     
     var defaultsAddress = UserDefaults.standard
@@ -26,43 +29,87 @@ class AddShippingAddressVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         // overrideUserInterfaceStyle is available with iOS 13
-            if #available(iOS 13.0, *) {
-                // Always adopt a light interface style.
-                overrideUserInterfaceStyle = .light
-            }
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
+
+        txfZipCode.addTarget(self,
+                             action : #selector(textFieldDidChange),
+                             for : .editingDidEnd)
         
-        
-        GMSPlacesClient.provideAPIKey("AIzaSyADyDKWRpepDv2l00WJ4EVvEFmS3IlzPVc")
+
+        if checkNewAddress == "newAddress" {
+
+        }
+        else {
+            self.getEditAddressData()
+        }
+
+
+
+    }
+
+    @objc func textFieldDidChange()
+    {
+        self.GetCityNameUsingZip()
     }
     
     @IBAction func actionBackButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func actionZipCode(_ sender: Any) {
-        
-//        let autocompleteController = GMSAutocompleteViewController()
-//            autocompleteController.delegate = self
-//
-//            // Specify the place data types to return.
-//            let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-//              UInt(GMSPlaceField.placeID.rawValue))!
-//            autocompleteController.placeFields = fields
-//
-//            // Specify a filter.
-//            let filter = GMSAutocompleteFilter()
-//            filter.type = .address
-//            autocompleteController.autocompleteFilter = filter
-//
-//            // Display the autocomplete view controller.
-//            present(autocompleteController, animated: true, completion: nil)
-    }
-    
-    
-    
+
+
     @IBAction func actionAddNewAddress(_ sender: Any) {
-        self.callingAddNewShippingAddressAPI()
+        if txfFullname.text == "" || txfPhoneNumber.text == "" || txfZipCode.text == "" || txfAddress.text == "" || txfCity.text == "" || txfState.text == ""
+        {
+            showAlert(alertMessage: "All fields are required!")
+        }
+        else {
+            self.callingAddNewShippingAddressAPI()
+        }
+
+
+    }
+
+
+    func getEditAddressData() {
+        //Fetching Data using UserDefaults
+        if let addressListData = UserDefaults.standard.value(forKey:"editAddresList") as? Data
+        {
+            let retrieveObject = try? PropertyListDecoder().decode(Address.self, from: addressListData)
+
+            txfFullname.text = retrieveObject?.deliveredTo
+            txfPhoneNumber.text = retrieveObject?.mobile
+            txfZipCode.text = retrieveObject?.pin
+            txfAddress.text = retrieveObject?.address
+            txfCity.text = retrieveObject?.city
+            txfState.text = retrieveObject?.state
+
+        }
+
+
+    }
+
+    func GetCityNameUsingZip() {
+        let location: String = txfZipCode.text ?? ""
+        let geocoder: CLGeocoder = CLGeocoder()
+        geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
+
+            guard placemarks?.count == 0 else{return}
+            if ((placemarks?.count)! > 0) {
+                let placemark: CLPlacemark = (placemarks?[0])!
+                let placeMarkcity : String = placemark.locality ?? ""
+                let placeMarkstate: String = placemark.administrativeArea ?? ""
+
+                self.txfCity.text = placeMarkcity
+                self.txfState.text = placeMarkstate
+
+            }
+        } )
     }
 }
 
@@ -90,7 +137,7 @@ extension AddShippingAddressVC {
             case.success(let json):
                 print(json!)
                 ProgressHUD.dismiss()
-              //  let msg = (json as! addShippingAddressModelReponse).msg
+
                 self.navigationController?.popViewController(animated: true)
                 
                // print(msg!)

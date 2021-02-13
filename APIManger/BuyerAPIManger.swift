@@ -1314,6 +1314,127 @@ class BuyerAPIManager {
 
 
 
+    //MARK:- Remove Review of Buyer Commebt API Implementatin
+
+    func callingRemoveReview_API(removeReviewParam:removeReviewRequest ,completionHandler : @escaping Handler) {
+
+        AF.request(buyerRemoveReview_url,
+                   method: .post,
+                   parameters: removeReviewParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(removeReviewResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Hit remove review API")
+                            }
+                            else{
+                                print("There is an issue with remove review API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                    }
+
+                   }
+    }
+
+
+
+
+
+
+
+    //MARK:- Remove Review of Buyer Commebt API Implementatin
+
+    func callingAddUnboxingVideo_API(addUnboxingVideoParam:addUnboxingVideoRequest ,completionHandler : @escaping Handler) {
+
+        AF.request(addUnboxingVideo_Url,
+                   method: .post,
+                   parameters: addUnboxingVideoParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(addUnboxingVideoResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully Upload unboxing Video API")
+                            }
+                            else{
+                                print("There is an issue with Upload unboxing Video API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                    }
+
+                   }
+    }
+
+
+
+
+    //MARK:- Remove Review of Buyer Commebt API Implementatin
+
+    func callingBuyerSearchProduct_API(searchProductParam:searchProductRequest ,completionHandler : @escaping Handler) {
+
+        AF.request(BuyerSearchProduct_url,
+                   method: .post,
+                   parameters: searchProductParam,
+                   encoder: URLEncodedFormParameterEncoder.default,
+                   headers: nil).response {
+                    response in
+
+                    switch response.result{
+                    case .success(let data):
+                        do {
+                            let jsonDecoder = JSONDecoder()
+                            let responseModel = try jsonDecoder.decode(searchProductResponse.self, from: data!)
+                            print(responseModel)
+
+                            if response.response?.statusCode == 200{
+                                completionHandler(.success(responseModel))
+                                print("Successfully fetch Search Product API")
+                            }
+                            else{
+                                print("There is an issue with fetch Search Product API, Please check!")
+                            }
+
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
+
+                    case .failure(let err):
+                        print(err.localizedDescription)
+                    }
+
+                   }
+    }
+
+
 
     
 }

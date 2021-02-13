@@ -33,6 +33,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet var productName: UILabel!
     @IBOutlet var productDescription: UILabel!
     @IBOutlet var productPrice: UILabel!
+    @IBOutlet var productForWhom: UILabel!
     @IBOutlet var btnPlayVideo: UIButton!
     @IBOutlet var btnSetFavourite: UIButton!
 
@@ -77,6 +78,7 @@ class ProductDetailVC: UIViewController,UIScrollViewDelegate {
     var productVideo: String!
     var checkFavoutite : String!
     var strActionFav: String?
+    var productSubCategoryCheck:String?
     
     // var arrSellerDetails = [SellerDetail]()
     
@@ -266,11 +268,25 @@ extension ProductDetailVC{
                 
                 
                 //TODO:- Update the Product Info
-                self.productName.text = resPonseProduct.productName
-                self.productDescription.text = resPonseProduct.productDescription
+                self.productName.text = resPonseProduct.productName?.capitalized
+                self.productDescription.text = resPonseProduct.brandName
                 self.productPrice.text! =   "\("$")\(resPonseProduct.productPrice!)"
                 self.defaultss.setValue(resPonseProduct.productRef, forKey:"DefaultsproductRef")
 
+
+                //TODO:- Check Product for whom |Men|WoMen|Both
+
+                if  resPonseProduct.productSubCategory == "1" {
+                    productForWhom.text = "For Men"
+
+                }
+                else if resPonseProduct.productSubCategory == "2"
+                {
+                    productForWhom.text = "For Women"
+                }
+                else {
+                    productForWhom.text = "For Both"
+                }
 
                 //TODO:- Product Authentication check here and do App logic accordingly
                 let productIsVerified = Int((resPonseProduct.authCount)!)
@@ -409,11 +425,11 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate{
         if section == 0 {
             label.text = "Size:"
             //  label.textColor = Color
-            label.font = label.font.withSize(15)
+            label.font = UIFont.boldSystemFont(ofSize: 15)
         } else  {
             label.text = "Colors: "
             // label.textColor = Color
-            label.font = label.font.withSize(15)
+            label.font = UIFont.boldSystemFont(ofSize: 15)
         }
 
         return label

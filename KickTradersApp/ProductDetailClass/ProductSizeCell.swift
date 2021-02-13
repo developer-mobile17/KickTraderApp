@@ -67,6 +67,7 @@ extension ProductSizeCell: UICollectionViewDataSource,UICollectionViewDelegate,U
         else{
             SizeCollection.lblSize.cornerRadius = 0
             SizeCollection.lblSize.layer.backgroundColor = UIColor.clear.cgColor
+            SizeCollection.lblSize.textColor = UIColor.black
         }
         
         return SizeCollection
@@ -94,11 +95,11 @@ extension ProductSizeCell: UICollectionViewDataSource,UICollectionViewDelegate,U
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-              return CGSize(width: 32 , height: 32)
+              return CGSize(width: 38 , height: 38)
           }
           
           func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-              return UIEdgeInsets(top: 2, left: 5, bottom: 2, right: 5)
+              return UIEdgeInsets(top: 0   , left: 0, bottom: 0, right: 0)
           }
 
     

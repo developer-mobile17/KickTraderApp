@@ -181,9 +181,9 @@ extension SellerSignUpVC {
                   print("Cancel")
               })
               
-              action1.setValue(UIColor.purple, forKey: "titleTextColor")
-              action2.setValue(UIColor.green, forKey: "titleTextColor")
-            
+//              action1.setValue(UIColor.purple, forKey: "titleTextColor")
+//              action2.setValue(UIColor.green, forKey: "titleTextColor")
+//            
               alertController.addAction(action1)
               alertController.addAction(action2)
               alertController.addAction(maybeAction)

@@ -82,13 +82,19 @@ extension TransactionVC : UITableViewDataSource,UITableViewDelegate {
         
         let MyTransctionData = arrTransctionData[indexPath.row]
         
-        let imgURL = URL(string:"\(PRODUCT_COVER_IMAGE)\(MyTransctionData.productCoverImage!)")
-        cell.imgShoes.kf.setImage(with: imgURL)
-        
+        if let imgURL = URL(string:"\(PRODUCT_COVER_IMAGE)\(MyTransctionData.productCoverImage ?? "")"){
+            cell.imgShoes.kf.setImage(with: imgURL)
+        }
+
         cell.lblShoeBrandName.text = MyTransctionData.brandName
         cell.lblShoeName.text = MyTransctionData.productName
         cell.lblSize.text = MyTransctionData.sizeName
-        cell.lblColor.backgroundColor = UIColor(hexFromString:MyTransctionData.colorCode!)
+
+        if let colorCode  = MyTransctionData.colorCode {
+            cell.lblColor.backgroundColor = UIColor(hexFromString:colorCode)
+
+        }
+       // cell.lblColor.backgroundColor = UIColor(hexFromString:MyTransctionData.colorCode!)
         
         cell.lblPrice.text =  "\("$")\(String(describing: MyTransctionData.bidPrice!))"
         cell.lblDate.text = MyTransctionData.orderedDate
@@ -122,6 +128,19 @@ extension TransactionVC : UITableViewDataSource,UITableViewDelegate {
         
         
         return cell
+    }
+
+
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let productDetails =  self.storyboard?.instantiateViewController(identifier: "ProductDetailVC") as! ProductDetailVC
+
+        let productRef = arrTransctionData[indexPath.row].productRef
+
+        let Defaults = UserDefaults.standard
+        Defaults.set(productRef, forKey: "DefaultsproductRef")
+        self.navigationController?.pushViewController(productDetails, animated: true)
     }
     
     

@@ -14,6 +14,8 @@ class CartVC:UIViewController{
     
     @IBOutlet var objtable : UITableView!
     @IBOutlet var imgEmptyCart: UIImageView!
+    @IBOutlet var btnImgProfile: UIButton!
+
     var arrCartData = [CartItem]()
      var selecteCartRef : String = ""
      var selectedProductRef : String = ""
@@ -23,7 +25,8 @@ class CartVC:UIViewController{
      var strPlaceABidPrice: String = ""
      var strcartRef: String = ""
      var defaults = UserDefaults.standard
-    var strActionFav: String?
+     var strActionFav: String?
+    var strImgURLofloginUser:String!
 
 
 
@@ -40,10 +43,39 @@ class CartVC:UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        self.getProfileImg()
         self.imgEmptyCart.isHidden = true
         self.callingCartAPI()
     }
+
+    
+    @IBAction func actionBtnImgProfile(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(identifier: "ProfileVC") as? ProfileVC else{
+
+            return
+        }
+        present(vc, animated: true)
+    }
+
+    func getProfileImg (){
+        btnImgProfile.layer.cornerRadius = 12
+        btnImgProfile.clipsToBounds = true
+
+        strImgURLofloginUser = UserDefaults.standard.value(forKey: "Defaultsprofile_Image")! as? String
+        if strImgURLofloginUser == nil {
+            print("No Profile Img")
+        }
+        else {
+            let imgProfileURL =  URL(string: "\(PROFILE_IMAGE)\(strImgURLofloginUser!)")
+            self.btnImgProfile.kf.setImage(with: imgProfileURL, for: .normal)
+
+
+
+        }
+
+
+    }
+
     
 
 }
@@ -176,8 +208,26 @@ extension CartVC : UITableViewDataSource,UITableViewDelegate {
         
         return cell
     }
+
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let productDetails =  self.storyboard?.instantiateViewController(identifier: "ProductDetailVC") as! ProductDetailVC
+
+        let productRef = arrCartData[indexPath.row].productRef
+
+        let Defaults = UserDefaults.standard
+        Defaults.set(productRef, forKey: "DefaultsproductRef")
+        self.navigationController?.pushViewController(productDetails, animated: true)
+    }
     
 }
+
+
+
+
+
+
 
 
 

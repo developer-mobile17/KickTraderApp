@@ -9,7 +9,7 @@
 import UIKit
 
 class EnterOTPVC: UIViewController {
-    var passOTP : Int!
+    var passOTP : String!
     var passMobileNo : String!
     @IBOutlet var txfOtp : UITextField!
     

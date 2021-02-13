@@ -14,19 +14,29 @@ var arrbrands = [Brand]()
 var arrsize = [Size]()
 var arrcolor = [Color]()
 
-class SearchVC: UIViewController {
+
+
+class SearchVC: UIViewController, UISearchBarDelegate {
     @IBOutlet var objTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var arrSelectedColorIS = [String]()
+    var productNameIsSearchBY:String!
+    var arrSearchProdeuctResult = [SearchResult]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // overrideUserInterfaceStyle is available with iOS 13
-            if #available(iOS 13.0, *) {
-                // Always adopt a light interface style.
-                overrideUserInterfaceStyle = .light
-            }
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
+        self.searchBar?.delegate = self
         self.CallingGetAllDropDownBuyerAPI()
+    }
+    @IBAction func actionSeachProductClicked(_ sender: Any) {
+        self.FetchSearchProduct()
     }
     
 }
@@ -48,9 +58,7 @@ extension SearchVC {
                 
                 
             arrbrands = ((json as! Welcome).array?.brands!)!
-               // print("Brands are: ",arrbrands)
-            
-            
+
             arrcolor = ((json as! Welcome).array?.color!)!
                 
              arrsize = ((json as! Welcome).array?.size!)!
@@ -66,6 +74,91 @@ extension SearchVC {
         
     }
 }
+
+
+
+
+
+extension SearchVC {
+    func FetchSearchProduct(){
+
+        ProgressHUD.show(interaction: false)
+        if let SelectedColorForSearch = UserDefaults.standard.value(forKey: "DefaultSearchColor") as? [String] {
+
+            arrSelectedColorIS = SelectedColorForSearch
+        }
+        let searchProductText = productNameIsSearchBY ?? ""
+
+        let fetchSearchProductParam =  searchProductRequest(searchText: searchProductText, brand: "", color:[], gender: "")
+
+        BuyerAPIManager.shareInstance.callingBuyerSearchProduct_API(searchProductParam: fetchSearchProductParam) {(result) in
+
+            switch result{
+            case.success(let json):
+                ProgressHUD.dismiss()
+                print((json as! searchProductResponse).msg!)
+                self.arrSearchProdeuctResult = (json as! searchProductResponse).searchResult!
+                if self.arrSearchProdeuctResult.count > 0 {
+
+                    if let data = try? PropertyListEncoder().encode(self.arrSearchProdeuctResult) {
+
+                        UserDefaults.standard.set(data, forKey: "DefaultSearchedProductArray")
+
+                    }
+                    self.goToSearchedProductList()
+                }
+               // self.goToSearchedProductList()
+
+            case.failure(let err):
+                print(err.localizedDescription)
+            }
+
+        }
+
+    }
+}
+
+
+extension SearchVC {
+    func goToSearchedProductList() {
+
+
+        let vcSearchedResult = self.storyboard?.instantiateViewController(identifier: "SearchedProductListVC") as! SearchedProductListVC
+
+        self.navigationController?.pushViewController(vcSearchedResult, animated: true)
+    }
+//        guard let vc = storyboard?.instantiateViewController(identifier: "SearchedProductListVC") as? SearchedProductListVC else{
+//
+//            return
+//        }
+//        present(vc, animated: true)
+ //   }
+}
+
+
+
+//MARK:- SearachBar Delegate
+extension SearchVC {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    print(searchText)
+   // searchBar.resignFirstResponder()
+
+
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        productNameIsSearchBY = searchBar.text
+        searchBar.resignFirstResponder()
+        self.FetchSearchProduct()
+    }
+
+
+    func searchBarCancelButtonClicked(_searchBar: UISearchBar){
+        searchBar.resignFirstResponder()
+    }
+}
+
+
 
 
 

@@ -25,6 +25,7 @@ class SellerSignUpVerficationVC: UIViewController {
         
         let defaults = UserDefaults.standard
         mobile = defaults.string(forKey:"Defaultsmobile")
+        txfOtp.text = UserDefaults.standard.value(forKey: "DefaultsOtp") as? String
       
     }
 

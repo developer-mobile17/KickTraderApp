@@ -14,6 +14,8 @@ class ProductDetailReviewCell: UITableViewCell {
     @IBOutlet var lblReviewDate : UILabel!
     @IBOutlet var lblReviewDesc : UILabel!
     @IBOutlet var lblReviewRating : UILabel!
+
+    @IBOutlet var btnDeleteComment : UIButton!
     
 
     override func awakeFromNib() {

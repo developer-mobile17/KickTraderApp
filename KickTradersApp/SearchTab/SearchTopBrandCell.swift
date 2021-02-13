@@ -11,6 +11,7 @@ import UIKit
 class SearchTopBrandCell: UITableViewCell {
     
     @IBOutlet var ShowBrandCollection: UICollectionView!
+    var arrSelectedBrandName = [String]()
     
     
     override func awakeFromNib() {
@@ -47,10 +48,16 @@ extension SearchTopBrandCell: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let cellTopBrand = collectionView.cellForItem(at: indexPath) as! BrandCollectionCell
+        cellTopBrand.toggleBrandSelected()
+
+
         print("The Selected Brand is: ",arrbrands[indexPath.row])
+
+        arrSelectedBrandName.append(arrbrands[indexPath.row].brandName!)
+        print("Selected Brand Name is",arrSelectedBrandName)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 75 , height: 75)
     }

@@ -18,6 +18,7 @@ class AddressListVC: UIViewController {
 
     //TODO:- This address ref is passing to Next VC for API Call
     var selectedAddressRef:String = ""
+    var checkEditOrNewAddress:String?
     
     var arrShippingAddress = [Address]()
     var defulatsAddressList = UserDefaults.standard
@@ -31,32 +32,42 @@ class AddressListVC: UIViewController {
                 // Always adopt a light interface style.
                 overrideUserInterfaceStyle = .light
             }
-        
 
         self.callingFetchingShippingAddressAPI()
         
     }
-    
+
+
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        // overrideUserInterfaceStyle is available with iOS 13
+            if #available(iOS 13.0, *) {
+                // Always adopt a light interface style.
+                overrideUserInterfaceStyle = .light
+            }
+
+        self.callingFetchingShippingAddressAPI()
+
+    }
+
     
     @IBAction func actionBackButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func actionAddNewAddress(_ sender: Any) {
-        
-        guard let vc = storyboard?.instantiateViewController(identifier: "AddShippingAddressVC") as? AddShippingAddressVC else{
-            
-            return
-        }
-        
-        present(vc, animated: true)
+
+        checkEditOrNewAddress = "newAddress"
+        let vcAddressNew = self.storyboard?.instantiateViewController(identifier: "AddShippingAddressVC") as! AddShippingAddressVC
+
+        vcAddressNew.checkNewAddress = "newAddress"
+        self.navigationController?.pushViewController(vcAddressNew, animated: true)
+
     }
     
     
     
     @IBAction func actionOrderPlace(_ sender: Any) {
-
-
-
         if selectedAddressRef == "" {
             showAlert(alertMessage: "Please Select Address.")
         }
@@ -178,15 +189,10 @@ extension AddressListVC {
 
     @objc func efitAddressFromList(sender:UIButton){
 
-
-      //  let addressEdit = arrShippingAddress[sender.tag]
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(self.arrShippingAddress[sender.tag]),forKey: "editAddresList")
         let vcAddressEdit = self.storyboard?.instantiateViewController(identifier: "AddShippingAddressVC") as! AddShippingAddressVC
 
-
-
-      
-       // vcAddressEdit.arrAddressPass = arrShippingAddress[sender.tag].address
-
+        vcAddressEdit.checkNewAddress = "editAddress"
         self.navigationController?.pushViewController(vcAddressEdit, animated: true)
 
     }

@@ -178,6 +178,12 @@ extension ProfileVC{
                     
                     print("Success!")
                     print(dictionary)
+
+
+                    let dicResponse: AnyObject? = dictionary.object(forKey: "UserInfo") as AnyObject
+                    let imgUser = dicResponse?.object(forKey: "Profile_Image") as? String
+                    UserDefaults.standard.setValue(imgUser, forKey: "Defaultsprofile_Image")
+                    
                     ProgressHUD.dismiss()
 
                     AppSnackBar.make(in: self.view, message:"Profile updated successfully.", duration: .lengthShort).show()

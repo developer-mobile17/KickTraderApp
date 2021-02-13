@@ -17,38 +17,57 @@ class SignupVC: UIViewController,UIImagePickerControllerDelegate,UINavigationCon
     @IBOutlet var txfAddress: UITextField!
     @IBOutlet var txfPassword: UITextField!
     @IBOutlet var txfConfirmPass: UITextField!
-    @IBOutlet var btnGender: UIButton!
+    @IBOutlet var btnSelectedGender: [UIButton]!
+    
     
 
     var imagePicker = UIImagePickerController()
     var alert = UIAlertController()
+    var selectedGenderIs:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
         // overrideUserInterfaceStyle is available with iOS 13
-            if #available(iOS 13.0, *) {
-                // Always adopt a light interface style.
-                overrideUserInterfaceStyle = .light
-            }
+        if #available(iOS 13.0, *) {
+            // Always adopt a light interface style.
+            overrideUserInterfaceStyle = .light
+        }
 
     }
     
-    @IBAction func actionGenderSelect(_ sender: Any) {
-
-        let image = UIImage(named: "Group 1")
-        let action = UIAlertAction(title: "title", style: .default, handler: nil)
-        action.setValue(image, forKey: "image")
-        alert.addAction(action)
-    }
+    
     
     @IBAction func actionChooseProfileImg(_ sender: Any) {
         self.OpenProfileCameraMenu()
     }
 
 
+    @IBAction func actionSelectGender(_ sender: UIButton) {
 
+        btnSelectedGender.forEach{
+            $0.isSelected = false
+        }
+        sender.isSelected.toggle()
+
+        if sender.tag == 1 {
+            selectedGenderIs = "Male"
+            print(" Gender is 👦🏼")
+
+        }
+        else if sender.tag == 2{
+            selectedGenderIs = "FeMale"
+            print(" Gender is 👩🏻")
+
+        }
+        else{
+            selectedGenderIs = "Both"
+            print(" Gender is 🤷🏻")
+        }
+    }
+    
+    
 
     
 }
@@ -93,7 +112,7 @@ extension SignupVC {
 extension SignupVC {
     func signUpAPICalling (){
         
-       let deviceToken =  UserDefaults.standard.value(forKey: "AppDeviceToken") ?? "askldfjksdjfjkfj"
+        let deviceToken =  UserDefaults.standard.value(forKey: "AppDeviceToken") ?? "askldfjksdjfjkfj"
         
         ProgressHUD.show("Please Wait.", interaction: false)
         //Set Your URL
@@ -112,7 +131,7 @@ extension SignupVC {
         parameterDict.setValue(txfShop.text, forKey: "Full_Name")
         parameterDict.setValue(txfEmail.text, forKey: "Email")
         parameterDict.setValue(txfPhoneNumber.text, forKey: "Mobile")
-        parameterDict.setValue("male", forKey: "gender")
+        parameterDict.setValue(selectedGenderIs, forKey: "gender")
         parameterDict.setValue(txfPassword.text, forKey: "Password")
         parameterDict.setValue("Buyer", forKey: "Role")
         
@@ -124,6 +143,7 @@ extension SignupVC {
         parameterDict.setValue("", forKey: "close_time")
         parameterDict.setValue("", forKey: "shop_description")
         parameterDict.setValue(txfAddress.text, forKey: "address")
+       // parameterDict.setValue("", forKey: "paypalAccountEmail")
         
         
         print(parameterDict)
@@ -131,7 +151,7 @@ extension SignupVC {
         
         let imgData = imgProfile.image!.jpegData(compressionQuality: 0.75)
         
-        //  let imgData = imgProfile.image!.jpegData(compressionQuality: 0.75)
+
         
         // Now Execute
         AF.upload(multipartFormData: { multiPart in
@@ -191,6 +211,7 @@ extension SignupVC {
                         let Validation_Code = userInfo.object(forKey: "Validation_Code") as! String
                         print("Verfication code is: ",Validation_Code)
                         let mobileNumber = userInfo.object(forKey: "Mobile") as! String
+                       // self.showAlert(alertMessage:"\(Validation_Code)")
                         
                         let defaults = UserDefaults.standard
                         defaults.set(mobileNumber, forKey: "Defaultsmobile")
@@ -256,8 +277,9 @@ extension SignupVC {
             print("Cancel")
         })
         
-        action1.setValue(UIColor.purple, forKey: "titleTextColor")
-        action2.setValue(UIColor.green, forKey: "titleTextColor")
+
+
+       // UIImage(imageLiteralResourceName:"NoImg.png")
         
         alertController.addAction(action1)
         alertController.addAction(action2)
@@ -319,3 +341,6 @@ extension SignupVC {
         self.navigationController?.pushViewController(verfication, animated: true)
     }
 }
+
+
+

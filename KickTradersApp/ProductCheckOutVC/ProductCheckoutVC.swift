@@ -7,24 +7,17 @@
 //
 
 import UIKit
-
-class ProductCheckoutVC: UIViewController, PayPalPaymentDelegate {
+import WebKit
+class ProductCheckoutVC: UIViewController,WKNavigationDelegate,WKUIDelegate  {
 
     //MARK:- PayPal Setup
 
 
-    var environment:String = PayPalEnvironmentSandbox {
-    willSet(newEnvironment) {
-    if (newEnvironment != environment) {
-    PayPalMobile.preconnect(withEnvironment: newEnvironment)
-                }
-            }
-        }
 
-    var payPalConfig = PayPalConfiguration()
 
 //**************************************************************//
 
+    @IBOutlet var paypalWebView: WKWebView!
 
     @IBOutlet var imgShoe: UIImageView!
     @IBOutlet var lblShoeBrand: UILabel!
@@ -57,24 +50,71 @@ class ProductCheckoutVC: UIViewController, PayPalPaymentDelegate {
                 // Always adopt a light interface style.
                 overrideUserInterfaceStyle = .light
             }
+
+
+      //  paypalWebView = WKWebView()
+
+//        paypalWebView = WKWebView(frame: CGRect( x: 0, y: 200, width: self.view.frame.width, height: self.view.frame.height - 20 ), configuration: WKWebViewConfiguration() )
+        self.view.addSubview(paypalWebView)
+        paypalWebView.navigationDelegate = self
+        paypalWebView.uiDelegate = self
+
         
         lblShoeBGColor.layer.cornerRadius = 8
         lblShoeBGColor.clipsToBounds = true
         lblShoeBGColor.layer.borderWidth = 1
 
 
-        //TODO:- Paypal configure here..
-        payPalConfig.payPalShippingAddressOption = .both
 
         self.getProductDetail()
+        strCartRef = DefaultsCheckOut.value(forKey:"CheckoutCartRef") as! String
+        self.WebviewCalling()
 
     }
 
-   //TODO:- paypal preconnect setup here
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            PayPalMobile.preconnect(withEnvironment: environment)
+
+
+    func WebviewCalling() {
+
+        let web_url =  URL(string:"\(payPalWebViewURL)\(strCartRef)")!
+        let web_request = URLRequest(url: web_url)
+        paypalWebView.load(web_request)
+    }
+
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+    {
+        ProgressHUD.show(interaction: false)
+        print(#function)
+    }
+
+
+    func webView(_ webView: WKWebView, didFinish  navigation: WKNavigation!)
+    {
+        ProgressHUD.dismiss()
+        let uRL = webView.url?.absoluteString
+        print("---Hitted URL--->\(uRL!)") // here you are getting URL
+
+        if (uRL?.contains("payid") == true){
+            //TODO:- Go to success Screen
+
+
+            PayPalSuccessID = getQueryStringParameter(url: uRL!, param: "payid")
+            self.callingOrderPlacedAPI()
+
         }
+        else {
+
+
+        }
+
+    }
+
+
+    func getQueryStringParameter(url: String, param: String) -> String? {
+      guard let url = URLComponents(string: url) else { return nil }
+      return url.queryItems?.first(where: { $0.name == param })?.value
+    }
 
 
 
@@ -91,22 +131,6 @@ class ProductCheckoutVC: UIViewController, PayPalPaymentDelegate {
 
 
 
-        let totalAmount = totalChargesGenric(bidPrice: bidPriceToNumeric!, shippingCharges: 7)
-        let TotalAmtDecimal =  NSDecimalNumber(value: totalAmount)
-
-        //TODO:- paypal payment gateway calling here on button click
-        let payment = PayPalPayment(amount: TotalAmtDecimal, currencyCode: "USD", shortDescription: (DefaultsCheckOut.value(forKey: "CheckoutProductName") as! String), intent: .sale)
-
-
-        if (payment.processable) {
-            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
-            present(paymentViewController!, animated: true, completion: nil)
-        }
-        else {
-
-            print("Payment not processalbe: \(payment)")
-            showAlert(alertMessage:"Payment not processalbe")
-        }
 
     }
     
@@ -142,7 +166,7 @@ func totalChargesGenric<T:Numeric>(bidPrice:T, shippingCharges:T) -> T {
 
 //TODO:- Order Place / Buy  API
 extension ProductCheckoutVC {
-    func callingBuyOrderAPI() {
+    func callingOrderPlacedAPI() {
 
         ProgressHUD.show("Please wait.",  interaction: false)
         print("PayPal Success ID",PayPalSuccessID!)
@@ -181,30 +205,3 @@ extension ProductCheckoutVC {
 
 }
 
-//MARK:- PayPal Payment Gateway integration.
-extension ProductCheckoutVC {
-    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
-        print("PayPal Payment Cancelled")
-        paymentViewController.dismiss(animated: true, completion: nil)
-    }
-
-    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
-        print("PayPal Payment Success !")
-        paymentViewController.dismiss(animated: true, completion: { [self] () -> Void in
-            // send completed confirmaion to your server
-            print("Here is your proof of payment:\n\n\(completedPayment.confirmation)\n\nSend this to your server for confirmation and fulfillment.")
-
-
-            let paymentResultDic = completedPayment.confirmation as NSDictionary
-
-
-            let dicResponse: AnyObject? = paymentResultDic.object(forKey: "response") as AnyObject
-            self.PayPalSuccessID = dicResponse?.object(forKey: "id") as? String
-            print(self.PayPalSuccessID!)
-            //TODO:- Sending Paypal id to server for reference
-            self.callingBuyOrderAPI()
-
-            })
-    }
-
-}

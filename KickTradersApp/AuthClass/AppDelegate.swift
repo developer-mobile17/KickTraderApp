@@ -13,7 +13,7 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
+    var window: UIWindow?
     var deviceAppToken : String!
     let notificationCenter = UNUserNotificationCenter.current()
 
@@ -23,9 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         IQKeyboardManager.shared.enable = true
         //IQKeyboardManager.shared.toolbarPreviousNextAllowedClasses.add(UIStackView.self)
-        //TODO:- Set Paypal credential
-        PayPalMobile.initializeWithClientIds(forEnvironments: [PayPalEnvironmentSandbox:"AS86-0SRgY00ibp3Sm8hWzF3b-gfdd0FvM7-sRJ5dGGS65GaRB3gVDPxP2P1lfDTPPxzswZlveBKhWaO"])
-
+       
         // TODO:- Ask user for Notification permission
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
@@ -66,32 +64,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,didReceiveRemoteNotification userInfo: [AnyHashable: Any],fetchCompletionHandler completionHandler:@escaping (UIBackgroundFetchResult) -> Void) {
 
         let state : UIApplication.State = application.applicationState
-            if (state == .inactive || state == .background) {
-                // go to screen relevant to Notification content
-                print("background")
-            } else {
-                // App is in UIApplicationStateActive (running in foreground)
-                print("foreground")
-               // showLocalNotification()
-            }
+        if (state == .inactive || state == .background) {
+            // go to screen relevant to Notification content
+            print("background")
+        } else {
+            // App is in UIApplicationStateActive (running in foreground)
+            print("foreground")
+            // showLocalNotification()
         }
+    }
 
     //MARK:- Set UserNotification Center
     func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                        willPresent notification: UNNotification,
-                                        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-        {
-            completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
 
-               // completionHandler([.alert, .sound])
-            let userInfoApns = notification.request.content.userInfo
-            print(userInfoApns)
+        // completionHandler([.alert, .sound])
+        let userInfoApns = notification.request.content.userInfo
+        print(userInfoApns)
 
-            if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive || UIApplication.shared.applicationState == .active {
+        if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .inactive || UIApplication.shared.applicationState == .active {
 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadChatListTable"), object: nil)
-                 }
-            }
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "reloadChatListTable"), object: nil)
+        }
+    }
+
+
+    // This function will be called right after user tap on the notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+
+
+
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        if let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatVC") as? ChatVC, let tabBar = storyboard.instantiateViewController(withIdentifier: "mainTabVC") as? mainTabVC {
+            let navigationController = UINavigationController(rootViewController: chatViewController)
+            navigationController.viewControllers = [chatViewController]
+            tabBar.viewControllers = [navigationController]
+            window?.rootViewController = tabBar
+        }
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "GoToChatListAfterNotificationClicked"), object: nil)
+        completionHandler()
+    }
+
+
+
 
 
     // MARK: UISceneSession Lifecycle

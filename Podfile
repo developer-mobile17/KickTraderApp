@@ -6,8 +6,7 @@ target 'KickTradersApp' do
 	pod 'WMSegmentControl'
 	pod 'Kingfisher', '~> 5.0'
 	pod 'ImageSlideshow', '~> 1.9.0'
-	pod 'GooglePlaces'
-	pod 'PayPal-iOS-SDK'
+	
 	pod 'SnackBar.swift'
 	pod 'IQKeyboardManagerSwift'
 	pod 'TransitionButton'
